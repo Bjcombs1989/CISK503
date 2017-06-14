@@ -1,5 +1,6 @@
 ﻿Public Class formMain
     Dim mysql As MySQLDatabaseConnector
+    'test comment from juan
 
     Private Sub formMain_Load() Handles Me.Load
         ' This code hides the tabs at runtime
