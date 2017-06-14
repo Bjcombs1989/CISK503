@@ -33,7 +33,11 @@ Public Class MySQLDatabaseConnector
     End Sub
 
     Sub AddNewUser(username As String, password As String, level As UserAccount.AccountLevel)
+        Dim sql As String = String.Format("INSERT INTO `User`(`Password`, `Username`, `Account_Level`)" &
+                                          " VALUES ('{0}','{1}',{2})",
+                                           password, username, level)
 
+        ExecuteNonQuery(sql)
     End Sub
 
     Sub LoginUser(username As String, password As String)
