@@ -8,6 +8,7 @@ Public Class UserAccount
     Dim _password As String
     Dim _id As Integer
     Dim _level As AccountLevel
+    Dim mysql As MySQLDatabaseConnector
 
     ''' <summary>
     ''' This property will be read only and shows the other 
@@ -24,33 +25,31 @@ Public Class UserAccount
     End Property
 
     ''' <summary>
-    ''' 
+    ''' This constructor will be used to login to an existing account
     ''' </summary>
-    ''' <param name="pUsername"></param>
-    ''' <param name="pPassword"></param>
+    ''' <param name="pUsername">The username of an existing account</param>
+    ''' <param name="pPassword">The password of the account</param>
     ''' <date>2017-06-07</date>
+    ''' <exception cref="DatabaseException.LoginException"></exception>
     ''' <author>Brian Combs</author>
-    Public Sub New(ByRef mysql As MySQLDatabaseConnector, ByVal pUsername As String, ByVal pPassword As String)
+    Public Sub New(pMySQL As MySQLDatabaseConnector, pUsername As String, pPassword As String)
         ' Set the "Class" variables to the values of the parameters on the constructor
+        mysql = pMySQL
         _username = pUsername
         _password = pPassword
         ' Declare a variable to hold the data from the database and call the Login function
         Try
             Dim login As MySQLDatabaseConnector.AccountInfo = mysql.LoginUser(_username, HashPassword(_password))
-        Catch ex As MySQLDatabaseConnector.DatabaseExceptions.LoginFailedException
 
+            If login Is Nothing Then
+                Throw New DatabaseException.LoginException()
+            End If
+
+            _id = login.ID
+            _level = login.Level
         Catch ex As Exception
-
+            Throw ex
         End Try
-
-        ' Check if the user account was returned, if not, throw a new exception
-        If Not login Then
-            Throw New ApplicationException("Login Failed")
-        End If
-        ' Get the first row of the data returned
-        Dim row As DataRow = Data.Rows(0)
-        _id = Integer.Parse(row("id"))
-        _level = Integer.Parse(row("account_level")) ' This gets the int value of the account level and converts to the enum
 
     End Sub
 
@@ -61,16 +60,22 @@ Public Class UserAccount
     ''' <param name="pPassword"></param>
     ''' <param name="pLevel"></param>
     ''' <date>2017-06-07</date>
+    ''' 
     ''' <author>Brian Combs</author>
-    Public Sub New(pUsername As String, pPassword As String, pLevel As AccountLevel)
+    Public Sub New(pMySQL As MySQLDatabaseConnector, pUsername As String, pPassword As String, pLevel As AccountLevel)
         ' Set the "Class" variables to the values of the parameters on the constructor
+        mysql = pMySQL
         _username = pUsername
         _password = pPassword
         _level = pLevel
-        ' Declare a database variable
-        Dim db = New LibraryDataSetTableAdapters.UserAccountTableAdapter()
-        ' Add the new user to the database and get the ID back from the function
-        _id = db.AddNewUser(_username, HashPassword(_password), _level)
+
+        ' Declare a variable to hold the data from the database and call the Login function
+        Try
+            Dim login As MySQLDatabaseConnector.AccountInfo = mysql.AddNewUser(_username, HashPassword(_password), _level)
+            _id = login.ID
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
 
     ''' <summary>
@@ -81,13 +86,15 @@ Public Class UserAccount
     Public Sub UpdateLevel(authorized_account As UserAccount, new_level As AccountLevel)
         If authorized_account.Level = AccountLevel.Administation Then
             ' Declare a database variable
-            Dim db = New LibraryDataSetTableAdapters.UserAccountTableAdapter()
-            ' Update the database
-            db.UpdateLevel(new_level, _id)
+            Try
+                mysql.ChangeAccountLevel(authorized_account._id, new_level)
+                _level = new_level
+            Catch ex As DatabaseException
+
+            End Try
             ' Update this instance of the class
-            _level = new_level
         Else
-            Throw New ApplicationException("Account not authorized to update account type")
+            Throw New DatabaseException.PermissionsNotSufficientException("Account not authorized to update account type")
         End If
 
     End Sub
@@ -101,14 +108,7 @@ Public Class UserAccount
     ''' <date>2017-06-07</date>
     ''' <author>Brian Combs</author>
     Private Function HashPassword(password As String) As String
-        Dim data() As Byte = System.Text.Encoding.Unicode.GetBytes(password)
-        Dim result() As Byte
-
-        Dim sha As New System.Security.Cryptography.SHA1CryptoServiceProvider()
-
-        result = sha.ComputeHash(data)
-
-        Return result.ToString()
+        Return password & "hashed"
     End Function
 
     ''' <summary>
@@ -117,7 +117,7 @@ Public Class UserAccount
     ''' <date>2017-06-07</date>
     ''' <author>Brian Combs</author>
     Public Enum AccountLevel
-        User = 0
+        Patron = 0
         Circulation = 1
         Administation = 2
     End Enum

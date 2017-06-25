@@ -109,7 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class Objects\UserAccount.vb" />
-    <Compile Include="Database Objects\DatabaseExceptions.vb" />
+    <Compile Include="Database Objects\DatabaseException.vb" />
     <Compile Include="Database Objects\MySQLDatabaseConnector.vb" />
     <Compile Include="Form Objects\formMain.vb">
       <SubType>Form</SubType>
@@ -168,6 +168,13 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Data.dll" />
+    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Data.Entity.EF5.dll" />
+    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Data.Entity.EF6.dll" />
+    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Fabric.Plugin.dll" />
+    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Web.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

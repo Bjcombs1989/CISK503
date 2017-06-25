@@ -25,15 +25,31 @@ Public Class MySQLDatabaseConnector
     End Sub
 
     ' Methods
-    Sub ExecuteNonQuery(mySQL As String)
-        Dim cmd As New MySqlCommand(mySQL, conn)
-        cmd.ExecuteNonQuery()
-    End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="username"></param>
+    ''' <param name="password"></param>
+    ''' <param name="level"></param>
+    ''' <exception cref="DatabaseException.AddAccountException"></exception>
+    ''' <returns></returns>
+    ''' <author>Brian Combs</author>
+    ''' <date>June 25, 2017</date>
     Function AddNewUser(username As String, password As String, level As UserAccount.AccountLevel) As AccountInfo
-        ' return a new account information if add is successful
-        Return New AccountInfo(1, UserAccount.AccountLevel.Administation)
-        ' otherwise throw exception
+        Dim cmd As New MySqlCommand("INSERT INTO `User` (`Password`, `Username`, `Account_Level`) VALUES (@password, @username, @level); SELECT LAST_INSERT_ID();", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@password", password)
+        cmd.Parameters.AddWithValue("@username", username)
+        cmd.Parameters.AddWithValue("@level", Convert.ToInt32(level))
+
+        Try
+            ' return a new account information if add is successful
+            Return New AccountInfo(Convert.ToInt32(cmd.ExecuteScalar()), level)
+        Catch ex As Exception
+            ' otherwise throw exception
+            Throw New DatabaseException.AddAccountException(ex.Message)
+        End Try
     End Function
 
     ''' <summary>
@@ -42,12 +58,32 @@ Public Class MySQLDatabaseConnector
     ''' <param name="username"></param>
     ''' <param name="password"></param>
     ''' <returns></returns>
-    ''' <exception cref="DatabaseExceptions.LoginFailedException">The Login Failed</exception>
+    ''' <exception cref="DatabaseException.LoginException">The Login Failed</exception>
+    ''' <author>Brian Combs</author>
+    ''' <date>June 25, 2017</date>
     Function LoginUser(username As String, password As String) As AccountInfo
-        ' return a new account information if login is successful
-        Return New AccountInfo(1, UserAccount.AccountLevel.Administation)
-        ' otherwise throw exception
-        Throw New DatabaseExceptions.LoginFailedException()
+        Dim cmd As New MySqlCommand("SELECT `ID`, `Account_Level` FROM `User` WHERE `Password` LIKE @password AND `Username` LIKE @username", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@password", password)
+        cmd.Parameters.AddWithValue("@username", username)
+
+        Try
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+            Dim accountInfo As AccountInfo = Nothing
+
+            While reader.Read()
+                accountInfo = New AccountInfo()
+                accountInfo.ID = reader.GetInt32("ID")
+                accountInfo.Level = reader.GetInt32("Account_Level")
+            End While
+
+            reader.Close()
+
+            Return accountInfo
+        Catch ex As Exception
+            ' otherwise throw exception
+            Throw New DatabaseException(ex.Message)
+        End Try
     End Function
 
     Sub ChangeAccountLevel(userID As Integer, newLevel As UserAccount.AccountLevel)
@@ -61,6 +97,7 @@ Public Class MySQLDatabaseConnector
 
 
     Public Class AccountInfo
+        Public Sub New() : End Sub
         Public Sub New(pID As Integer, pLevel As UserAccount.AccountLevel)
             ID = pID
             Level = pLevel
@@ -68,11 +105,6 @@ Public Class MySQLDatabaseConnector
 
         Public ID As Integer
         Public Level As UserAccount.AccountLevel
-    End Class
-
-    Public Class DatabaseExceptions
-        Public Class LoginFailedException : Inherits Exception : End Class
-
     End Class
 
 End Class
