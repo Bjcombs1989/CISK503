@@ -22,8 +22,6 @@ Public Class MySQLDatabaseConnector
             Throw ex
         End Try
 
-
-
     End Sub
 
     ' Methods
@@ -32,13 +30,25 @@ Public Class MySQLDatabaseConnector
         cmd.ExecuteNonQuery()
     End Sub
 
-    Sub AddNewUser(username As String, password As String, level As UserAccount.AccountLevel)
+    Function AddNewUser(username As String, password As String, level As UserAccount.AccountLevel) As AccountInfo
+        ' return a new account information if add is successful
+        Return New AccountInfo(1, UserAccount.AccountLevel.Administation)
+        ' otherwise throw exception
+    End Function
 
-    End Sub
-
-    Sub LoginUser(username As String, password As String)
-
-    End Sub
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="username"></param>
+    ''' <param name="password"></param>
+    ''' <returns></returns>
+    ''' <exception cref="DatabaseExceptions.LoginFailedException">The Login Failed</exception>
+    Function LoginUser(username As String, password As String) As AccountInfo
+        ' return a new account information if login is successful
+        Return New AccountInfo(1, UserAccount.AccountLevel.Administation)
+        ' otherwise throw exception
+        Throw New DatabaseExceptions.LoginFailedException()
+    End Function
 
     Sub ChangeAccountLevel(userID As Integer, newLevel As UserAccount.AccountLevel)
 
@@ -48,5 +58,21 @@ Public Class MySQLDatabaseConnector
     Public Sub Dispose()
         conn.Close()
     End Sub
+
+
+    Public Class AccountInfo
+        Public Sub New(pID As Integer, pLevel As UserAccount.AccountLevel)
+            ID = pID
+            Level = pLevel
+        End Sub
+
+        Public ID As Integer
+        Public Level As UserAccount.AccountLevel
+    End Class
+
+    Public Class DatabaseExceptions
+        Public Class LoginFailedException : Inherits Exception : End Class
+
+    End Class
 
 End Class

@@ -30,20 +30,25 @@ Public Class UserAccount
     ''' <param name="pPassword"></param>
     ''' <date>2017-06-07</date>
     ''' <author>Brian Combs</author>
-    Public Sub New(pUsername As String, pPassword As String)
+    Public Sub New(ByRef mysql As MySQLDatabaseConnector, ByVal pUsername As String, ByVal pPassword As String)
         ' Set the "Class" variables to the values of the parameters on the constructor
         _username = pUsername
         _password = pPassword
-        ' Declare a database variable
-        Dim db = New LibraryDataSetTableAdapters.UserAccountTableAdapter()
         ' Declare a variable to hold the data from the database and call the Login function
-        Dim data As DataTable = db.LoginUser(_username, HashPassword(_password))
+        Try
+            Dim login As MySQLDatabaseConnector.AccountInfo = mysql.LoginUser(_username, HashPassword(_password))
+        Catch ex As MySQLDatabaseConnector.DatabaseExceptions.LoginFailedException
+
+        Catch ex As Exception
+
+        End Try
+
         ' Check if the user account was returned, if not, throw a new exception
-        If data.Rows.Count = 0 Then
+        If Not login Then
             Throw New ApplicationException("Login Failed")
         End If
         ' Get the first row of the data returned
-        Dim row As DataRow = data.Rows(0)
+        Dim row As DataRow = Data.Rows(0)
         _id = Integer.Parse(row("id"))
         _level = Integer.Parse(row("account_level")) ' This gets the int value of the account level and converts to the enum
 
