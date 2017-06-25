@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class Objects\UserAccount.vb" />
+    <Compile Include="Database Objects\DatabaseExceptions.vb" />
     <Compile Include="Database Objects\MySQLDatabaseConnector.vb" />
     <Compile Include="Form Objects\formMain.vb">
       <SubType>Form</SubType>
