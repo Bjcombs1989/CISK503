@@ -108,7 +108,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class Objects\UserAccount.vb" />
+    <Compile Include="Class Objects\Book.vb" />
+    <Compile Include="Class Objects\Patron_Librarian_Administrator.vb" />
+    <Compile Include="Class Objects\Patron_Librarian.vb" />
+    <Compile Include="Class Objects\Patron.vb" />
     <Compile Include="Database Objects\DatabaseException.vb" />
     <Compile Include="Database Objects\MySQLDatabaseConnector.vb" />
     <Compile Include="Form Objects\formMain.vb">

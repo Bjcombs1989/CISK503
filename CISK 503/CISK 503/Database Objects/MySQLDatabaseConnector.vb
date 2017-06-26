@@ -36,7 +36,7 @@ Public Class MySQLDatabaseConnector
     ''' <returns></returns>
     ''' <author>Brian Combs</author>
     ''' <date>June 25, 2017</date>
-    Function AddNewUser(username As String, password As String, level As UserAccount.AccountLevel) As AccountInfo
+    Function AddNewUser(username As String, password As String, level As Patron.AccountLevel) As AccountInfo
         Dim cmd As New MySqlCommand("INSERT INTO `User` (`Password`, `Username`, `Account_Level`) VALUES (@password, @username, @level); SELECT LAST_INSERT_ID();", conn)
         cmd.Prepare()
         cmd.Parameters.AddWithValue("@password", password)
@@ -86,7 +86,7 @@ Public Class MySQLDatabaseConnector
         End Try
     End Function
 
-    Sub ChangeAccountLevel(userID As Integer, newLevel As UserAccount.AccountLevel)
+    Sub ChangeAccountLevel(userID As Integer, newLevel As Patron.AccountLevel)
 
     End Sub
 
@@ -98,13 +98,13 @@ Public Class MySQLDatabaseConnector
 
     Public Class AccountInfo
         Public Sub New() : End Sub
-        Public Sub New(pID As Integer, pLevel As UserAccount.AccountLevel)
+        Public Sub New(pID As Integer, pLevel As Patron.AccountLevel)
             ID = pID
             Level = pLevel
         End Sub
 
         Public ID As Integer
-        Public Level As UserAccount.AccountLevel
+        Public Level As Patron.AccountLevel
     End Class
 
 End Class

@@ -3,13 +3,54 @@
 ''' </summary>
 ''' <date>2017-06-07</date>
 ''' <author>Brian Combs</author>
-Public Class UserAccount
+Public Class Patron
     Dim _username As String
     Dim _password As String
     Dim _id As Integer
     Dim _level As AccountLevel
-    Dim mysql As MySQLDatabaseConnector
+    Dim _mysql As MySQLDatabaseConnector
 
+    ' Properties
+    ''' <summary>
+    ''' This property will be used to access the MySQL in the child objects
+    ''' </summary>
+    ''' <date>2017-06-26</date>
+    ''' <author>Brian Combs</author>
+    Public ReadOnly Property MySQL As MySQLDatabaseConnector
+        Get
+            Return _mysql
+        End Get
+    End Property
+    ''' <summary>
+    ''' This property will be used to access the username in the child objects
+    ''' </summary>
+    ''' <date>2017-06-26</date>
+    ''' <author>Brian Combs</author>
+    Public ReadOnly Property UserName As String
+        Get
+            Return _username
+        End Get
+    End Property
+    ''' <summary>
+    ''' This property will be used to access the password in the child objects
+    ''' </summary>
+    ''' <date>2017-06-26</date>
+    ''' <author>Brian Combs</author>
+    Public ReadOnly Property Password As String
+        Get
+            Return _password
+        End Get
+    End Property
+    ''' <summary>
+    ''' This property will be used to access the id in the child objects
+    ''' </summary>
+    ''' <date>2017-06-26</date>
+    ''' <author>Brian Combs</author>
+    Public ReadOnly Property ID As Integer
+        Get
+            Return _id
+        End Get
+    End Property
     ''' <summary>
     ''' This property will be read only and shows the other 
     ''' parts of the program the account level, but doesn't 
@@ -24,6 +65,7 @@ Public Class UserAccount
         End Get
     End Property
 
+    ' Constructor(s)
     ''' <summary>
     ''' This constructor will be used to login to an existing account
     ''' </summary>
@@ -34,12 +76,12 @@ Public Class UserAccount
     ''' <author>Brian Combs</author>
     Public Sub New(pMySQL As MySQLDatabaseConnector, pUsername As String, pPassword As String)
         ' Set the "Class" variables to the values of the parameters on the constructor
-        mysql = pMySQL
+        _mysql = pMySQL
         _username = pUsername
         _password = pPassword
         ' Declare a variable to hold the data from the database and call the Login function
         Try
-            Dim login As MySQLDatabaseConnector.AccountInfo = mysql.LoginUser(_username, HashPassword(_password))
+            Dim login As MySQLDatabaseConnector.AccountInfo = MySQL.LoginUser(_username, HashPassword(_password))
 
             If login Is Nothing Then
                 Throw New DatabaseException.LoginException()
@@ -53,53 +95,7 @@ Public Class UserAccount
 
     End Sub
 
-    ''' <summary>
-    ''' This constructor will be used to create a new accoutn
-    ''' </summary>
-    ''' <param name="pUsername"></param>
-    ''' <param name="pPassword"></param>
-    ''' <param name="pLevel"></param>
-    ''' <date>2017-06-07</date>
-    ''' 
-    ''' <author>Brian Combs</author>
-    Public Sub New(pMySQL As MySQLDatabaseConnector, pUsername As String, pPassword As String, pLevel As AccountLevel)
-        ' Set the "Class" variables to the values of the parameters on the constructor
-        mysql = pMySQL
-        _username = pUsername
-        _password = pPassword
-        _level = pLevel
-
-        ' Declare a variable to hold the data from the database and call the Login function
-        Try
-            Dim login As MySQLDatabaseConnector.AccountInfo = mysql.AddNewUser(_username, HashPassword(_password), _level)
-            _id = login.ID
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    ''' <summary>
-    ''' This method will be used to change the permissions on this account
-    ''' </summary>
-    ''' <param name="authorized_account"></param>
-    ''' <param name="new_level"></param>
-    Public Sub UpdateLevel(authorized_account As UserAccount, new_level As AccountLevel)
-        If authorized_account.Level = AccountLevel.Administation Then
-            ' Declare a database variable
-            Try
-                mysql.ChangeAccountLevel(authorized_account._id, new_level)
-                _level = new_level
-            Catch ex As DatabaseException
-
-            End Try
-            ' Update this instance of the class
-        Else
-            Throw New DatabaseException.PermissionsNotSufficientException("Account not authorized to update account type")
-        End If
-
-    End Sub
-
-
+    ' Methods
     ''' <summary>
     ''' This function hashes the password using the SHA1 algorithm
     ''' </summary>
@@ -112,6 +108,15 @@ Public Class UserAccount
     End Function
 
     ''' <summary>
+    ''' To string method
+    ''' </summary>
+    ''' <returns></returns>
+    Public Overrides Function ToString() As String
+        Return String.Format("{0}", _username)
+    End Function
+
+    ' Internal
+    ''' <summary>
     ''' This enum will be used to manage account permissions
     ''' </summary>
     ''' <date>2017-06-07</date>
@@ -121,4 +126,5 @@ Public Class UserAccount
         Circulation = 1
         Administation = 2
     End Enum
+
 End Class

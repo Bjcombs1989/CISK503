@@ -1,6 +1,6 @@
 ﻿Public Class formMain
     Public Shared mysql As MySQLDatabaseConnector
-    Dim user As UserAccount
+    Dim user As Patron
 
     ' Form load
     ''' <summary>
@@ -26,7 +26,7 @@
         End Try
 
         ' Load the account level enumeration into the combo boxes as needed
-        cmboxAccountTypeAddAccount.DataSource = [Enum].GetValues(GetType(UserAccount.AccountLevel))
+        cmboxAccountTypeAddAccount.DataSource = [Enum].GetValues(GetType(Patron.AccountLevel))
 
 
     End Sub
@@ -75,7 +75,7 @@
 
         Try
             ' Login the account
-            user = New UserAccount(mysql, txtUsername.Text, txtPassword.Text)
+            user = New Patron(mysql, txtUsername.Text, txtPassword.Text)
             ' No exception was thrown, continue to set the text and permissions
             LoginToolStripMenuItem.Text = "&Log Out"
             PatronToolStripMenuItem.Enabled = True
@@ -128,11 +128,11 @@
         End If
 
         ' Make sure the USER LEVEL is sufficient
-        If user.Level = UserAccount.AccountLevel.Administation Then
+        If user.Level = Patron.AccountLevel.Administation Then
             ' Admin account can add any time of account
-        ElseIf user.Level = UserAccount.AccountLevel.Circulation Then
+        ElseIf user.Level = Patron.AccountLevel.Circulation Then
             ' Circulation account can only add patron account
-            If cmboxAccountTypeAddAccount.SelectedItem <> UserAccount.AccountLevel.Patron Then
+            If cmboxAccountTypeAddAccount.SelectedItem <> Patron.AccountLevel.Patron Then
                 errProvider.SetError(cmboxAccountTypeAddAccount, "You can only add patron accounts")
                 Return
             End If
@@ -143,7 +143,7 @@
 
         Try
             ' Add the account the account
-            user = New UserAccount(mysql, txtUsernameAddAccount.Text, txtPasswordAddAccount.Text, cmboxAccountTypeAddAccount.SelectedItem)
+            user = New Patron(mysql, txtUsernameAddAccount.Text, txtPasswordAddAccount.Text, cmboxAccountTypeAddAccount.SelectedItem)
             ' No exception was thrown, continue to set the text and permissions
             LoginToolStripMenuItem.Text = "&Log Out"
             PatronToolStripMenuItem.Enabled = True
@@ -154,7 +154,7 @@
             ' Clear the form for future use
             txtUsernameAddAccount.Text = ""
             txtPasswordAddAccount.Text = ""
-            cmboxAccountTypeAddAccount.SelectedItem = UserAccount.AccountLevel.Patron
+            cmboxAccountTypeAddAccount.SelectedItem = Patron.AccountLevel.Patron
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         End Try
