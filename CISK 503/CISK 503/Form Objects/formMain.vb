@@ -160,5 +160,81 @@
         End Try
     End Sub
 
-    ' New methods will be added below here, please create group and move into that group as needed. 
+	' New methods will be added below here, please create group and move into that group as needed. 
+	''' <summary>
+	''' This method will be used to present the Search tab
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	''' <author>Jon Seigle</author>
+	''' <date>June 26, 2017</date>
+	Private Sub SearchToolstripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
+		TabControl1.SelectedIndex = 3
+	End Sub
+
+	''' <summary>
+	''' This method will be used present the Reservation tab at the Patron Level
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	''' <author>Jon Seigle</author>
+	''' <date> June 26, 2017</date>
+	Private Sub ReservationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationToolStripMenuItem.Click
+		TabControl1.SelectedIndex = 4
+	End Sub
+
+	''' <summary>
+	''' This method will be used to present the Request tab at the Patron level
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	''' <author>Jon Seigle</author>
+	''' <date> June 26, 2017</date>
+	Private Sub RequestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RequestToolStripMenuItem.Click
+		TabControl1.SelectedIndex = 5
+	End Sub
+
+	''' <summary>
+	''' This method will present the Account tab for the Patron
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	''' <author>Jon Seigle</author>
+	''' <date> June 26, 2017</date>
+	Private Sub AccountToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AccountToolStripMenuItem.Click
+		TabControl1.SelectedIndex = 9
+	End Sub
+
+	''' <summary>
+	''' This method will present the Reservations tab for Circulation level
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	''' <author>Jon Seigle</author>
+	''' <date> June 26, 2017</date>
+	Private Sub ReservationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationsToolStripMenuItem.Click
+		TabControl1.SelectedIndex = 6
+	End Sub
+
+	''' <summary>
+	''' This method will present the Requests tab at for Circulation level
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	Private Sub RequestsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RequestsToolStripMenuItem.Click
+		TabControl1.SelectedIndex = 7
+	End Sub
+
+	''' <summary>
+	''' This method will present the Check In/Out tab for the Circulation level
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	''' <author>Jon Seigle</author>
+	''' <date>June 26, 2017</date>
+	Private Sub CheckInOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInOutToolStripMenuItem.Click
+		TabControl1.SelectedIndex = 8
+	End Sub
+
+
 End Class
