@@ -16,7 +16,7 @@
     Private Sub UpdateLevel(account_to_change As Patron, new_level As AccountLevel)
         Try
             MySQL.ChangeAccountLevel(account_to_change.ID, new_level)
-        Catch ex As DatabaseException
+        Catch ex As InternalExceptions
             Throw ex
         End Try
     End Sub

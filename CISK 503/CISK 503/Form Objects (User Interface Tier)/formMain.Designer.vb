@@ -24,34 +24,34 @@ Partial Class formMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.tpLogin = New System.Windows.Forms.TabPage()
         Me.PatronToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CirculationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddNewAccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdministrationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoginToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CirculationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtUsername = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.txtPassword = New System.Windows.Forms.TextBox()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.tpWelcome = New System.Windows.Forms.TabPage()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.tpLogin = New System.Windows.Forms.TabPage()
         Me.btnLogin = New System.Windows.Forms.Button()
+        Me.txtPassword = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtUsername = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.tpCreate = New System.Windows.Forms.TabPage()
+        Me.cmboxAccountTypeAddAccount = New System.Windows.Forms.ComboBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.btnAddAccount = New System.Windows.Forms.Button()
         Me.txtPasswordAddAccount = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtUsernameAddAccount = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.AddNewAccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tpWelcome = New System.Windows.Forms.TabPage()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.cmboxAccountTypeAddAccount = New System.Windows.Forms.ComboBox()
         Me.errProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.tpWelcome.SuspendLayout()
         Me.tpLogin.SuspendLayout()
         Me.tpCreate.SuspendLayout()
-        Me.tpWelcome.SuspendLayout()
         CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -64,6 +64,37 @@ Partial Class formMain
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
+        'PatronToolStripMenuItem
+        '
+        Me.PatronToolStripMenuItem.Name = "PatronToolStripMenuItem"
+        Me.PatronToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.PatronToolStripMenuItem.Text = "&Patron"
+        '
+        'CirculationToolStripMenuItem
+        '
+        Me.CirculationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewAccountToolStripMenuItem})
+        Me.CirculationToolStripMenuItem.Name = "CirculationToolStripMenuItem"
+        Me.CirculationToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
+        Me.CirculationToolStripMenuItem.Text = "&Circulation"
+        '
+        'AddNewAccountToolStripMenuItem
+        '
+        Me.AddNewAccountToolStripMenuItem.Name = "AddNewAccountToolStripMenuItem"
+        Me.AddNewAccountToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.AddNewAccountToolStripMenuItem.Text = "&Add New Account"
+        '
+        'AdministrationToolStripMenuItem
+        '
+        Me.AdministrationToolStripMenuItem.Name = "AdministrationToolStripMenuItem"
+        Me.AdministrationToolStripMenuItem.Size = New System.Drawing.Size(98, 20)
+        Me.AdministrationToolStripMenuItem.Text = "&Administration"
+        '
+        'LoginToolStripMenuItem
+        '
+        Me.LoginToolStripMenuItem.Name = "LoginToolStripMenuItem"
+        Me.LoginToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
+        Me.LoginToolStripMenuItem.Text = "&Login"
+        '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.tpWelcome)
@@ -75,6 +106,29 @@ Partial Class formMain
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(710, 294)
         Me.TabControl1.TabIndex = 1
+        '
+        'tpWelcome
+        '
+        Me.tpWelcome.Controls.Add(Me.Label5)
+        Me.tpWelcome.Location = New System.Drawing.Point(4, 22)
+        Me.tpWelcome.Name = "tpWelcome"
+        Me.tpWelcome.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpWelcome.Size = New System.Drawing.Size(702, 268)
+        Me.tpWelcome.TabIndex = 2
+        Me.tpWelcome.Text = "Welcome"
+        Me.tpWelcome.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label5.Font = New System.Drawing.Font("Papyrus", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(8, 17)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(686, 63)
+        Me.Label5.TabIndex = 0
+        Me.Label5.Text = "Welcome to Library Circulation Desk"
+        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'tpLogin
         '
@@ -91,46 +145,22 @@ Partial Class formMain
         Me.tpLogin.Text = "Login"
         Me.tpLogin.UseVisualStyleBackColor = True
         '
-        'PatronToolStripMenuItem
+        'btnLogin
         '
-        Me.PatronToolStripMenuItem.Name = "PatronToolStripMenuItem"
-        Me.PatronToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
-        Me.PatronToolStripMenuItem.Text = "&Patron"
+        Me.btnLogin.Location = New System.Drawing.Point(95, 82)
+        Me.btnLogin.Name = "btnLogin"
+        Me.btnLogin.Size = New System.Drawing.Size(100, 23)
+        Me.btnLogin.TabIndex = 4
+        Me.btnLogin.Text = "Login"
+        Me.btnLogin.UseVisualStyleBackColor = True
         '
-        'AdministrationToolStripMenuItem
+        'txtPassword
         '
-        Me.AdministrationToolStripMenuItem.Name = "AdministrationToolStripMenuItem"
-        Me.AdministrationToolStripMenuItem.Size = New System.Drawing.Size(98, 20)
-        Me.AdministrationToolStripMenuItem.Text = "&Administration"
-        '
-        'LoginToolStripMenuItem
-        '
-        Me.LoginToolStripMenuItem.Name = "LoginToolStripMenuItem"
-        Me.LoginToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
-        Me.LoginToolStripMenuItem.Text = "&Login"
-        '
-        'CirculationToolStripMenuItem
-        '
-        Me.CirculationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewAccountToolStripMenuItem})
-        Me.CirculationToolStripMenuItem.Name = "CirculationToolStripMenuItem"
-        Me.CirculationToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
-        Me.CirculationToolStripMenuItem.Text = "&Circulation"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 20)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(55, 13)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Username"
-        '
-        'txtUsername
-        '
-        Me.txtUsername.Location = New System.Drawing.Point(95, 17)
-        Me.txtUsername.Name = "txtUsername"
-        Me.txtUsername.Size = New System.Drawing.Size(232, 20)
-        Me.txtUsername.TabIndex = 1
+        Me.txtPassword.Location = New System.Drawing.Point(95, 48)
+        Me.txtPassword.Name = "txtPassword"
+        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtPassword.Size = New System.Drawing.Size(232, 20)
+        Me.txtPassword.TabIndex = 3
         '
         'Label2
         '
@@ -141,22 +171,21 @@ Partial Class formMain
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Password"
         '
-        'txtPassword
+        'txtUsername
         '
-        Me.txtPassword.Location = New System.Drawing.Point(95, 48)
-        Me.txtPassword.Name = "txtPassword"
-        Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPassword.Size = New System.Drawing.Size(232, 20)
-        Me.txtPassword.TabIndex = 3
+        Me.txtUsername.Location = New System.Drawing.Point(95, 17)
+        Me.txtUsername.Name = "txtUsername"
+        Me.txtUsername.Size = New System.Drawing.Size(232, 20)
+        Me.txtUsername.TabIndex = 1
         '
-        'btnLogin
+        'Label1
         '
-        Me.btnLogin.Location = New System.Drawing.Point(95, 82)
-        Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(100, 23)
-        Me.btnLogin.TabIndex = 4
-        Me.btnLogin.Text = "Login"
-        Me.btnLogin.UseVisualStyleBackColor = True
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 20)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(55, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Username"
         '
         'tpCreate
         '
@@ -174,6 +203,23 @@ Partial Class formMain
         Me.tpCreate.TabIndex = 1
         Me.tpCreate.Text = "CreateAcct"
         Me.tpCreate.UseVisualStyleBackColor = True
+        '
+        'cmboxAccountTypeAddAccount
+        '
+        Me.cmboxAccountTypeAddAccount.FormattingEnabled = True
+        Me.cmboxAccountTypeAddAccount.Location = New System.Drawing.Point(105, 89)
+        Me.cmboxAccountTypeAddAccount.Name = "cmboxAccountTypeAddAccount"
+        Me.cmboxAccountTypeAddAccount.Size = New System.Drawing.Size(232, 21)
+        Me.cmboxAccountTypeAddAccount.TabIndex = 11
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(22, 92)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(77, 13)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "Account Type:"
         '
         'btnAddAccount
         '
@@ -217,52 +263,6 @@ Partial Class formMain
         Me.Label4.TabIndex = 5
         Me.Label4.Text = "Username"
         '
-        'AddNewAccountToolStripMenuItem
-        '
-        Me.AddNewAccountToolStripMenuItem.Name = "AddNewAccountToolStripMenuItem"
-        Me.AddNewAccountToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.AddNewAccountToolStripMenuItem.Text = "&Add New Account"
-        '
-        'tpWelcome
-        '
-        Me.tpWelcome.Controls.Add(Me.Label5)
-        Me.tpWelcome.Location = New System.Drawing.Point(4, 22)
-        Me.tpWelcome.Name = "tpWelcome"
-        Me.tpWelcome.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpWelcome.Size = New System.Drawing.Size(702, 268)
-        Me.tpWelcome.TabIndex = 2
-        Me.tpWelcome.Text = "Welcome"
-        Me.tpWelcome.UseVisualStyleBackColor = True
-        '
-        'Label5
-        '
-        Me.Label5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label5.Font = New System.Drawing.Font("Papyrus", 27.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(8, 17)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(686, 63)
-        Me.Label5.TabIndex = 0
-        Me.Label5.Text = "Welcome to Library Circulation Desk"
-        Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(22, 92)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(77, 13)
-        Me.Label6.TabIndex = 10
-        Me.Label6.Text = "Account Type:"
-        '
-        'cmboxAccountTypeAddAccount
-        '
-        Me.cmboxAccountTypeAddAccount.FormattingEnabled = True
-        Me.cmboxAccountTypeAddAccount.Location = New System.Drawing.Point(105, 89)
-        Me.cmboxAccountTypeAddAccount.Name = "cmboxAccountTypeAddAccount"
-        Me.cmboxAccountTypeAddAccount.Size = New System.Drawing.Size(232, 21)
-        Me.cmboxAccountTypeAddAccount.TabIndex = 11
-        '
         'errProvider
         '
         Me.errProvider.ContainerControl = Me
@@ -280,11 +280,11 @@ Partial Class formMain
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
+        Me.tpWelcome.ResumeLayout(False)
         Me.tpLogin.ResumeLayout(False)
         Me.tpLogin.PerformLayout()
         Me.tpCreate.ResumeLayout(False)
         Me.tpCreate.PerformLayout()
-        Me.tpWelcome.ResumeLayout(False)
         CType(Me.errProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

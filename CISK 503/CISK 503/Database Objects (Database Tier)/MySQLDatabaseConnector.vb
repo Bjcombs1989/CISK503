@@ -32,7 +32,7 @@ Public Class MySQLDatabaseConnector
     ''' <param name="username"></param>
     ''' <param name="password"></param>
     ''' <param name="level"></param>
-    ''' <exception cref="DatabaseException.AddAccountException"></exception>
+    ''' <exception cref="InternalExceptions.AddAccountException"></exception>
     ''' <returns></returns>
     ''' <author>Brian Combs</author>
     ''' <date>June 25, 2017</date>
@@ -48,7 +48,7 @@ Public Class MySQLDatabaseConnector
             Return New AccountInfo(Convert.ToInt32(cmd.ExecuteScalar()), level)
         Catch ex As Exception
             ' otherwise throw exception
-            Throw New DatabaseException.AddAccountException(ex.Message)
+            Throw New InternalExceptions.AddAccountException(ex.Message)
         End Try
     End Function
 
@@ -58,7 +58,7 @@ Public Class MySQLDatabaseConnector
     ''' <param name="username"></param>
     ''' <param name="password"></param>
     ''' <returns></returns>
-    ''' <exception cref="DatabaseException.LoginException">The Login Failed</exception>
+    ''' <exception cref="InternalExceptions.LoginException">The Login Failed</exception>
     ''' <author>Brian Combs</author>
     ''' <date>June 25, 2017</date>
     Function LoginUser(username As String, password As String) As AccountInfo
@@ -82,13 +82,36 @@ Public Class MySQLDatabaseConnector
             Return accountInfo
         Catch ex As Exception
             ' otherwise throw exception
-            Throw New DatabaseException(ex.Message)
+            Throw New InternalExceptions(ex.Message)
         End Try
     End Function
 
     Sub ChangeAccountLevel(userID As Integer, newLevel As Patron.AccountLevel)
 
     End Sub
+
+    Sub AddHold(pHold As Hold)
+        Throw New NotImplementedException()
+    End Sub
+    Sub RemoveHold(pHold As Hold)
+        Throw New NotImplementedException()
+    End Sub
+
+    Sub AddReservation(pReservation As Reservation)
+        Throw New NotImplementedException()
+    End Sub
+    Sub RemoveReservation(pReservation As Reservation)
+        Throw New NotImplementedException()
+    End Sub
+
+    Public Function GetLateFee(days_late As Integer) As Decimal
+        Dim daily_fee As Decimal
+
+        ' Get fee from database and assign it to daily_fee
+        Throw New NotImplementedException()
+
+        Return daily_fee * days_late
+    End Function
 
     ' Dispose
     Public Sub Dispose()

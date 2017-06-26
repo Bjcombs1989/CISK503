@@ -1,4 +1,4 @@
-﻿Public Class DatabaseException
+﻿Public Class InternalExceptions
     Inherits ApplicationException
     Public Sub New(message As String)
         MyBase.New(message)

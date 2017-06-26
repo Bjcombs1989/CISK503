@@ -9,6 +9,7 @@ Public Class Patron
     Dim _id As Integer
     Dim _level As AccountLevel
     Dim _mysql As MySQLDatabaseConnector
+    Protected _feesDue As Decimal
 
     ' Properties
     ''' <summary>
@@ -72,7 +73,7 @@ Public Class Patron
     ''' <param name="pUsername">The username of an existing account</param>
     ''' <param name="pPassword">The password of the account</param>
     ''' <date>2017-06-07</date>
-    ''' <exception cref="DatabaseException.LoginException"></exception>
+    ''' <exception cref="InternalExceptions.LoginException"></exception>
     ''' <author>Brian Combs</author>
     Public Sub New(pMySQL As MySQLDatabaseConnector, pUsername As String, pPassword As String)
         ' Set the "Class" variables to the values of the parameters on the constructor
@@ -84,7 +85,7 @@ Public Class Patron
             Dim login As MySQLDatabaseConnector.AccountInfo = MySQL.LoginUser(_username, HashPassword(_password))
 
             If login Is Nothing Then
-                Throw New DatabaseException.LoginException()
+                Throw New InternalExceptions.LoginException()
             End If
 
             _id = login.ID
@@ -114,6 +115,26 @@ Public Class Patron
     Public Overrides Function ToString() As String
         Return String.Format("{0}", _username)
     End Function
+
+    ' A patron (or any of it's children) can Place Holds and Remove Holds where it is the patron on it
+    Public Sub PlaceHold(book As Book)
+        If Not book.IsAvailable Then
+            Throw New ConstraintException("This book is not available to be placed on hold")
+        End If
+
+        Dim _hold As New Hold(Me, book)
+        MySQL.AddHold(_hold)
+        book.IsAvailable = False
+    End Sub
+
+    Public Overridable Sub RemoveHold(hold As Hold)
+        If Not hold.Patron.ID = ID Then
+            Throw New InternalExceptions.PermissionsNotSufficientException("You do not have permission to remove a hold for another user")
+        End If
+
+        MySQL.RemoveHold(hold)
+        hold.Book.IsAvailable = True
+    End Sub
 
     ' Internal
     ''' <summary>

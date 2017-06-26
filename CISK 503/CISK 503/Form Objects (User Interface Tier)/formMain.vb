@@ -86,7 +86,7 @@
             ' Clear the form for future use
             txtUsername.Text = ""
             txtPassword.Text = ""
-        Catch ex As DatabaseException.LoginException
+        Catch ex As InternalExceptions.LoginException
             errProvider.SetError(btnLogin, ex.Message)
             txtPassword.Text = ""
         Catch ex As Exception
@@ -129,7 +129,7 @@
 
         ' Make sure the USER LEVEL is sufficient
         If user.Level = Patron.AccountLevel.Administation Then
-            ' Admin account can add any time of account
+            ' Admin account can add any type of account
         ElseIf user.Level = Patron.AccountLevel.Circulation Then
             ' Circulation account can only add patron account
             If cmboxAccountTypeAddAccount.SelectedItem <> Patron.AccountLevel.Patron Then
@@ -143,7 +143,8 @@
 
         Try
             ' Add the account the account
-            user = New Patron(mysql, txtUsernameAddAccount.Text, txtPasswordAddAccount.Text, cmboxAccountTypeAddAccount.SelectedItem)
+            user = New Patron(mysql, txtUsernameAddAccount.Text, txtPasswordAddAccount.Text)
+
             ' No exception was thrown, continue to set the text and permissions
             LoginToolStripMenuItem.Text = "&Log Out"
             PatronToolStripMenuItem.Enabled = True

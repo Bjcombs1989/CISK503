@@ -6,6 +6,8 @@
     Dim _publisher As KeyValuePair(Of Integer, String)
     Dim _author As KeyValuePair(Of Integer, String)
     Dim _available As Boolean
+    Dim _hold As Hold
+    Dim _reservation As Reservation
 
     ' Constructor(s)
     Public Sub New(pMySQL As MySQLDatabaseConnector, isbn As Book.ISBN, title As String, genre As Integer, publisher As Integer, author As Integer)
@@ -23,21 +25,18 @@
     End Sub
 
     ' Properties
-
+    Public Property IsAvailable As Boolean
+        Get
+            Return _available
+        End Get
+        Set(value As Boolean)
+            _available = value
+        End Set
+    End Property
 
     ' Methods
-    Public Sub ReserveBook(user As Patron)
 
-    End Sub
-    Public Sub RemoveHold(user As Patron)
 
-    End Sub
-    Public Sub CheckInBook(user As Patron)
-
-    End Sub
-    Public Sub CheckOutBook(user As Patron)
-
-    End Sub
     Public Overrides Function ToString() As String
         Return String.Format("{0}, ISBN: {1}, Author: {2}, Publisher: {3}, Author: {4}", _title, _isbn, _author.Value, _publisher.Value, _author.Value)
     End Function
