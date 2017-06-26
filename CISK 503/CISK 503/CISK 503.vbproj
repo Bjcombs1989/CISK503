@@ -108,13 +108,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class Objects\UserAccount.vb" />
-    <Compile Include="Database Objects\DatabaseException.vb" />
-    <Compile Include="Database Objects\MySQLDatabaseConnector.vb" />
-    <Compile Include="Form Objects\formMain.vb">
+    <Compile Include="Class Objects %28Data Logic Tier%29\Book.vb" />
+    <Compile Include="Class Objects %28Data Logic Tier%29\Hold.vb" />
+    <Compile Include="Class Objects %28Data Logic Tier%29\Patron_Librarian_Administrator.vb" />
+    <Compile Include="Class Objects %28Data Logic Tier%29\Patron_Librarian.vb" />
+    <Compile Include="Class Objects %28Data Logic Tier%29\Patron.vb" />
+    <Compile Include="Class Objects %28Data Logic Tier%29\Reservation.vb" />
+    <Compile Include="Database Objects %28Database Tier%29\DatabaseException.vb" />
+    <Compile Include="Database Objects %28Database Tier%29\MySQLDatabaseConnector.vb" />
+    <Compile Include="Form Objects %28User Interface Tier%29\formMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form Objects\formMain.Designer.vb">
+    <Compile Include="Form Objects %28User Interface Tier%29\formMain.Designer.vb">
       <DependentUpon>formMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -135,7 +140,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form Objects\formMain.resx">
+    <EmbeddedResource Include="Form Objects %28User Interface Tier%29\formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -156,6 +161,8 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="Project Documentation\ERD.vsdx" />
+    <None Include="Project Documentation\UML.vsdx" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -170,11 +177,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Data.dll" />
-    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Data.Entity.EF5.dll" />
-    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Data.Entity.EF6.dll" />
-    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Fabric.Plugin.dll" />
-    <Content Include="Database Objects\MySQL Connector NET 6.9\MySql.Web.dll" />
+    <Content Include="Database Objects %28Database Tier%29\MySQL Connector NET 6.9\MySql.Data.dll" />
+    <Content Include="Database Objects %28Database Tier%29\MySQL Connector NET 6.9\MySql.Data.Entity.EF5.dll" />
+    <Content Include="Database Objects %28Database Tier%29\MySQL Connector NET 6.9\MySql.Data.Entity.EF6.dll" />
+    <Content Include="Database Objects %28Database Tier%29\MySQL Connector NET 6.9\MySql.Fabric.Plugin.dll" />
+    <Content Include="Database Objects %28Database Tier%29\MySQL Connector NET 6.9\MySql.Web.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
