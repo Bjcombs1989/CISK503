@@ -191,7 +191,7 @@
 	''' <param name="e"></param>
 	''' <author>Jon Seigle</author>
 	''' <date> June 26, 2017</date>
-	Private Sub RequestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RequestToolStripMenuItem.Click
+	Private Sub RequestToolStripMenuItem_Click(sender As Object, e As EventArgs)
 		TabControl1.SelectedIndex = 5
 	End Sub
 
@@ -222,7 +222,7 @@
 	''' </summary>
 	''' <param name="sender"></param>
 	''' <param name="e"></param>
-	Private Sub RequestsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RequestsToolStripMenuItem.Click
+	Private Sub RequestsToolStripMenuItem_Click(sender As Object, e As EventArgs)
 		TabControl1.SelectedIndex = 7
 	End Sub
 
@@ -236,6 +236,5 @@
 	Private Sub CheckInOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInOutToolStripMenuItem.Click
 		TabControl1.SelectedIndex = 8
 	End Sub
-
 
 End Class
