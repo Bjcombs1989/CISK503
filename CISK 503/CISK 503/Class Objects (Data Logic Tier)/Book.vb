@@ -2,9 +2,9 @@
     Dim _mysql As MySQLDatabaseConnector
     Dim _isbn As ISBN
     Dim _title As String
-    Dim _genre As KeyValuePair(Of Integer, String)
-    Dim _publisher As KeyValuePair(Of Integer, String)
-    Dim _author As KeyValuePair(Of Integer, String)
+    Dim _genre As String
+    Dim _publisher As String
+    Dim _author As String
     Dim _available As Boolean
     Dim _hold As Hold
     Dim _reservation As Reservation
@@ -38,7 +38,7 @@
 
 
     Public Overrides Function ToString() As String
-        Return String.Format("{0}, ISBN: {1}, Author: {2}, Publisher: {3}, Author: {4}", _title, _isbn, _author.Value, _publisher.Value, _author.Value)
+        Return String.Format("{0}, ISBN: {1}, Author: {2}, Publisher: {3}, Author: {4}", _title, _isbn, _author, _publisher, _author)
     End Function
 
 

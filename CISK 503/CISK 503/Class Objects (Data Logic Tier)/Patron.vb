@@ -97,14 +97,7 @@ Public Class Patron
     End Sub
 
     ' Methods
-    ''' <summary>
-    ''' This function hashes the password using the SHA1 algorithm
-    ''' </summary>
-    ''' <param name="password">Plain Text Password</param>
-    ''' <returns>SHA1 Hash of Password</returns>
-    ''' <date>2017-06-07</date>
-    ''' <author>Brian Combs</author>
-    Private Function HashPassword(password As String) As String
+    Public Function HashPassword(password As String) As String
         Return password & "hashed"
     End Function
 
@@ -144,7 +137,7 @@ Public Class Patron
     ''' <author>Brian Combs</author>
     Public Enum AccountLevel
         Patron = 0
-        Circulation = 1
+        Librarian = 1
         Administation = 2
     End Enum
 

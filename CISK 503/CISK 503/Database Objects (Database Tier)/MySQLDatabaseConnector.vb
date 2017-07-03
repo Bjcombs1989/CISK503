@@ -113,6 +113,61 @@ Public Class MySQLDatabaseConnector
         Return daily_fee * days_late
     End Function
 
+    Public Function ListGenres() As KeyValuePair(Of Integer, String)()
+        Dim genres As List(Of KeyValuePair(Of Integer, String)) = New List(Of KeyValuePair(Of Integer, String))()
+        Dim cmd As New MySqlCommand("SELECT `ID`, `Name` FROM `Genre` ORDER BY `Name`", conn)
+        cmd.Prepare()
+
+        Try
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+
+            While reader.Read()
+                genres.Add(New KeyValuePair(Of Integer, String)(reader.GetInt32("ID"), reader.GetString("Name")))
+            End While
+
+            reader.Close()
+        Catch ex As Exception
+            Throw ex
+        End Try
+
+        Return genres.ToArray()
+    End Function
+
+    Public Function ListBooks() As DataTable
+        ' Create the data table
+        Dim table As DataTable = New DataTable()
+        table.Columns.Add("ISBN", GetType(String))
+        table.Columns.Add("Title", GetType(String))
+        table.Columns.Add("Genre", GetType(String))
+        table.Columns.Add("Author", GetType(String))
+        table.Columns.Add("Publisher", GetType(String))
+        table.Columns.Add("Status", GetType(String))
+        table.Columns.Add("Check Out", GetType(String))
+        table.Columns.Add("Place Hold", GetType(String))
+        Dim dc As DataColumn = New DataColumn("a", GetType(Button), "", MappingType.Element)
+
+        ' Create the command
+        Dim cmd As New MySqlCommand("SELECT Book.ID AS ISBN, Book.Name AS Title, Genre.Name AS Genre, Author.Name AS Author, Publisher.Name AS Publisher
+                                     FROM Book 
+                                     JOIN Author ON Book.Author = Author.ID
+                                     JOIN Genre ON Book.Genre = Genre.ID
+                                     JOIN Publisher ON Book.Publisher = Publisher.ID", conn)
+        cmd.Prepare()
+
+        ' Execute the command
+        Dim reader As MySqlDataReader = cmd.ExecuteReader()
+
+        ' Loop through reader
+        While reader.Read()
+            table.Rows.Add(reader.GetString("ISBN"), reader.GetString("Title"), reader.GetString("Genre"),
+                           reader.GetString("Author"), reader.GetString("Publisher"), "Reserved", "", "")
+        End While
+
+        reader.Close()
+
+        Return table
+    End Function
+
     ' Dispose
     Public Sub Dispose()
         conn.Close()
