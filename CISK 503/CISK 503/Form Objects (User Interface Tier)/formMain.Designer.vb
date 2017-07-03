@@ -52,6 +52,7 @@ Partial Class formMain
         Me.tpWelcome = New System.Windows.Forms.TabPage()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.tpLogin = New System.Windows.Forms.TabPage()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -87,6 +88,9 @@ Partial Class formMain
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel()
         Me.cmbxSearchStatus = New System.Windows.Forms.ToolStripComboBox()
+        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
+        Me.btnSearchSearch = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.btnSearchClear = New System.Windows.Forms.ToolStripButton()
         Me.tpReservation = New System.Windows.Forms.TabPage()
         Me.tpRequest = New System.Windows.Forms.TabPage()
@@ -95,7 +99,6 @@ Partial Class formMain
         Me.tpCheckInOut = New System.Windows.Forms.TabPage()
         Me.tpAccount = New System.Windows.Forms.TabPage()
         Me.errProvider = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.tpWelcome.SuspendLayout()
@@ -313,6 +316,15 @@ Partial Class formMain
         Me.tpLogin.Text = "Login"
         Me.tpLogin.UseVisualStyleBackColor = True
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(364, 29)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(94, 52)
+        Me.Label7.TabIndex = 5
+        Me.Label7.Text = "Existing Accounts:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "admin, admin" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "pat, pat" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "lib, lib"
+        '
         'btnLogin
         '
         Me.btnLogin.Location = New System.Drawing.Point(95, 82)
@@ -507,7 +519,7 @@ Partial Class formMain
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.txtSearchISBN, Me.ToolStripSeparator1, Me.ToolStripLabel2, Me.txtSearchTitle, Me.ToolStripSeparator2, Me.ToolStripLabel3, Me.cmbxSearchGenre, Me.ToolStripSeparator3, Me.ToolStripLabel4, Me.cmbxSearchStatus, Me.btnSearchClear})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.txtSearchISBN, Me.ToolStripSeparator1, Me.ToolStripLabel2, Me.txtSearchTitle, Me.ToolStripSeparator2, Me.ToolStripLabel3, Me.cmbxSearchGenre, Me.ToolStripSeparator3, Me.ToolStripLabel4, Me.cmbxSearchStatus, Me.ToolStripSeparator9, Me.btnSearchSearch, Me.ToolStripSeparator8, Me.btnSearchClear})
         Me.ToolStrip1.Location = New System.Drawing.Point(2, 2)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(864, 25)
@@ -573,6 +585,25 @@ Partial Class formMain
         Me.cmbxSearchStatus.Items.AddRange(New Object() {"Available", "Held", "Reserved"})
         Me.cmbxSearchStatus.Name = "cmbxSearchStatus"
         Me.cmbxSearchStatus.Size = New System.Drawing.Size(121, 25)
+        '
+        'ToolStripSeparator9
+        '
+        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(6, 25)
+        '
+        'btnSearchSearch
+        '
+        Me.btnSearchSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.btnSearchSearch.Image = CType(resources.GetObject("btnSearchSearch.Image"), System.Drawing.Image)
+        Me.btnSearchSearch.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnSearchSearch.Name = "btnSearchSearch"
+        Me.btnSearchSearch.Size = New System.Drawing.Size(46, 22)
+        Me.btnSearchSearch.Text = "Search"
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(6, 25)
         '
         'btnSearchClear
         '
@@ -651,15 +682,6 @@ Partial Class formMain
         'errProvider
         '
         Me.errProvider.ContainerControl = Me
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(364, 29)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(94, 52)
-        Me.Label7.TabIndex = 5
-        Me.Label7.Text = "Existing Accounts:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "admin, admin" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "pat, pat" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "lib, lib"
         '
         'formMain
         '
@@ -762,4 +784,7 @@ Partial Class formMain
     Friend WithEvents Check_Out As DataGridViewButtonColumn
     Friend WithEvents Place_Hold As DataGridViewButtonColumn
     Friend WithEvents Label7 As Label
+    Friend WithEvents ToolStripSeparator9 As ToolStripSeparator
+    Friend WithEvents btnSearchSearch As ToolStripButton
+    Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
 End Class

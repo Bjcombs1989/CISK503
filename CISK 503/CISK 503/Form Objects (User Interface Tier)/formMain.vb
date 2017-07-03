@@ -1,7 +1,8 @@
 ﻿Public Class formMain
     Public Shared mysql As MySQLDatabaseConnector
     Dim user As Patron
-    Dim books As DataTable 
+    Dim books As DataTable
+    Dim loading As Boolean = True
 
     ' Form load
     ''' <summary>
@@ -35,6 +36,8 @@
         books = mysql.ListBooks()
 
 
+
+        loading = False
     End Sub
 
     ' Login Page
@@ -164,30 +167,6 @@
     End Sub
 
     ' Search page event handlers
-    Private Sub btnSearchClear_Click(sender As Object, e As EventArgs) Handles btnSearchClear.Click
-        txtSearchISBN.Clear()
-        txtSearchTitle.Clear()
-        cmbxSearchGenre.SelectedIndex = -1
-        cmbxSearchStatus.SelectedIndex = -1
-    End Sub
-
-    Private Sub txtSearchISBN_TextChanged(sender As Object, e As EventArgs) Handles txtSearchISBN.TextChanged
-
-    End Sub
-
-    Private Sub txtSearchTitle_TextChanged(sender As Object, e As EventArgs) Handles txtSearchTitle.TextChanged
-
-    End Sub
-
-    Private Sub cmbxSearchGenre_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxSearchGenre.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub cmbxSearchStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxSearchStatus.SelectedIndexChanged
-
-    End Sub
-
-    ' New methods will be added below here, please create group and move into that group as needed. 
 
     ''' <summary>
     ''' This method will be used to present the Search tab
@@ -198,10 +177,65 @@
     ''' <date>June 26, 2017</date>
     Private Sub SearchToolstripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
         TabControl1.SelectedIndex = 3
+        LoadBooks()
+    End Sub
+
+    Private Sub LoadBooks() Handles _
+        txtSearchTitle.TextChanged, txtSearchISBN.TextChanged, cmbxSearchStatus.SelectedIndexChanged, cmbxSearchGenre.SelectedIndexChanged
+
+        If loading Then
+            Return
+        End If
+        dgvSearch.DataSource = Nothing
         dgvSearch.Columns.Clear()
         dgvSearch.Rows.Clear()
+
+        Dim filter As String = ""
+
+        If Not String.IsNullOrWhiteSpace(txtSearchISBN.Text) Then
+            filter += "`ISBN` LIKE '%" + txtSearchISBN.Text + "%'"
+        End If
+
+        If Not String.IsNullOrWhiteSpace(txtSearchTitle.Text) Then
+            If (filter <> "") Then
+                filter += " AND "
+            End If
+
+            filter += "`Title` LIKE '%" + txtSearchTitle.Text + "%'"
+        End If
+
+        If Not cmbxSearchGenre.SelectedIndex <= 0 Then
+            If (filter <> "") Then
+                filter += " AND "
+            End If
+
+            Dim kvp As KeyValuePair(Of Integer, String) = cmbxSearchGenre.SelectedItem
+
+            filter += "`Genre` LIKE '" + kvp.Value + "'"
+        End If
+
+        If Not cmbxSearchStatus.SelectedIndex = -1 Then
+            If (filter <> "") Then
+                filter += " AND "
+            End If
+
+            filter += "`Status` LIKE '" + cmbxSearchStatus.SelectedItem + "'"
+        End If
+
+        books.DefaultView.RowFilter = filter
         dgvSearch.DataSource = books
     End Sub
+
+    Private Sub btnSearchClear_Click(sender As Object, e As EventArgs) Handles btnSearchClear.Click
+        txtSearchISBN.Clear()
+        txtSearchTitle.Clear()
+        cmbxSearchGenre.SelectedIndex = -1
+        cmbxSearchStatus.SelectedIndex = -1
+        LoadBooks()
+    End Sub
+
+    ' New methods will be added below here, please create group and move into that group as needed. 
+
 
     ''' <summary>
     ''' This method will be used present the Reservation tab at the Patron Level
@@ -266,6 +300,5 @@
     Private Sub CheckInOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInOutToolStripMenuItem.Click
         TabControl1.SelectedIndex = 8
     End Sub
-
 
 End Class

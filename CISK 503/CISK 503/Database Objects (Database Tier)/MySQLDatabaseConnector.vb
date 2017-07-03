@@ -118,6 +118,8 @@ Public Class MySQLDatabaseConnector
         Dim cmd As New MySqlCommand("SELECT `ID`, `Name` FROM `Genre` ORDER BY `Name`", conn)
         cmd.Prepare()
 
+        genres.Add(New KeyValuePair(Of Integer, String)(-1, ""))
+
         Try
             Dim reader As MySqlDataReader = cmd.ExecuteReader()
 
