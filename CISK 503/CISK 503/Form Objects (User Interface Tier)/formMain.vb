@@ -1,6 +1,7 @@
 ﻿Public Class formMain
     Public Shared mysql As MySQLDatabaseConnector
     Dim user As Patron
+    Dim books As DataTable 
 
     ' Form load
     ''' <summary>
@@ -26,7 +27,12 @@
         End Try
 
         ' Load the account level enumeration into the combo boxes as needed
-        cmboxAccountTypeAddAccount.DataSource = [Enum].GetValues(GetType(Patron.AccountLevel))
+        cmbxAccountTypeAddAccount.DataSource = [Enum].GetValues(GetType(Patron.AccountLevel))
+
+        ' Load things for the Search Tab
+        cmbxSearchGenre.ComboBox.DisplayMember = "Value"
+        cmbxSearchGenre.ComboBox.DataSource = mysql.ListGenres()
+        books = mysql.ListBooks()
 
 
     End Sub
@@ -79,8 +85,19 @@
             ' No exception was thrown, continue to set the text and permissions
             LoginToolStripMenuItem.Text = "&Log Out"
             PatronToolStripMenuItem.Enabled = True
-            CirculationToolStripMenuItem.Enabled = user.Level >= 0
-            AdministrationToolStripMenuItem.Enabled = user.Level >= 1
+
+            ' Cast into specfic type
+            If (user.Level = 2) Then
+                user = New Administrator(mysql, txtUsername.Text, txtPassword.Text)
+                CirculationToolStripMenuItem.Enabled = True
+                AdministrationToolStripMenuItem.Enabled = True
+            ElseIf user.Level = 1 Then
+                user = New Librarian(mysql, txtUsername.Text, txtPassword.Text)
+                CirculationToolStripMenuItem.Enabled = True
+            Else
+                ' Keep as Patron
+            End If
+
             ' Move to welcome page
             TabControl1.SelectedIndex = 0
             ' Clear the form for future use
@@ -127,115 +144,128 @@
             Return
         End If
 
-        ' Make sure the USER LEVEL is sufficient
-        If user.Level = Patron.AccountLevel.Administation Then
-            ' Admin account can add any type of account
-        ElseIf user.Level = Patron.AccountLevel.Circulation Then
-            ' Circulation account can only add patron account
-            If cmboxAccountTypeAddAccount.SelectedItem <> Patron.AccountLevel.Patron Then
-                errProvider.SetError(cmboxAccountTypeAddAccount, "You can only add patron accounts")
-                Return
-            End If
-        Else
-            errProvider.SetError(cmboxAccountTypeAddAccount, "You are unable to add new accounts")
-            Return
-        End If
-
         Try
-            ' Add the account the account
-            user = New Patron(mysql, txtUsernameAddAccount.Text, txtPasswordAddAccount.Text)
-
-            ' No exception was thrown, continue to set the text and permissions
-            LoginToolStripMenuItem.Text = "&Log Out"
-            PatronToolStripMenuItem.Enabled = True
-            CirculationToolStripMenuItem.Enabled = user.Level >= 0
-            AdministrationToolStripMenuItem.Enabled = user.Level >= 1
-            ' Move to welcome page
-            TabControl1.SelectedIndex = 0
-            ' Clear the form for future use
-            txtUsernameAddAccount.Text = ""
-            txtPasswordAddAccount.Text = ""
-            cmboxAccountTypeAddAccount.SelectedItem = Patron.AccountLevel.Patron
+            If (TypeOf (user) Is Administrator) Then
+                DirectCast(user, Administrator).CreateAccount(txtUsernameAddAccount.Text, user.HashPassword(txtPasswordAddAccount.Text), cmbxAccountTypeAddAccount.SelectedItem)
+            ElseIf (TypeOf (user) Is Librarian) Then
+                DirectCast(user, Librarian).CreateAccount(txtUsernameAddAccount.Text, user.HashPassword(txtPasswordAddAccount.Text))
+            End If
+        Catch ex As ConstraintException
+            errProvider.SetError(cmbxAccountTypeAddAccount, "You are unable to add this type of accound")
         Catch ex As Exception
             MessageBox.Show(ex.Message)
+            Return
         End Try
+
+        ' Clear the form for future use
+        txtUsernameAddAccount.Text = ""
+        txtPasswordAddAccount.Text = ""
+        cmbxAccountTypeAddAccount.SelectedItem = Patron.AccountLevel.Patron
     End Sub
 
-	' New methods will be added below here, please create group and move into that group as needed. 
-	''' <summary>
-	''' This method will be used to present the Search tab
-	''' </summary>
-	''' <param name="sender"></param>
-	''' <param name="e"></param>
-	''' <author>Jon Seigle</author>
-	''' <date>June 26, 2017</date>
-	Private Sub SearchToolstripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
-		TabControl1.SelectedIndex = 3
-	End Sub
+    ' Search page event handlers
+    Private Sub btnSearchClear_Click(sender As Object, e As EventArgs) Handles btnSearchClear.Click
+        txtSearchISBN.Clear()
+        txtSearchTitle.Clear()
+        cmbxSearchGenre.SelectedIndex = -1
+        cmbxSearchStatus.SelectedIndex = -1
+    End Sub
 
-	''' <summary>
-	''' This method will be used present the Reservation tab at the Patron Level
-	''' </summary>
-	''' <param name="sender"></param>
-	''' <param name="e"></param>
-	''' <author>Jon Seigle</author>
-	''' <date> June 26, 2017</date>
-	Private Sub ReservationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationToolStripMenuItem.Click
-		TabControl1.SelectedIndex = 4
-	End Sub
+    Private Sub txtSearchISBN_TextChanged(sender As Object, e As EventArgs) Handles txtSearchISBN.TextChanged
 
-	''' <summary>
-	''' This method will be used to present the Request tab at the Patron level
-	''' </summary>
-	''' <param name="sender"></param>
-	''' <param name="e"></param>
-	''' <author>Jon Seigle</author>
-	''' <date> June 26, 2017</date>
-	Private Sub RequestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RequestToolStripMenuItem.Click
-		TabControl1.SelectedIndex = 5
-	End Sub
+    End Sub
 
-	''' <summary>
-	''' This method will present the Account tab for the Patron
-	''' </summary>
-	''' <param name="sender"></param>
-	''' <param name="e"></param>
-	''' <author>Jon Seigle</author>
-	''' <date> June 26, 2017</date>
-	Private Sub AccountToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AccountToolStripMenuItem.Click
-		TabControl1.SelectedIndex = 9
-	End Sub
+    Private Sub txtSearchTitle_TextChanged(sender As Object, e As EventArgs) Handles txtSearchTitle.TextChanged
 
-	''' <summary>
-	''' This method will present the Reservations tab for Circulation level
-	''' </summary>
-	''' <param name="sender"></param>
-	''' <param name="e"></param>
-	''' <author>Jon Seigle</author>
-	''' <date> June 26, 2017</date>
-	Private Sub ReservationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationsToolStripMenuItem.Click
-		TabControl1.SelectedIndex = 6
-	End Sub
+    End Sub
 
-	''' <summary>
-	''' This method will present the Requests tab at for Circulation level
-	''' </summary>
-	''' <param name="sender"></param>
-	''' <param name="e"></param>
-	Private Sub RequestsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RequestsToolStripMenuItem.Click
-		TabControl1.SelectedIndex = 7
-	End Sub
+    Private Sub cmbxSearchGenre_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxSearchGenre.SelectedIndexChanged
 
-	''' <summary>
-	''' This method will present the Check In/Out tab for the Circulation level
-	''' </summary>
-	''' <param name="sender"></param>
-	''' <param name="e"></param>
-	''' <author>Jon Seigle</author>
-	''' <date>June 26, 2017</date>
-	Private Sub CheckInOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInOutToolStripMenuItem.Click
-		TabControl1.SelectedIndex = 8
-	End Sub
+    End Sub
+
+    Private Sub cmbxSearchStatus_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxSearchStatus.SelectedIndexChanged
+
+    End Sub
+
+    ' New methods will be added below here, please create group and move into that group as needed. 
+
+    ''' <summary>
+    ''' This method will be used to present the Search tab
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Jon Seigle</author>
+    ''' <date>June 26, 2017</date>
+    Private Sub SearchToolstripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 3
+        dgvSearch.Columns.Clear()
+        dgvSearch.Rows.Clear()
+        dgvSearch.DataSource = books
+    End Sub
+
+    ''' <summary>
+    ''' This method will be used present the Reservation tab at the Patron Level
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Jon Seigle</author>
+    ''' <date> June 26, 2017</date>
+    Private Sub ReservationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 4
+    End Sub
+
+    ''' <summary>
+    ''' This method will be used to present the Request tab at the Patron level
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Jon Seigle</author>
+    ''' <date> June 26, 2017</date>
+    Private Sub RequestToolStripMenuItem_Click(sender As Object, e As EventArgs)
+        TabControl1.SelectedIndex = 5
+    End Sub
+
+    ''' <summary>
+    ''' This method will present the Account tab for the Patron
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Jon Seigle</author>
+    ''' <date> June 26, 2017</date>
+    Private Sub AccountToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AccountToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 9
+    End Sub
+
+    ''' <summary>
+    ''' This method will present the Reservations tab for Circulation level
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Jon Seigle</author>
+    ''' <date> June 26, 2017</date>
+    Private Sub ReservationsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationsToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 6
+    End Sub
+
+    ''' <summary>
+    ''' This method will present the Requests tab at for Circulation level
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub RequestsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RequestsToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 7
+    End Sub
+
+    ''' <summary>
+    ''' This method will present the Check In/Out tab for the Circulation level
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Jon Seigle</author>
+    ''' <date>June 26, 2017</date>
+    Private Sub CheckInOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInOutToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 8
+    End Sub
 
 
 End Class
