@@ -130,29 +130,29 @@ Partial Class formMain
         'SearchToolStripMenuItem
         '
         Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SearchToolStripMenuItem.Text = "&Search"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(136, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(149, 6)
         '
         'ReservationToolStripMenuItem
         '
         Me.ReservationToolStripMenuItem.Name = "ReservationToolStripMenuItem"
-        Me.ReservationToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.ReservationToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ReservationToolStripMenuItem.Text = "My &Library"
         '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(136, 6)
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(149, 6)
         '
         'AccountToolStripMenuItem
         '
         Me.AccountToolStripMenuItem.Name = "AccountToolStripMenuItem"
-        Me.AccountToolStripMenuItem.Size = New System.Drawing.Size(139, 22)
+        Me.AccountToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AccountToolStripMenuItem.Text = "My &Account"
         '
         'CirculationToolStripMenuItem

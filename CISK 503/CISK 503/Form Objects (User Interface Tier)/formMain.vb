@@ -301,4 +301,27 @@
         TabControl1.SelectedIndex = 8
     End Sub
 
+    ''' <summary>
+    ''' This method will present about information to the user of the application
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Juan Maldonado</author>
+    ''' <date>July 3, 2017</date>
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        MessageBox.Show("Library Circulation Desk" + vbCrLf + " Author : A Team" + vbCr + " Copyright : 2017" + vbCr + "CISK 503 Summer 2017", "About Library Circulation Desk",
+           MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+    End Sub
+
+    ''' <summary>
+    ''' This method will show FAQ information to the user of the application
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Juan Maldonado</author>
+    ''' <date>July 3, 2017</date>
+    Private Sub FAQToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FAQToolStripMenuItem1.Click
+
+
+    End Sub
 End Class
