@@ -15,6 +15,7 @@
         _mysql = pMySQL
 
         ' Insert this record into the database and fill in the properties
+
     End Sub
 
     Public Sub New(pMySQL As MySQLDatabaseConnector, isbn As Book.ISBN)
@@ -22,6 +23,13 @@
         _mysql = pMySQL
 
         ' Search the database for this ISBN, return the data row and fill in the properties
+        Dim info As Dictionary(Of String, String) = _mysql.GetBook(isbn)
+        _isbn = isbn
+        _title = info("Title")
+        _genre = info("Genre")
+        _author = info("Author")
+        _publisher = info("Publisher")
+
     End Sub
 
     ' Properties
@@ -33,6 +41,29 @@
             _available = value
         End Set
     End Property
+
+    Public ReadOnly Property Title As String
+        Get
+            Return _title
+        End Get
+    End Property
+    Public ReadOnly Property Genre As String
+        Get
+            Return _genre
+        End Get
+    End Property
+    Public ReadOnly Property Author As String
+        Get
+            Return _author
+        End Get
+    End Property
+    Public ReadOnly Property Publisher As String
+        Get
+            Return _publisher
+        End Get
+    End Property
+
+
 
     ' Methods
 

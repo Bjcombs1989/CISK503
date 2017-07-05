@@ -1,16 +1,27 @@
 ﻿Public Class Reservation
+    Inherits ListViewItem
+
     Dim _reservedBy As Patron
     Dim _book As Book
     Dim _feesDue As Decimal
     Dim _dueDate As Date
 
-    Public Sub New(pReserved_by As Patron, pBook As Book)
+    Public Sub New(pReserved_by As Patron, pBook As Book, Optional pDueDate As DateTime = Nothing, Optional pFeesDue As Double = 0)
+        Text = pBook.Title
+        SubItems.Add(pBook.Author)
+        SubItems.Add(pReserved_by.UserName)
+
         _reservedBy = pReserved_by
         _book = pBook
-        _dueDate = DateTime.Today.AddDays(7)
 
-        ' This is creating a reservation (i.e. 7 day hold), so we need to update the database
+        If pDueDate = Nothing Then
+            _dueDate = DateTime.Today.AddDays(7)
+        Else
+            _dueDate = pDueDate
+        End If
 
+        SubItems.Add(_dueDate.ToShortDateString())
+        SubItems.Add(String.Format("{0:c2}", pFeesDue))
     End Sub
 
     ' Properties

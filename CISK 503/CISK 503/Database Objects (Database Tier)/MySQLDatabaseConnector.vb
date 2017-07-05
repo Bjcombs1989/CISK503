@@ -135,6 +135,39 @@ Public Class MySQLDatabaseConnector
         Return genres.ToArray()
     End Function
 
+    Public Function GetBook(isbn As Book.ISBN) As Dictionary(Of String, String)
+        ' Create the data row
+        Dim info As Dictionary(Of String, String) = New Dictionary(Of String, String)()
+
+        ' Create the command
+        Dim cmd As New MySqlCommand("SELECT Book.ID AS ISBN, Book.Name AS Title, Genre.Name AS Genre, Author.Name AS Author, Publisher.Name AS Publisher
+                                     FROM Book 
+                                         JOIN Author ON Book.Author = Author.ID
+                                         JOIN Genre ON Book.Genre = Genre.ID
+                                         JOIN Publisher ON Book.Publisher = Publisher.ID
+                                     WHERE Book.ID = @isbn", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@isbn", isbn)
+
+        ' Execute the command
+        Dim reader As MySqlDataReader = cmd.ExecuteReader()
+
+        ' Loop through reader
+        While reader.Read()
+            info.Add("ISBN", reader.GetString("ISBN"))
+            info.Add("Title", reader.GetString("Title"))
+            info.Add("Genre", reader.GetString("Genre"))
+            info.Add("Author", reader.GetString("Author"))
+            info.Add("Publisher", reader.GetString("Publisher"))
+            'info.Add("Reserved", reader.GetString("Reserved"))
+        End While
+
+        reader.Close()
+
+        Return info
+    End Function
+
+
     Public Function ListBooks() As DataTable
         ' Create the data table
         Dim table As DataTable = New DataTable()
