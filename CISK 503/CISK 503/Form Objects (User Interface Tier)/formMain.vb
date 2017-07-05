@@ -281,23 +281,23 @@
         TabControl1.SelectedIndex = 6
     End Sub
 
-    ''' <summary>
-    ''' This method will present the Requests tab at for Circulation level
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    Private Sub RequestsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RequestsToolStripMenuItem.Click
-        TabControl1.SelectedIndex = 7
-    End Sub
+	''' <summary>
+	''' This method will present the Requests tab at for Circulation level
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	Private Sub RequestsToolStripMenuItem_Click(sender As Object, e As EventArgs)
+		TabControl1.SelectedIndex = 7
+	End Sub
 
-    ''' <summary>
-    ''' This method will present the Check In/Out tab for the Circulation level
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <author>Jon Seigle</author>
-    ''' <date>June 26, 2017</date>
-    Private Sub CheckInOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInOutToolStripMenuItem.Click
+	''' <summary>
+	''' This method will present the Check In/Out tab for the Circulation level
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	''' <author>Jon Seigle</author>
+	''' <date>June 26, 2017</date>
+	Private Sub CheckInOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInOutToolStripMenuItem.Click
         TabControl1.SelectedIndex = 8
     End Sub
 
