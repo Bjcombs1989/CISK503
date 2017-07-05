@@ -1,8 +1,6 @@
 ﻿Public Class formMain
     Public Shared mysql As MySQLDatabaseConnector
     Dim user As Patron
-    Dim books As DataTable
-    Dim loading As Boolean = True
 
     ' Form load
     ''' <summary>
@@ -28,16 +26,9 @@
         End Try
 
         ' Load the account level enumeration into the combo boxes as needed
-        cmbxAccountTypeAddAccount.DataSource = [Enum].GetValues(GetType(Patron.AccountLevel))
-
-        ' Load things for the Search Tab
-        cmbxSearchGenre.ComboBox.DisplayMember = "Value"
-        cmbxSearchGenre.ComboBox.DataSource = mysql.ListGenres()
-        books = mysql.ListBooks()
+        cmboxAccountTypeAddAccount.DataSource = [Enum].GetValues(GetType(Patron.AccountLevel))
 
 
-
-        loading = False
     End Sub
 
     ' Login Page
@@ -88,19 +79,8 @@
             ' No exception was thrown, continue to set the text and permissions
             LoginToolStripMenuItem.Text = "&Log Out"
             PatronToolStripMenuItem.Enabled = True
-
-            ' Cast into specfic type
-            If (user.Level = 2) Then
-                user = New Administrator(mysql, txtUsername.Text, txtPassword.Text)
-                CirculationToolStripMenuItem.Enabled = True
-                AdministrationToolStripMenuItem.Enabled = True
-            ElseIf user.Level = 1 Then
-                user = New Librarian(mysql, txtUsername.Text, txtPassword.Text)
-                CirculationToolStripMenuItem.Enabled = True
-            Else
-                ' Keep as Patron
-            End If
-
+            CirculationToolStripMenuItem.Enabled = user.Level >= 0
+            AdministrationToolStripMenuItem.Enabled = user.Level >= 1
             ' Move to welcome page
             TabControl1.SelectedIndex = 0
             ' Clear the form for future use
@@ -147,27 +127,41 @@
             Return
         End If
 
-        Try
-            If (TypeOf (user) Is Administrator) Then
-                DirectCast(user, Administrator).CreateAccount(txtUsernameAddAccount.Text, user.HashPassword(txtPasswordAddAccount.Text), cmbxAccountTypeAddAccount.SelectedItem)
-            ElseIf (TypeOf (user) Is Librarian) Then
-                DirectCast(user, Librarian).CreateAccount(txtUsernameAddAccount.Text, user.HashPassword(txtPasswordAddAccount.Text))
+        ' Make sure the USER LEVEL is sufficient
+        If user.Level = Patron.AccountLevel.Administation Then
+            ' Admin account can add any type of account
+        ElseIf user.Level = Patron.AccountLevel.Circulation Then
+            ' Circulation account can only add patron account
+            If cmboxAccountTypeAddAccount.SelectedItem <> Patron.AccountLevel.Patron Then
+                errProvider.SetError(cmboxAccountTypeAddAccount, "You can only add patron accounts")
+                Return
             End If
-        Catch ex As ConstraintException
-            errProvider.SetError(cmbxAccountTypeAddAccount, "You are unable to add this type of accound")
+        Else
+            errProvider.SetError(cmboxAccountTypeAddAccount, "You are unable to add new accounts")
+            Return
+        End If
+
+        Try
+            ' Add the account the account
+            user = New Patron(mysql, txtUsernameAddAccount.Text, txtPasswordAddAccount.Text)
+
+            ' No exception was thrown, continue to set the text and permissions
+            LoginToolStripMenuItem.Text = "&Log Out"
+            PatronToolStripMenuItem.Enabled = True
+            CirculationToolStripMenuItem.Enabled = user.Level >= 0
+            AdministrationToolStripMenuItem.Enabled = user.Level >= 1
+            ' Move to welcome page
+            TabControl1.SelectedIndex = 0
+            ' Clear the form for future use
+            txtUsernameAddAccount.Text = ""
+            txtPasswordAddAccount.Text = ""
+            cmboxAccountTypeAddAccount.SelectedItem = Patron.AccountLevel.Patron
         Catch ex As Exception
             MessageBox.Show(ex.Message)
-            Return
         End Try
-
-        ' Clear the form for future use
-        txtUsernameAddAccount.Text = ""
-        txtPasswordAddAccount.Text = ""
-        cmbxAccountTypeAddAccount.SelectedItem = Patron.AccountLevel.Patron
     End Sub
 
-    ' Search page event handlers
-
+    ' New methods will be added below here, please create group and move into that group as needed. 
     ''' <summary>
     ''' This method will be used to present the Search tab
     ''' </summary>
@@ -177,65 +171,7 @@
     ''' <date>June 26, 2017</date>
     Private Sub SearchToolstripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
         TabControl1.SelectedIndex = 3
-        LoadBooks()
     End Sub
-
-    Private Sub LoadBooks() Handles _
-        txtSearchTitle.TextChanged, txtSearchISBN.TextChanged, cmbxSearchStatus.SelectedIndexChanged, cmbxSearchGenre.SelectedIndexChanged
-
-        If loading Then
-            Return
-        End If
-        dgvSearch.DataSource = Nothing
-        dgvSearch.Columns.Clear()
-        dgvSearch.Rows.Clear()
-
-        Dim filter As String = ""
-
-        If Not String.IsNullOrWhiteSpace(txtSearchISBN.Text) Then
-            filter += "`ISBN` LIKE '%" + txtSearchISBN.Text + "%'"
-        End If
-
-        If Not String.IsNullOrWhiteSpace(txtSearchTitle.Text) Then
-            If (filter <> "") Then
-                filter += " AND "
-            End If
-
-            filter += "`Title` LIKE '%" + txtSearchTitle.Text + "%'"
-        End If
-
-        If Not cmbxSearchGenre.SelectedIndex <= 0 Then
-            If (filter <> "") Then
-                filter += " AND "
-            End If
-
-            Dim kvp As KeyValuePair(Of Integer, String) = cmbxSearchGenre.SelectedItem
-
-            filter += "`Genre` LIKE '" + kvp.Value + "'"
-        End If
-
-        If Not cmbxSearchStatus.SelectedIndex = -1 Then
-            If (filter <> "") Then
-                filter += " AND "
-            End If
-
-            filter += "`Status` LIKE '" + cmbxSearchStatus.SelectedItem + "'"
-        End If
-
-        books.DefaultView.RowFilter = filter
-        dgvSearch.DataSource = books
-    End Sub
-
-    Private Sub btnSearchClear_Click(sender As Object, e As EventArgs) Handles btnSearchClear.Click
-        txtSearchISBN.Clear()
-        txtSearchTitle.Clear()
-        cmbxSearchGenre.SelectedIndex = -1
-        cmbxSearchStatus.SelectedIndex = -1
-        LoadBooks()
-    End Sub
-
-    ' New methods will be added below here, please create group and move into that group as needed. 
-
 
     ''' <summary>
     ''' This method will be used present the Reservation tab at the Patron Level
@@ -281,47 +217,24 @@
         TabControl1.SelectedIndex = 6
     End Sub
 
-	''' <summary>
-	''' This method will present the Requests tab at for Circulation level
-	''' </summary>
-	''' <param name="sender"></param>
-	''' <param name="e"></param>
-	Private Sub RequestsToolStripMenuItem_Click(sender As Object, e As EventArgs)
-		TabControl1.SelectedIndex = 7
-	End Sub
+    ''' <summary>
+    ''' This method will present the Requests tab at for Circulation level
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub RequestsToolStripMenuItem_Click(sender As Object, e As EventArgs)
+        TabControl1.SelectedIndex = 7
+    End Sub
 
-	''' <summary>
-	''' This method will present the Check In/Out tab for the Circulation level
-	''' </summary>
-	''' <param name="sender"></param>
-	''' <param name="e"></param>
-	''' <author>Jon Seigle</author>
-	''' <date>June 26, 2017</date>
-	Private Sub CheckInOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInOutToolStripMenuItem.Click
+    ''' <summary>
+    ''' This method will present the Check In/Out tab for the Circulation level
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Jon Seigle</author>
+    ''' <date>June 26, 2017</date>
+    Private Sub CheckInOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInOutToolStripMenuItem.Click
         TabControl1.SelectedIndex = 8
     End Sub
 
-    ''' <summary>
-    ''' This method will present about information to the user of the application
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <author>Juan Maldonado</author>
-    ''' <date>July 3, 2017</date>
-    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        MessageBox.Show("Library Circulation Desk" + vbCrLf + " Author : A Team" + vbCr + " Copyright : 2017" + vbCr + "CISK 503 Summer 2017", "About Library Circulation Desk",
-           MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
-    End Sub
-
-    ''' <summary>
-    ''' This method will show FAQ information to the user of the application
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <author>Juan Maldonado</author>
-    ''' <date>July 3, 2017</date>
-    Private Sub FAQToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FAQToolStripMenuItem1.Click
-
-
-    End Sub
 End Class
