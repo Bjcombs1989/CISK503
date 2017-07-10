@@ -27,21 +27,25 @@ Partial Class formMain
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.PatronToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.ReservationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CirculationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CheckInOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewAccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CheckInOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReservationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
         Me.AccountsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PaymentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdministrationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CatalogeManagerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AccountManagerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FAQToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContactsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoginToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.errProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.tpAbout = New System.Windows.Forms.TabPage()
@@ -70,8 +74,25 @@ Partial Class formMain
         Me.ToolStripTextBox6 = New System.Windows.Forms.ToolStripTextBox()
         Me.cbCirculationReservationStatusCombo = New System.Windows.Forms.ToolStripComboBox()
         Me.tpReservation = New System.Windows.Forms.TabPage()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.txtReservationName = New System.Windows.Forms.TextBox()
+        Me.txtReservationPublisher = New System.Windows.Forms.TextBox()
+        Me.txtReservationAuthor = New System.Windows.Forms.TextBox()
+        Me.txtReservationGenre = New System.Windows.Forms.TextBox()
+        Me.btnReservationRemoveHold = New System.Windows.Forms.Button()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.listviewReservation = New System.Windows.Forms.ListView()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader6 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.tpSearch = New System.Windows.Forms.TabPage()
+        Me.Label19 = New System.Windows.Forms.Label()
         Me.dgvSearch = New System.Windows.Forms.DataGridView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
@@ -90,6 +111,7 @@ Partial Class formMain
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.btPatronSearchHold = New System.Windows.Forms.Button()
         Me.tpCreate = New System.Windows.Forms.TabPage()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.cmboxAccountTypeAddAccount = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.btnAddAccount = New System.Windows.Forms.Button()
@@ -98,6 +120,7 @@ Partial Class formMain
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.tpLogin = New System.Windows.Forms.TabPage()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.txtUsername = New System.Windows.Forms.TextBox()
@@ -105,19 +128,24 @@ Partial Class formMain
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tpBook = New System.Windows.Forms.TabPage()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.txtBookName = New System.Windows.Forms.TextBox()
+        Me.txtBookPublisher = New System.Windows.Forms.TextBox()
+        Me.txtBookAuthor = New System.Windows.Forms.TextBox()
+        Me.txtBookGenre = New System.Windows.Forms.TextBox()
+        Me.btnCheckOut = New System.Windows.Forms.Button()
+        Me.btnPlaceHold = New System.Windows.Forms.Button()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.tpCheckIn = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.tbCirculationCheckinResult = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.tbCirculationCheckinIsbn = New System.Windows.Forms.TextBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader4 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader5 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.btnCheckIn = New System.Windows.Forms.Button()
+        Me.btnRemoveHold = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpAbout.SuspendLayout()
@@ -144,13 +172,13 @@ Partial Class formMain
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PatronToolStripMenuItem, Me.CirculationToolStripMenuItem, Me.AdministrationToolStripMenuItem, Me.HelpToolStripMenuItem, Me.LoginToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1088, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1298, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'PatronToolStripMenuItem
         '
-        Me.PatronToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SearchToolStripMenuItem, Me.ReservationToolStripMenuItem, Me.AccountToolStripMenuItem})
+        Me.PatronToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SearchToolStripMenuItem, Me.ToolStripSeparator8, Me.ReservationToolStripMenuItem, Me.AccountToolStripMenuItem})
         Me.PatronToolStripMenuItem.Name = "PatronToolStripMenuItem"
         Me.PatronToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
         Me.PatronToolStripMenuItem.Text = "&Patron"
@@ -160,6 +188,11 @@ Partial Class formMain
         Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
         Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.SearchToolStripMenuItem.Text = "Search"
+        '
+        'ToolStripSeparator8
+        '
+        Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
+        Me.ToolStripSeparator8.Size = New System.Drawing.Size(157, 6)
         '
         'ReservationToolStripMenuItem
         '
@@ -175,16 +208,10 @@ Partial Class formMain
         '
         'CirculationToolStripMenuItem
         '
-        Me.CirculationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CheckInOutToolStripMenuItem, Me.AddNewAccountToolStripMenuItem, Me.ReservationsToolStripMenuItem, Me.AccountsToolStripMenuItem, Me.PaymentsToolStripMenuItem})
+        Me.CirculationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewAccountToolStripMenuItem, Me.ToolStripSeparator6, Me.CheckInOutToolStripMenuItem, Me.ReservationsToolStripMenuItem, Me.ToolStripSeparator7, Me.AccountsToolStripMenuItem, Me.PaymentsToolStripMenuItem})
         Me.CirculationToolStripMenuItem.Name = "CirculationToolStripMenuItem"
         Me.CirculationToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
         Me.CirculationToolStripMenuItem.Text = "&Circulation"
-        '
-        'CheckInOutToolStripMenuItem
-        '
-        Me.CheckInOutToolStripMenuItem.Name = "CheckInOutToolStripMenuItem"
-        Me.CheckInOutToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.CheckInOutToolStripMenuItem.Text = "&Check In / Out"
         '
         'AddNewAccountToolStripMenuItem
         '
@@ -192,11 +219,27 @@ Partial Class formMain
         Me.AddNewAccountToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.AddNewAccountToolStripMenuItem.Text = "&Add New Account"
         '
+        'ToolStripSeparator6
+        '
+        Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(168, 6)
+        '
+        'CheckInOutToolStripMenuItem
+        '
+        Me.CheckInOutToolStripMenuItem.Name = "CheckInOutToolStripMenuItem"
+        Me.CheckInOutToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.CheckInOutToolStripMenuItem.Text = "&Check In / Out"
+        '
         'ReservationsToolStripMenuItem
         '
         Me.ReservationsToolStripMenuItem.Name = "ReservationsToolStripMenuItem"
         Me.ReservationsToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.ReservationsToolStripMenuItem.Text = "&Reservations"
+        '
+        'ToolStripSeparator7
+        '
+        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(168, 6)
         '
         'AccountsToolStripMenuItem
         '
@@ -220,27 +263,21 @@ Partial Class formMain
         'CatalogeManagerToolStripMenuItem
         '
         Me.CatalogeManagerToolStripMenuItem.Name = "CatalogeManagerToolStripMenuItem"
-        Me.CatalogeManagerToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.CatalogeManagerToolStripMenuItem.Text = "&Cataloge Manager"
+        Me.CatalogeManagerToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
+        Me.CatalogeManagerToolStripMenuItem.Text = "&Catalog Manager"
         '
         'AccountManagerToolStripMenuItem
         '
         Me.AccountManagerToolStripMenuItem.Name = "AccountManagerToolStripMenuItem"
-        Me.AccountManagerToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.AccountManagerToolStripMenuItem.Size = New System.Drawing.Size(169, 22)
         Me.AccountManagerToolStripMenuItem.Text = "&Account Manager"
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.FAQToolStripMenuItem1, Me.ContactsToolStripMenuItem1})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FAQToolStripMenuItem1, Me.ContactsToolStripMenuItem1, Me.ToolStripSeparator9, Me.AboutToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "&Help"
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
-        Me.AboutToolStripMenuItem.Text = "&About"
         '
         'FAQToolStripMenuItem1
         '
@@ -253,6 +290,17 @@ Partial Class formMain
         Me.ContactsToolStripMenuItem1.Name = "ContactsToolStripMenuItem1"
         Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
         Me.ContactsToolStripMenuItem1.Text = "&Contacts"
+        '
+        'ToolStripSeparator9
+        '
+        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(118, 6)
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
+        Me.AboutToolStripMenuItem.Text = "&About"
         '
         'LoginToolStripMenuItem
         '
@@ -270,7 +318,7 @@ Partial Class formMain
         Me.tpAbout.Location = New System.Drawing.Point(4, 22)
         Me.tpAbout.Margin = New System.Windows.Forms.Padding(2)
         Me.tpAbout.Name = "tpAbout"
-        Me.tpAbout.Size = New System.Drawing.Size(1080, 424)
+        Me.tpAbout.Size = New System.Drawing.Size(1290, 446)
         Me.tpAbout.TabIndex = 12
         Me.tpAbout.Text = "About"
         Me.tpAbout.UseVisualStyleBackColor = True
@@ -291,7 +339,7 @@ Partial Class formMain
         Me.tpContacts.Location = New System.Drawing.Point(4, 22)
         Me.tpContacts.Margin = New System.Windows.Forms.Padding(2)
         Me.tpContacts.Name = "tpContacts"
-        Me.tpContacts.Size = New System.Drawing.Size(1080, 424)
+        Me.tpContacts.Size = New System.Drawing.Size(1290, 446)
         Me.tpContacts.TabIndex = 11
         Me.tpContacts.Text = "Contacts"
         Me.tpContacts.UseVisualStyleBackColor = True
@@ -316,7 +364,7 @@ Partial Class formMain
         Me.tpHelp.Margin = New System.Windows.Forms.Padding(2)
         Me.tpHelp.Name = "tpHelp"
         Me.tpHelp.Padding = New System.Windows.Forms.Padding(2)
-        Me.tpHelp.Size = New System.Drawing.Size(1080, 424)
+        Me.tpHelp.Size = New System.Drawing.Size(1290, 446)
         Me.tpHelp.TabIndex = 10
         Me.tpHelp.Text = "Help"
         Me.tpHelp.UseVisualStyleBackColor = True
@@ -359,7 +407,7 @@ Partial Class formMain
         Me.tpAccount.Location = New System.Drawing.Point(4, 22)
         Me.tpAccount.Margin = New System.Windows.Forms.Padding(2)
         Me.tpAccount.Name = "tpAccount"
-        Me.tpAccount.Size = New System.Drawing.Size(1080, 424)
+        Me.tpAccount.Size = New System.Drawing.Size(1290, 446)
         Me.tpAccount.TabIndex = 9
         Me.tpAccount.Text = "Account"
         Me.tpAccount.UseVisualStyleBackColor = True
@@ -372,7 +420,7 @@ Partial Class formMain
         Me.tpCheckOut.Margin = New System.Windows.Forms.Padding(2)
         Me.tpCheckOut.Name = "tpCheckOut"
         Me.tpCheckOut.Padding = New System.Windows.Forms.Padding(2)
-        Me.tpCheckOut.Size = New System.Drawing.Size(1080, 424)
+        Me.tpCheckOut.Size = New System.Drawing.Size(1290, 446)
         Me.tpCheckOut.TabIndex = 8
         Me.tpCheckOut.Text = "Check Out"
         Me.tpCheckOut.UseVisualStyleBackColor = True
@@ -394,7 +442,7 @@ Partial Class formMain
         Me.MenuStrip3.Location = New System.Drawing.Point(2, 2)
         Me.MenuStrip3.Name = "MenuStrip3"
         Me.MenuStrip3.Padding = New System.Windows.Forms.Padding(4, 1, 0, 1)
-        Me.MenuStrip3.Size = New System.Drawing.Size(1076, 25)
+        Me.MenuStrip3.Size = New System.Drawing.Size(1286, 25)
         Me.MenuStrip3.TabIndex = 1
         Me.MenuStrip3.Text = "MenuStrip3"
         '
@@ -439,7 +487,7 @@ Partial Class formMain
         Me.tpReservations.Margin = New System.Windows.Forms.Padding(2)
         Me.tpReservations.Name = "tpReservations"
         Me.tpReservations.Padding = New System.Windows.Forms.Padding(2)
-        Me.tpReservations.Size = New System.Drawing.Size(1080, 424)
+        Me.tpReservations.Size = New System.Drawing.Size(1290, 446)
         Me.tpReservations.TabIndex = 6
         Me.tpReservations.Text = "Reservations"
         Me.tpReservations.UseVisualStyleBackColor = True
@@ -451,7 +499,7 @@ Partial Class formMain
         Me.tbCirculationReservationsLastnameCombo.Location = New System.Drawing.Point(2, 2)
         Me.tbCirculationReservationsLastnameCombo.Name = "tbCirculationReservationsLastnameCombo"
         Me.tbCirculationReservationsLastnameCombo.Padding = New System.Windows.Forms.Padding(4, 1, 0, 1)
-        Me.tbCirculationReservationsLastnameCombo.Size = New System.Drawing.Size(1076, 25)
+        Me.tbCirculationReservationsLastnameCombo.Size = New System.Drawing.Size(1286, 25)
         Me.tbCirculationReservationsLastnameCombo.TabIndex = 0
         Me.tbCirculationReservationsLastnameCombo.Text = "MenuStrip3"
         '
@@ -485,33 +533,161 @@ Partial Class formMain
         '
         'tpReservation
         '
+        Me.tpReservation.Controls.Add(Me.Label21)
+        Me.tpReservation.Controls.Add(Me.txtReservationName)
+        Me.tpReservation.Controls.Add(Me.txtReservationPublisher)
+        Me.tpReservation.Controls.Add(Me.txtReservationAuthor)
+        Me.tpReservation.Controls.Add(Me.txtReservationGenre)
+        Me.tpReservation.Controls.Add(Me.btnReservationRemoveHold)
+        Me.tpReservation.Controls.Add(Me.Label13)
+        Me.tpReservation.Controls.Add(Me.Label14)
+        Me.tpReservation.Controls.Add(Me.Label15)
+        Me.tpReservation.Controls.Add(Me.Label16)
         Me.tpReservation.Controls.Add(Me.listviewReservation)
         Me.tpReservation.Location = New System.Drawing.Point(4, 22)
         Me.tpReservation.Margin = New System.Windows.Forms.Padding(2)
         Me.tpReservation.Name = "tpReservation"
         Me.tpReservation.Padding = New System.Windows.Forms.Padding(2)
-        Me.tpReservation.Size = New System.Drawing.Size(1080, 424)
+        Me.tpReservation.Size = New System.Drawing.Size(1290, 446)
         Me.tpReservation.TabIndex = 4
         Me.tpReservation.Text = "Reservation"
         Me.tpReservation.UseVisualStyleBackColor = True
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(827, 215)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(314, 26)
+        Me.Label21.TabIndex = 14
+        Me.Label21.Text = "This page is done and is ready for visual stuff." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please delete this label when y" &
+    "ou add the visual stuff to this page"
+        '
+        'txtReservationName
+        '
+        Me.txtReservationName.Enabled = False
+        Me.txtReservationName.Location = New System.Drawing.Point(898, 31)
+        Me.txtReservationName.Name = "txtReservationName"
+        Me.txtReservationName.Size = New System.Drawing.Size(318, 20)
+        Me.txtReservationName.TabIndex = 13
+        '
+        'txtReservationPublisher
+        '
+        Me.txtReservationPublisher.Enabled = False
+        Me.txtReservationPublisher.Location = New System.Drawing.Point(898, 109)
+        Me.txtReservationPublisher.Name = "txtReservationPublisher"
+        Me.txtReservationPublisher.Size = New System.Drawing.Size(318, 20)
+        Me.txtReservationPublisher.TabIndex = 10
+        '
+        'txtReservationAuthor
+        '
+        Me.txtReservationAuthor.Enabled = False
+        Me.txtReservationAuthor.Location = New System.Drawing.Point(898, 82)
+        Me.txtReservationAuthor.Name = "txtReservationAuthor"
+        Me.txtReservationAuthor.Size = New System.Drawing.Size(318, 20)
+        Me.txtReservationAuthor.TabIndex = 11
+        '
+        'txtReservationGenre
+        '
+        Me.txtReservationGenre.Enabled = False
+        Me.txtReservationGenre.Location = New System.Drawing.Point(898, 55)
+        Me.txtReservationGenre.Name = "txtReservationGenre"
+        Me.txtReservationGenre.Size = New System.Drawing.Size(318, 20)
+        Me.txtReservationGenre.TabIndex = 12
+        '
+        'btnReservationRemoveHold
+        '
+        Me.btnReservationRemoveHold.Location = New System.Drawing.Point(898, 150)
+        Me.btnReservationRemoveHold.Name = "btnReservationRemoveHold"
+        Me.btnReservationRemoveHold.Size = New System.Drawing.Size(90, 23)
+        Me.btnReservationRemoveHold.TabIndex = 9
+        Me.btnReservationRemoveHold.Text = "Remove Hold"
+        Me.btnReservationRemoveHold.UseVisualStyleBackColor = True
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(827, 58)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(36, 13)
+        Me.Label13.TabIndex = 4
+        Me.Label13.Text = "Genre"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(827, 112)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(50, 13)
+        Me.Label14.TabIndex = 5
+        Me.Label14.Text = "Publisher"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(827, 85)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(38, 13)
+        Me.Label15.TabIndex = 6
+        Me.Label15.Text = "Author"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(827, 34)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(35, 13)
+        Me.Label16.TabIndex = 7
+        Me.Label16.Text = "Name"
         '
         'listviewReservation
         '
         Me.listviewReservation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.listviewReservation.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
+        Me.listviewReservation.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6})
         Me.listviewReservation.FullRowSelect = True
         Me.listviewReservation.Location = New System.Drawing.Point(0, 0)
         Me.listviewReservation.MultiSelect = False
         Me.listviewReservation.Name = "listviewReservation"
-        Me.listviewReservation.Size = New System.Drawing.Size(675, 424)
+        Me.listviewReservation.Size = New System.Drawing.Size(797, 446)
         Me.listviewReservation.TabIndex = 0
         Me.listviewReservation.TileSize = New System.Drawing.Size(505, 50)
         Me.listviewReservation.UseCompatibleStateImageBehavior = False
         Me.listviewReservation.View = System.Windows.Forms.View.Details
         '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "Book Title"
+        Me.ColumnHeader1.Width = 250
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "Author"
+        Me.ColumnHeader2.Width = 150
+        '
+        'ColumnHeader3
+        '
+        Me.ColumnHeader3.Text = "Patron"
+        Me.ColumnHeader3.Width = 100
+        '
+        'ColumnHeader4
+        '
+        Me.ColumnHeader4.Text = "Due Date"
+        Me.ColumnHeader4.Width = 80
+        '
+        'ColumnHeader5
+        '
+        Me.ColumnHeader5.Text = "Fees Due"
+        Me.ColumnHeader5.Width = 80
+        '
+        'ColumnHeader6
+        '
+        Me.ColumnHeader6.Text = "Type"
+        Me.ColumnHeader6.Width = 80
+        '
         'tpSearch
         '
+        Me.tpSearch.Controls.Add(Me.Label19)
         Me.tpSearch.Controls.Add(Me.dgvSearch)
         Me.tpSearch.Controls.Add(Me.ToolStrip1)
         Me.tpSearch.Controls.Add(Me.btPatronSearchHold)
@@ -519,10 +695,19 @@ Partial Class formMain
         Me.tpSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.tpSearch.Name = "tpSearch"
         Me.tpSearch.Padding = New System.Windows.Forms.Padding(2)
-        Me.tpSearch.Size = New System.Drawing.Size(1080, 424)
+        Me.tpSearch.Size = New System.Drawing.Size(1290, 446)
         Me.tpSearch.TabIndex = 3
         Me.tpSearch.Text = "Search"
         Me.tpSearch.UseVisualStyleBackColor = True
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(102, 113)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(312, 13)
+        Me.Label19.TabIndex = 6
+        Me.Label19.Text = "This page is done but does not need any visual effects done to it"
         '
         'dgvSearch
         '
@@ -534,7 +719,7 @@ Partial Class formMain
         Me.dgvSearch.Name = "dgvSearch"
         Me.dgvSearch.ReadOnly = True
         Me.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSearch.Size = New System.Drawing.Size(1076, 395)
+        Me.dgvSearch.Size = New System.Drawing.Size(1286, 417)
         Me.dgvSearch.TabIndex = 2
         '
         'ToolStrip1
@@ -542,7 +727,7 @@ Partial Class formMain
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.txtSearchISBN, Me.ToolStripSeparator1, Me.ToolStripLabel2, Me.txtSearchTitle, Me.ToolStripSeparator2, Me.ToolStripLabel3, Me.cmbxSearchGenre, Me.ToolStripSeparator3, Me.ToolStripLabel4, Me.cmbxSearchStatus, Me.ToolStripSeparator4, Me.btnSearchClear, Me.ToolStripSeparator5})
         Me.ToolStrip1.Location = New System.Drawing.Point(2, 2)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1076, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1286, 25)
         Me.ToolStrip1.TabIndex = 3
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -636,6 +821,7 @@ Partial Class formMain
         '
         'tpCreate
         '
+        Me.tpCreate.Controls.Add(Me.Label18)
         Me.tpCreate.Controls.Add(Me.cmboxAccountTypeAddAccount)
         Me.tpCreate.Controls.Add(Me.Label6)
         Me.tpCreate.Controls.Add(Me.btnAddAccount)
@@ -646,10 +832,20 @@ Partial Class formMain
         Me.tpCreate.Location = New System.Drawing.Point(4, 22)
         Me.tpCreate.Name = "tpCreate"
         Me.tpCreate.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpCreate.Size = New System.Drawing.Size(1080, 424)
+        Me.tpCreate.Size = New System.Drawing.Size(1290, 446)
         Me.tpCreate.TabIndex = 1
         Me.tpCreate.Text = "CreateAcct"
         Me.tpCreate.UseVisualStyleBackColor = True
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(64, 187)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(532, 13)
+        Me.Label18.TabIndex = 12
+        Me.Label18.Text = "This page is done and is ready for visual stuff. Please delete this label when yo" &
+    "u add the visual stuff to this page"
         '
         'cmboxAccountTypeAddAccount
         '
@@ -712,6 +908,7 @@ Partial Class formMain
         '
         'tpLogin
         '
+        Me.tpLogin.Controls.Add(Me.Label17)
         Me.tpLogin.Controls.Add(Me.btnLogin)
         Me.tpLogin.Controls.Add(Me.txtPassword)
         Me.tpLogin.Controls.Add(Me.txtUsername)
@@ -720,10 +917,20 @@ Partial Class formMain
         Me.tpLogin.Location = New System.Drawing.Point(4, 22)
         Me.tpLogin.Name = "tpLogin"
         Me.tpLogin.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpLogin.Size = New System.Drawing.Size(1080, 424)
+        Me.tpLogin.Size = New System.Drawing.Size(1290, 446)
         Me.tpLogin.TabIndex = 0
         Me.tpLogin.Text = "Login"
         Me.tpLogin.UseVisualStyleBackColor = True
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(44, 134)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(532, 13)
+        Me.Label17.TabIndex = 5
+        Me.Label17.Text = "This page is done and is ready for visual stuff. Please delete this label when yo" &
+    "u add the visual stuff to this page"
         '
         'btnLogin
         '
@@ -786,21 +993,127 @@ Partial Class formMain
         Me.TabControl1.Location = New System.Drawing.Point(0, 24)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1088, 450)
+        Me.TabControl1.Size = New System.Drawing.Size(1298, 472)
         Me.TabControl1.TabIndex = 1
         '
         'tpBook
         '
-        Me.tpBook.Controls.Add(Me.Button3)
-        Me.tpBook.Controls.Add(Me.Button2)
+        Me.tpBook.Controls.Add(Me.btnRemoveHold)
+        Me.tpBook.Controls.Add(Me.Label20)
+        Me.tpBook.Controls.Add(Me.txtBookName)
+        Me.tpBook.Controls.Add(Me.txtBookPublisher)
+        Me.tpBook.Controls.Add(Me.txtBookAuthor)
+        Me.tpBook.Controls.Add(Me.txtBookGenre)
+        Me.tpBook.Controls.Add(Me.btnCheckIn)
+        Me.tpBook.Controls.Add(Me.btnCheckOut)
+        Me.tpBook.Controls.Add(Me.btnPlaceHold)
+        Me.tpBook.Controls.Add(Me.Label10)
+        Me.tpBook.Controls.Add(Me.Label12)
+        Me.tpBook.Controls.Add(Me.Label11)
         Me.tpBook.Controls.Add(Me.Label9)
         Me.tpBook.Location = New System.Drawing.Point(4, 22)
         Me.tpBook.Name = "tpBook"
         Me.tpBook.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpBook.Size = New System.Drawing.Size(1080, 424)
+        Me.tpBook.Size = New System.Drawing.Size(1290, 446)
         Me.tpBook.TabIndex = 14
         Me.tpBook.Text = "Book"
         Me.tpBook.UseVisualStyleBackColor = True
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(111, 236)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(532, 13)
+        Me.Label20.TabIndex = 13
+        Me.Label20.Text = "This page is done and is ready for visual stuff. Please delete this label when yo" &
+    "u add the visual stuff to this page"
+        '
+        'txtBookName
+        '
+        Me.txtBookName.Enabled = False
+        Me.txtBookName.Location = New System.Drawing.Point(94, 24)
+        Me.txtBookName.Name = "txtBookName"
+        Me.txtBookName.Size = New System.Drawing.Size(318, 20)
+        Me.txtBookName.TabIndex = 3
+        '
+        'txtBookPublisher
+        '
+        Me.txtBookPublisher.Enabled = False
+        Me.txtBookPublisher.Location = New System.Drawing.Point(94, 102)
+        Me.txtBookPublisher.Name = "txtBookPublisher"
+        Me.txtBookPublisher.Size = New System.Drawing.Size(318, 20)
+        Me.txtBookPublisher.TabIndex = 2
+        '
+        'txtBookAuthor
+        '
+        Me.txtBookAuthor.Enabled = False
+        Me.txtBookAuthor.Location = New System.Drawing.Point(94, 75)
+        Me.txtBookAuthor.Name = "txtBookAuthor"
+        Me.txtBookAuthor.Size = New System.Drawing.Size(318, 20)
+        Me.txtBookAuthor.TabIndex = 2
+        '
+        'txtBookGenre
+        '
+        Me.txtBookGenre.Enabled = False
+        Me.txtBookGenre.Location = New System.Drawing.Point(94, 48)
+        Me.txtBookGenre.Name = "txtBookGenre"
+        Me.txtBookGenre.Size = New System.Drawing.Size(318, 20)
+        Me.txtBookGenre.TabIndex = 2
+        '
+        'btnCheckOut
+        '
+        Me.btnCheckOut.Location = New System.Drawing.Point(264, 143)
+        Me.btnCheckOut.Name = "btnCheckOut"
+        Me.btnCheckOut.Size = New System.Drawing.Size(75, 23)
+        Me.btnCheckOut.TabIndex = 1
+        Me.btnCheckOut.Text = "Check Out"
+        Me.btnCheckOut.UseVisualStyleBackColor = True
+        '
+        'btnPlaceHold
+        '
+        Me.btnPlaceHold.Location = New System.Drawing.Point(146, 143)
+        Me.btnPlaceHold.Name = "btnPlaceHold"
+        Me.btnPlaceHold.Size = New System.Drawing.Size(90, 23)
+        Me.btnPlaceHold.TabIndex = 1
+        Me.btnPlaceHold.Text = "Place Hold"
+        Me.btnPlaceHold.UseVisualStyleBackColor = True
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(23, 51)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(36, 13)
+        Me.Label10.TabIndex = 0
+        Me.Label10.Text = "Genre"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(23, 105)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(50, 13)
+        Me.Label12.TabIndex = 0
+        Me.Label12.Text = "Publisher"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(23, 78)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(38, 13)
+        Me.Label11.TabIndex = 0
+        Me.Label11.Text = "Author"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(23, 27)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(35, 13)
+        Me.Label9.TabIndex = 0
+        Me.Label9.Text = "Name"
         '
         'tpCheckIn
         '
@@ -812,7 +1125,7 @@ Partial Class formMain
         Me.tpCheckIn.Margin = New System.Windows.Forms.Padding(2)
         Me.tpCheckIn.Name = "tpCheckIn"
         Me.tpCheckIn.Padding = New System.Windows.Forms.Padding(2)
-        Me.tpCheckIn.Size = New System.Drawing.Size(1080, 424)
+        Me.tpCheckIn.Size = New System.Drawing.Size(1290, 446)
         Me.tpCheckIn.TabIndex = 13
         Me.tpCheckIn.Text = "Check In"
         Me.tpCheckIn.UseVisualStyleBackColor = True
@@ -853,63 +1166,29 @@ Partial Class formMain
         Me.tbCirculationCheckinIsbn.Size = New System.Drawing.Size(68, 20)
         Me.tbCirculationCheckinIsbn.TabIndex = 0
         '
-        'Label9
+        'btnCheckIn
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(127, 74)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(39, 13)
-        Me.Label9.TabIndex = 0
-        Me.Label9.Text = "Label9"
+        Me.btnCheckIn.Location = New System.Drawing.Point(264, 172)
+        Me.btnCheckIn.Name = "btnCheckIn"
+        Me.btnCheckIn.Size = New System.Drawing.Size(75, 23)
+        Me.btnCheckIn.TabIndex = 1
+        Me.btnCheckIn.Text = "Check In"
+        Me.btnCheckIn.UseVisualStyleBackColor = True
         '
-        'Button2
+        'btnRemoveHold
         '
-        Me.Button2.Location = New System.Drawing.Point(91, 270)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Place Hold"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(174, 270)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 1
-        Me.Button3.Text = "Check Out"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'ColumnHeader1
-        '
-        Me.ColumnHeader1.Text = "Book Title"
-        Me.ColumnHeader1.Width = 250
-        '
-        'ColumnHeader2
-        '
-        Me.ColumnHeader2.Text = "Author"
-        Me.ColumnHeader2.Width = 150
-        '
-        'ColumnHeader3
-        '
-        Me.ColumnHeader3.Text = "Checked Out To"
-        Me.ColumnHeader3.Width = 100
-        '
-        'ColumnHeader4
-        '
-        Me.ColumnHeader4.Text = "Due Date"
-        Me.ColumnHeader4.Width = 80
-        '
-        'ColumnHeader5
-        '
-        Me.ColumnHeader5.Text = "Fees Due"
-        Me.ColumnHeader5.Width = 80
+        Me.btnRemoveHold.Location = New System.Drawing.Point(146, 172)
+        Me.btnRemoveHold.Name = "btnRemoveHold"
+        Me.btnRemoveHold.Size = New System.Drawing.Size(90, 23)
+        Me.btnRemoveHold.TabIndex = 14
+        Me.btnRemoveHold.Text = "Remove Hold"
+        Me.btnRemoveHold.UseVisualStyleBackColor = True
         '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1088, 474)
+        Me.ClientSize = New System.Drawing.Size(1298, 496)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -933,6 +1212,7 @@ Partial Class formMain
         Me.tbCirculationReservationsLastnameCombo.ResumeLayout(False)
         Me.tbCirculationReservationsLastnameCombo.PerformLayout()
         Me.tpReservation.ResumeLayout(False)
+        Me.tpReservation.PerformLayout()
         Me.tpSearch.ResumeLayout(False)
         Me.tpSearch.PerformLayout()
         CType(Me.dgvSearch, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1039,11 +1319,39 @@ Partial Class formMain
     Friend WithEvents tpBook As TabPage
     Friend WithEvents listviewReservation As ListView
     Friend WithEvents Label9 As Label
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents btnCheckOut As Button
+    Friend WithEvents btnPlaceHold As Button
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents ColumnHeader2 As ColumnHeader
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents ColumnHeader4 As ColumnHeader
     Friend WithEvents ColumnHeader5 As ColumnHeader
+    Friend WithEvents txtBookName As TextBox
+    Friend WithEvents txtBookPublisher As TextBox
+    Friend WithEvents txtBookAuthor As TextBox
+    Friend WithEvents txtBookGenre As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents ColumnHeader6 As ColumnHeader
+    Friend WithEvents txtReservationName As TextBox
+    Friend WithEvents txtReservationPublisher As TextBox
+    Friend WithEvents txtReservationAuthor As TextBox
+    Friend WithEvents txtReservationGenre As TextBox
+    Friend WithEvents btnReservationRemoveHold As Button
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator9 As ToolStripSeparator
+    Friend WithEvents Label17 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label21 As Label
+    Friend WithEvents btnCheckIn As Button
+    Friend WithEvents btnRemoveHold As Button
 End Class

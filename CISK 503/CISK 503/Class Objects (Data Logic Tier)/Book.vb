@@ -8,6 +8,7 @@
     Dim _available As Boolean
     Dim _hold As Hold
     Dim _reservation As Reservation
+    Dim info As Dictionary(Of String, String)
 
     ' Constructor(s)
     Public Sub New(pMySQL As MySQLDatabaseConnector, isbn As Book.ISBN, title As String, genre As Integer, publisher As Integer, author As Integer)
@@ -23,13 +24,31 @@
         _mysql = pMySQL
 
         ' Search the database for this ISBN, return the data row and fill in the properties
-        Dim info As Dictionary(Of String, String) = _mysql.GetBook(isbn)
+        info = _mysql.GetBook(isbn)
         _isbn = isbn
         _title = info("Title")
         _genre = info("Genre")
         _author = info("Author")
         _publisher = info("Publisher")
 
+        ' Check if book is available
+        _available = info("Hold") = "0" And info("Reservation") = "0"
+
+        If Not info("Hold") = "0" Then
+            Hold = New Hold(
+                    New Patron(_mysql, Integer.Parse(info("Hold_User"))),
+                    Me,
+                    DateTime.Parse(info("Hold_Until")))
+        End If
+
+        If Not info("Reservation") = "0" Then
+            Reservation = New Reservation(
+                    New Patron(_mysql, Integer.Parse(info("Res_User"))),
+                    Me,
+                    DateTime.Parse(info("Due_Date")),
+                    Decimal.Parse(info("Late_Fees"))
+                )
+        End If
     End Sub
 
     ' Properties
@@ -40,6 +59,16 @@
         Set(value As Boolean)
             _available = value
         End Set
+    End Property
+    Public ReadOnly Property IsHeld As Boolean
+        Get
+            Return Not info("Hold") = "0"
+        End Get
+    End Property
+    Public ReadOnly Property IsReservered As Boolean
+        Get
+            Return Not info("Reservation") = "0"
+        End Get
     End Property
 
     Public ReadOnly Property Title As String
@@ -62,9 +91,29 @@
             Return _publisher
         End Get
     End Property
+    Public ReadOnly Property BookISBN As String
+        Get
+            Return _isbn.ToString()
+        End Get
+    End Property
 
+    Public Property Hold As Hold
+        Get
+            Return _hold
+        End Get
+        Set(value As Hold)
+            _hold = value
+        End Set
+    End Property
 
-
+    Public Property Reservation As Reservation
+        Get
+            Return _reservation
+        End Get
+        Set(value As Reservation)
+            _reservation = value
+        End Set
+    End Property
     ' Methods
 
 

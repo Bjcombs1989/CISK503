@@ -96,6 +96,10 @@ Public Class Patron
 
     End Sub
 
+    Public Sub New(pMySQL As MySQLDatabaseConnector, ID As Integer)
+        _id = ID
+        _level = AccountLevel.Patron
+    End Sub
     ' Methods
     Public Function HashPassword(password As String) As String
         Return password & "hashed"

@@ -6,7 +6,7 @@
     Dim user As Patron
     Dim books As DataTable
     Dim loading As Boolean = True
-
+    Dim book As Book
 
     ' Form load
     ''' <summary>
@@ -22,7 +22,7 @@
         PatronToolStripMenuItem.Enabled = False
         CirculationToolStripMenuItem.Enabled = False
         AdministrationToolStripMenuItem.Enabled = False
-        AcceptButton = Nothing
+        AcceptButton = btnLogin
         txtUsername.Select()
 
         ' Load the Database Connection
@@ -171,7 +171,7 @@
     End Sub
 
     ' Search Page               TAB INDEX = 2
-    Private Sub SearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
+    Private Sub SearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click, CheckInOutToolStripMenuItem.Click
         TabControl1.SelectedIndex = 2
         txtSearchISBN.Select()
         AcceptButton = Nothing
@@ -242,41 +242,139 @@
         End Try
 
         Dim isbn As Book.ISBN = New Book.ISBN(selected.Cells(0).Value.ToString())
-        Dim book As Book = New Book(mysql, isbn)
-        LoadBook(book)
+        book = New Book(mysql, isbn)
+        LoadBook()
 
         TabControl1.SelectedIndex = 3
         AcceptButton = Nothing
     End Sub
 
     ' Book Page                 TAB INDEX = 3
-    Public Sub LoadBook(book As Book)
+    Public Sub LoadBook()
         ' Dispaly all the book stuff in their respective textboxes
-
+        txtBookAuthor.Text = book.Author
+        txtBookGenre.Text = book.Genre
+        txtBookName.Text = book.Title
+        txtBookPublisher.Text = book.Publisher
 
         ' Enable/Disable buttons based on availability
-        If (book.IsAvailable) Then
-            ' enable hold button
-            ' enable check out button
+        btnPlaceHold.Enabled = book.IsAvailable ' enable hold button
+
+        If Not book.IsHeld Then
+            btnRemoveHold.Enabled = False
         Else
-            ' disable hold button
-            ' disable check out button
+            btnRemoveHold.Enabled = (TypeOf (user) Is Librarian Or book.Hold.Patron.ID = user.ID)
         End If
 
-        ' Enable/Disable buttons based on account type
-        If (TypeOf (user) Is Librarian) Then ' this check also includes admin because an Admin is-a Librian
-            ' enable check out button
-        Else
-            ' disabled check out button
-        End If
+        btnCheckOut.Enabled = book.IsAvailable And TypeOf (user) Is Librarian ' enable check out button
+        btnCheckIn.Enabled = book.IsReservered And TypeOf (user) Is Librarian ' enable the check in button
+    End Sub
+
+    Private Sub btnPlaceHold_Click(sender As Object, e As EventArgs) Handles btnPlaceHold.Click
+        Try
+            mysql.AddHold(New Hold(user, book))
+            MessageBox.Show("A hold has been placed for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            btnPlaceHold.Enabled = False ' disable hold button
+            btnCheckOut.Enabled = False ' disable check out button
+            btnCheckIn.Enabled = False ' disable check in button
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnCheckOut_Click(sender As Object, e As EventArgs) Handles btnCheckOut.Click
+        Try
+            mysql.AddReservation(New Reservation(user, book))
+            MessageBox.Show("This book has been checked out", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            btnPlaceHold.Enabled = False ' disable hold button
+            btnCheckOut.Enabled = False ' disable check out button
+            btnCheckIn.Enabled = True ' enable check in button
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnCheckIn_Click(sender As Object, e As EventArgs) Handles btnCheckIn.Click
+
+    End Sub
+
+    Private Sub btnRemoveHold_Click(sender As Object, e As EventArgs) Handles btnRemoveHold.Click
+
+    End Sub
+
+
+    ' Reservations Page         TAB INDEX = 4
+    Private Sub ReservationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 4 ' Use the index of the page (Reservations = 4, Account = 5)
+        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
+
+        ' Load reservations
+        listviewReservation.Items.Clear()
+        listviewReservation.Items.AddRange(mysql.GetReservations(user))
+        listviewReservation.Items.AddRange(mysql.GetHolds(user))
+
+    End Sub
+
+    Private Sub btnReservationRemoveHold_Click(sender As Object, e As EventArgs) Handles btnReservationRemoveHold.Click
+        Try
+            mysql.RemoveHold(book.Hold)
+            MessageBox.Show("The hold has been removed for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' Load reservations
+            listviewReservation.Items.Clear()
+            listviewReservation.Items.AddRange(mysql.GetReservations(user))
+            listviewReservation.Items.AddRange(mysql.GetHolds(user))
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
+    ' Accounts Page             TAB INDEX = 5
+    Private Sub AccountToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AccountToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 5 ' Use the index of the page (Reservations = 4, Account = 5)
+        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
 
 
     End Sub
 
-    ' Reservations Page         TAB INDEX = 4
+    Private Sub listviewReservation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listviewReservation.SelectedIndexChanged
+        Dim item As ListViewItem
+
+        Try
+            item = listviewReservation.SelectedItems(0)
+        Catch ex As Exception
+            Return
+        End Try
+
+        Dim hold As Hold
+        Dim res As Reservation
+
+        hold = TryCast(item, Hold)
+        res = TryCast(item, Reservation)
+
+        If Not hold Is Nothing Then
+            book = hold.Book
+            book.Hold = hold
+            txtReservationAuthor.Text = hold.Book.Author
+            txtReservationGenre.Text = hold.Book.Genre
+            txtReservationName.Text = hold.Book.Title
+            txtReservationPublisher.Text = hold.Book.Publisher
+            btnReservationRemoveHold.Enabled = True
+        ElseIf Not res Is Nothing Then
+            book = res.Book
+            book.Reservation = res
+            txtReservationAuthor.Text = res.Book.Author
+            txtReservationGenre.Text = res.Book.Genre
+            txtReservationName.Text = res.Book.Title
+            txtReservationPublisher.Text = res.Book.Publisher
+            btnReservationRemoveHold.Enabled = False
+        End If
+
+    End Sub
 
 
-    ' Accounts Page             TAB INDEX = 5
 
 
 

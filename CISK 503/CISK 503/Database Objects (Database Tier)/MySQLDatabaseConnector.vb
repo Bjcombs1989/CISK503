@@ -26,6 +26,7 @@ Public Class MySQLDatabaseConnector
 
     ' Methods
 
+    ' Accounts
     ''' <summary>
     ''' 
     ''' </summary>
@@ -90,20 +91,56 @@ Public Class MySQLDatabaseConnector
 
     End Sub
 
+    ' Holds
     Sub AddHold(pHold As Hold)
-        Throw New NotImplementedException()
+        Dim cmd As New MySqlCommand("INSERT INTO `Hold` (`Book`, `User`, `Hold_Until`) VALUES (@book, @user, @date);", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@book", pHold.Book.BookISBN)
+        cmd.Parameters.AddWithValue("@user", pHold.Patron.ID)
+        cmd.Parameters.AddWithValue("@date", pHold.HeldTill.ToString("yyyy-MM-dd"))
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            ' otherwise throw exception
+            Throw New InternalExceptions(ex.Message)
+        End Try
     End Sub
     Sub RemoveHold(pHold As Hold)
-        Throw New NotImplementedException()
+        Dim cmd As New MySqlCommand("DELETE FROM `Hold` WHERE `Book` = @book AND `User` = @user AND `Hold_Until` = @date", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@book", pHold.Book.BookISBN)
+        cmd.Parameters.AddWithValue("@user", pHold.Patron.ID)
+        cmd.Parameters.AddWithValue("@date", pHold.HeldTill.ToString("yyyy-MM-dd"))
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            ' otherwise throw exception
+            Throw New InternalExceptions(ex.Message)
+        End Try
     End Sub
 
+    ' Reservations
     Sub AddReservation(pReservation As Reservation)
-        Throw New NotImplementedException()
+        Dim cmd As New MySqlCommand("INSERT INTO `Reservations` (`Book`, `User`, `Due_Date`, `Late_Fees`) VALUES (@book, @user, @date, 0);", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@book", pReservation.Book.BookISBN)
+        cmd.Parameters.AddWithValue("@user", pReservation.Patron.ID)
+        cmd.Parameters.AddWithValue("@date", pReservation.DueDate.ToString("yyyy-MM-dd"))
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            ' otherwise throw exception
+            Throw New InternalExceptions(ex.Message)
+        End Try
     End Sub
     Sub RemoveReservation(pReservation As Reservation)
         Throw New NotImplementedException()
     End Sub
 
+    ' Get and List Methods
     Public Function GetLateFee(days_late As Integer) As Decimal
         Dim daily_fee As Decimal
 
@@ -119,9 +156,10 @@ Public Class MySQLDatabaseConnector
         cmd.Prepare()
 
         genres.Add(New KeyValuePair(Of Integer, String)(-1, ""))
+        Dim reader As MySqlDataReader = Nothing
 
         Try
-            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+            reader = cmd.ExecuteReader()
 
             While reader.Read()
                 genres.Add(New KeyValuePair(Of Integer, String)(reader.GetInt32("ID"), reader.GetString("Name")))
@@ -130,21 +168,114 @@ Public Class MySQLDatabaseConnector
             reader.Close()
         Catch ex As Exception
             Throw ex
+        Finally
+            If Not reader Is Nothing Then reader.Close()
         End Try
 
         Return genres.ToArray()
     End Function
+
+    Public Function GetReservations(user As Patron) As Reservation()
+        Dim reseravations As List(Of Reservation) = New List(Of Reservation)()
+        Dim cmd As New MySqlCommand("SELECT * FROM `Reservations` WHERE `User` = @userID", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@userID", user.ID)
+
+        Dim books As List(Of ReservationInfo) = New List(Of ReservationInfo)()
+
+        Dim reader As MySqlDataReader = Nothing
+
+        Try
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                books.Add(New ReservationInfo(reader.GetString("Book"), reader.GetDateTime("Due_Date"), reader.GetDecimal("Late_Fees")))
+            End While
+
+            reader.Close()
+
+            For Each b As ReservationInfo In books
+                Dim res As Reservation
+                Dim book As Book
+
+                ' Set the variables to their instances
+                book = New Book(Me, New Book.ISBN(b.isbn))
+                res = New Reservation(user, book, b.due, b.amount)
+
+                ' Add the reservation to the list
+                reseravations.Add(res)
+            Next
+            ' Declare the variables
+
+
+        Catch ex As Exception
+            Throw ex
+        Finally
+            If Not reader Is Nothing Then reader.Close()
+        End Try
+
+        Return reseravations.ToArray()
+    End Function
+
+    Public Function GetHolds(user As Patron) As Hold()
+        Dim reseravations As List(Of Hold) = New List(Of Hold)()
+        Dim cmd As New MySqlCommand("SELECT * FROM `Hold` WHERE `User` = @userID", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@userID", user.ID)
+
+        Dim books As List(Of ReservationInfo) = New List(Of ReservationInfo)()
+
+        Dim reader As MySqlDataReader = Nothing
+
+        Try
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                books.Add(New ReservationInfo(reader.GetString("Book"), reader.GetDateTime("Hold_Until"), 0))
+            End While
+
+            reader.Close()
+
+            For Each b As ReservationInfo In books
+                Dim res As Hold
+                Dim book As Book
+
+                ' Set the variables to their instances
+                book = New Book(Me, New Book.ISBN(b.isbn))
+                res = New Hold(user, book, b.due)
+
+                ' Add the reservation to the list
+                reseravations.Add(res)
+            Next
+            ' Declare the variables
+
+
+        Catch ex As Exception
+            Throw ex
+        Finally
+            If Not reader Is Nothing Then reader.Close()
+        End Try
+
+        Return reseravations.ToArray()
+    End Function
+
+
+
+    ' Book
 
     Public Function GetBook(isbn As Book.ISBN) As Dictionary(Of String, String)
         ' Create the data row
         Dim info As Dictionary(Of String, String) = New Dictionary(Of String, String)()
 
         ' Create the command
-        Dim cmd As New MySqlCommand("SELECT Book.ID AS ISBN, Book.Name AS Title, Genre.Name AS Genre, Author.Name AS Author, Publisher.Name AS Publisher
-                                     FROM Book 
-                                         JOIN Author ON Book.Author = Author.ID
-                                         JOIN Genre ON Book.Genre = Genre.ID
-                                         JOIN Publisher ON Book.Publisher = Publisher.ID
+        Dim cmd As New MySqlCommand("SELECT Book.ID AS ISBN, Book.Name AS Title, Genre.Name AS Genre, 
+                                        Author.Name AS Author, Publisher.Name AS Publisher, 
+		                                (select count(*) from Hold where book = @isbn and hold_until < sysdate()) As 'Hold', 
+		                                (select count(*) from Reservations where book = @isbn and due_date < sysdate()) As 'Reservation'
+                                    FROM Book 
+                                        JOIN Author ON Book.Author = Author.ID
+                                        JOIN Genre ON Book.Genre = Genre.ID
+                                        JOIN Publisher ON Book.Publisher = Publisher.ID
                                      WHERE Book.ID = @isbn", conn)
         cmd.Prepare()
         cmd.Parameters.AddWithValue("@isbn", isbn)
@@ -159,14 +290,43 @@ Public Class MySQLDatabaseConnector
             info.Add("Genre", reader.GetString("Genre"))
             info.Add("Author", reader.GetString("Author"))
             info.Add("Publisher", reader.GetString("Publisher"))
-            'info.Add("Reserved", reader.GetString("Reserved"))
+            info.Add("Hold", reader.GetString("Hold"))
+            info.Add("Reservation", reader.GetString("Reservation"))
         End While
 
         reader.Close()
 
+        ' Add info regarding Hold
+
+        Dim cmdHold As New MySqlCommand("select * from Hold where book = @isbn and hold_until < sysdate()", conn)
+        cmdHold.Prepare()
+        cmdHold.Parameters.AddWithValue("@isbn", isbn)
+        ' Execute the command
+        Dim readerHold As MySqlDataReader = cmdHold.ExecuteReader()
+        ' Loop through reader
+        While readerHold.Read()
+            info.Add("Hold_Until", readerHold.GetString("Hold_Until"))
+            info.Add("Hold_User", readerHold.GetString("User"))
+        End While
+        readerHold.Close()
+
+        ' Add info regarding Reservation
+
+        Dim cmdRes As New MySqlCommand("select * from Reservations where book = @isbn and due_date < sysdate()", conn)
+        cmdRes.Prepare()
+        cmdRes.Parameters.AddWithValue("@isbn", isbn)
+        ' Execute the command
+        Dim readerRes As MySqlDataReader = cmdRes.ExecuteReader()
+        ' Loop through reader
+        While readerRes.Read()
+            info.Add("Due_Date", readerRes.GetString("Due_Date"))
+            info.Add("Late_Fees", readerRes.GetString("Late_Fees"))
+            info.Add("Res_User", readerRes.GetString("User"))
+        End While
+        readerRes.Close()
+
         Return info
     End Function
-
 
     Public Function ListBooks() As DataTable
         ' Create the data table
@@ -176,17 +336,15 @@ Public Class MySQLDatabaseConnector
         table.Columns.Add("Genre", GetType(String))
         table.Columns.Add("Author", GetType(String))
         table.Columns.Add("Publisher", GetType(String))
-        table.Columns.Add("Status", GetType(String))
-        table.Columns.Add("Check Out", GetType(String))
-        table.Columns.Add("Place Hold", GetType(String))
+
         Dim dc As DataColumn = New DataColumn("a", GetType(Button), "", MappingType.Element)
 
         ' Create the command
         Dim cmd As New MySqlCommand("SELECT Book.ID AS ISBN, Book.Name AS Title, Genre.Name AS Genre, Author.Name AS Author, Publisher.Name AS Publisher
                                      FROM Book 
-                                     JOIN Author ON Book.Author = Author.ID
-                                     JOIN Genre ON Book.Genre = Genre.ID
-                                     JOIN Publisher ON Book.Publisher = Publisher.ID", conn)
+                                         JOIN Author ON Book.Author = Author.ID
+                                         JOIN Genre ON Book.Genre = Genre.ID
+                                         JOIN Publisher ON Book.Publisher = Publisher.ID", conn)
         cmd.Prepare()
 
         ' Execute the command
@@ -195,13 +353,14 @@ Public Class MySQLDatabaseConnector
         ' Loop through reader
         While reader.Read()
             table.Rows.Add(reader.GetString("ISBN"), reader.GetString("Title"), reader.GetString("Genre"),
-                           reader.GetString("Author"), reader.GetString("Publisher"), "Reserved", "", "")
+                           reader.GetString("Author"), reader.GetString("Publisher"))
         End While
 
         reader.Close()
 
         Return table
     End Function
+
 
     ' Dispose
     Public Sub Dispose()
@@ -220,4 +379,15 @@ Public Class MySQLDatabaseConnector
         Public Level As Patron.AccountLevel
     End Class
 
+    Public Class ReservationInfo
+        Public isbn As String
+        Public due As DateTime
+        Public amount As Decimal
+
+        Public Sub New(isbn As String, due As DateTime, amount As Decimal)
+            Me.isbn = isbn
+            Me.due = due
+            Me.amount = amount
+        End Sub
+    End Class
 End Class

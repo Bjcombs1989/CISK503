@@ -22,6 +22,12 @@
 
         SubItems.Add(_dueDate.ToShortDateString())
         SubItems.Add(String.Format("{0:c2}", pFeesDue))
+
+        If _dueDate < DateTime.Today Then
+            SubItems.Add("Over Due")
+        Else
+            SubItems.Add("Checked Out")
+        End If
     End Sub
 
     ' Properties
@@ -32,6 +38,18 @@
             Else
                 Return 0
             End If
+        End Get
+    End Property
+
+    Public ReadOnly Property DueDate As DateTime
+        Get
+            Return _dueDate
+        End Get
+    End Property
+
+    Public ReadOnly Property Patron As Patron
+        Get
+            Return _reservedBy
         End Get
     End Property
 
