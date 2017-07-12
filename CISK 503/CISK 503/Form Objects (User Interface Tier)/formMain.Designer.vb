@@ -143,6 +143,8 @@ Partial Class formMain
 		Me.tbCirculationCheckinResult = New System.Windows.Forms.TextBox()
 		Me.Label5 = New System.Windows.Forms.Label()
 		Me.tbCirculationCheckinIsbn = New System.Windows.Forms.TextBox()
+		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.MenuStrip1.SuspendLayout()
 		CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.tpAbout.SuspendLayout()
@@ -637,13 +639,14 @@ Partial Class formMain
 		'
 		Me.listviewReservation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.listviewReservation.BackgroundImage = CType(resources.GetObject("listviewReservation.BackgroundImage"), System.Drawing.Image)
 		Me.listviewReservation.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6})
 		Me.listviewReservation.FullRowSelect = True
 		Me.listviewReservation.Location = New System.Drawing.Point(0, 0)
 		Me.listviewReservation.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
 		Me.listviewReservation.MultiSelect = False
 		Me.listviewReservation.Name = "listviewReservation"
-		Me.listviewReservation.Size = New System.Drawing.Size(1194, 686)
+		Me.listviewReservation.Size = New System.Drawing.Size(1194, 695)
 		Me.listviewReservation.TabIndex = 0
 		Me.listviewReservation.TileSize = New System.Drawing.Size(505, 50)
 		Me.listviewReservation.UseCompatibleStateImageBehavior = False
@@ -1192,6 +1195,18 @@ Partial Class formMain
 		Me.tbCirculationCheckinIsbn.Size = New System.Drawing.Size(100, 26)
 		Me.tbCirculationCheckinIsbn.TabIndex = 0
 		'
+		'ContextMenuStrip1
+		'
+		Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
+		Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+		Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
+		'
+		'ContextMenuStrip2
+		'
+		Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(24, 24)
+		Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+		Me.ContextMenuStrip2.Size = New System.Drawing.Size(61, 4)
+		'
 		'formMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1360,4 +1375,6 @@ Partial Class formMain
 	Friend WithEvents Label21 As Label
     Friend WithEvents btnCheckIn As Button
     Friend WithEvents btnRemoveHold As Button
+	Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+	Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
 End Class

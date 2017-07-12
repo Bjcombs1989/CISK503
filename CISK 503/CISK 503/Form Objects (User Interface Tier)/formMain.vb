@@ -374,12 +374,16 @@
 
     End Sub
 
+	Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+	End Sub
 
 
 
 
 
-    '''''''''''''''''' NEW ITEMS will be added below here. Please move code into proper groups for organization purposes
+
+	'''''''''''''''''' NEW ITEMS will be added below here. Please move code into proper groups for organization purposes
 
 
 
