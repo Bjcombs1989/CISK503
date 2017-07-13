@@ -374,17 +374,27 @@
 
     End Sub
 
-	Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-	End Sub
-
-
-
-
 
 
 	'''''''''''''''''' NEW ITEMS will be added below here. Please move code into proper groups for organization purposes
 
+	'PLACE INSIDE TAB 5 ACCOUNT TAB
+	'Event to use link lable on account balance to open tab 4 to 
+	'show reservation history For billing
+	Private Sub LinkLabel4_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
 
+	End Sub
+
+	'Event Update User information
+	'Only item I see that could be updated is the username
+	'All other information does not seem to be a user edit item
+	Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+	End Sub
+
+	'Event to update password
+	Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+	End Sub
 
 End Class

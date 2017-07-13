@@ -145,11 +145,34 @@ Partial Class formMain
 		Me.tbCirculationCheckinIsbn = New System.Windows.Forms.TextBox()
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.Button2 = New System.Windows.Forms.Button()
+		Me.Button3 = New System.Windows.Forms.Button()
+		Me.Label17 = New System.Windows.Forms.Label()
+		Me.Label18 = New System.Windows.Forms.Label()
+		Me.Label19 = New System.Windows.Forms.Label()
+		Me.Label22 = New System.Windows.Forms.Label()
+		Me.Label24 = New System.Windows.Forms.Label()
+		Me.Label25 = New System.Windows.Forms.Label()
+		Me.Label26 = New System.Windows.Forms.Label()
+		Me.tbAccountAccountID = New System.Windows.Forms.TextBox()
+		Me.tbAccountUsername = New System.Windows.Forms.TextBox()
+		Me.tbAccountBalance = New System.Windows.Forms.TextBox()
+		Me.tbAccountType = New System.Windows.Forms.TextBox()
+		Me.tbAccountCurrentPassword = New System.Windows.Forms.TextBox()
+		Me.tbAccountNewPassword = New System.Windows.Forms.TextBox()
+		Me.LinkLabel4 = New System.Windows.Forms.LinkLabel()
+		Me.tbAccountDateCreated = New System.Windows.Forms.TextBox()
+		Me.tbAccountLastLogin = New System.Windows.Forms.TextBox()
+		Me.tbAccountNewPasswordConfirm = New System.Windows.Forms.TextBox()
+		Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+		Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+		Me.Label23 = New System.Windows.Forms.Label()
 		Me.MenuStrip1.SuspendLayout()
 		CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.tpAbout.SuspendLayout()
 		Me.tpContacts.SuspendLayout()
 		Me.tpHelp.SuspendLayout()
+		Me.tpAccount.SuspendLayout()
 		Me.tpCheckOut.SuspendLayout()
 		Me.MenuStrip3.SuspendLayout()
 		Me.tpReservations.SuspendLayout()
@@ -163,6 +186,7 @@ Partial Class formMain
 		Me.TabControl1.SuspendLayout()
 		Me.tpBook.SuspendLayout()
 		Me.tpCheckIn.SuspendLayout()
+		Me.GroupBox2.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'MenuStrip1
@@ -396,6 +420,28 @@ Partial Class formMain
 		'
 		'tpAccount
 		'
+		Me.tpAccount.BackgroundImage = CType(resources.GetObject("tpAccount.BackgroundImage"), System.Drawing.Image)
+		Me.tpAccount.Controls.Add(Me.tbAccountNewPasswordConfirm)
+		Me.tpAccount.Controls.Add(Me.tbAccountLastLogin)
+		Me.tpAccount.Controls.Add(Me.tbAccountDateCreated)
+		Me.tpAccount.Controls.Add(Me.LinkLabel4)
+		Me.tpAccount.Controls.Add(Me.tbAccountNewPassword)
+		Me.tpAccount.Controls.Add(Me.tbAccountCurrentPassword)
+		Me.tpAccount.Controls.Add(Me.tbAccountType)
+		Me.tpAccount.Controls.Add(Me.tbAccountBalance)
+		Me.tpAccount.Controls.Add(Me.tbAccountUsername)
+		Me.tpAccount.Controls.Add(Me.tbAccountAccountID)
+		Me.tpAccount.Controls.Add(Me.Label26)
+		Me.tpAccount.Controls.Add(Me.Label25)
+		Me.tpAccount.Controls.Add(Me.Label24)
+		Me.tpAccount.Controls.Add(Me.Label22)
+		Me.tpAccount.Controls.Add(Me.Label19)
+		Me.tpAccount.Controls.Add(Me.Label18)
+		Me.tpAccount.Controls.Add(Me.Label17)
+		Me.tpAccount.Controls.Add(Me.Button3)
+		Me.tpAccount.Controls.Add(Me.Button2)
+		Me.tpAccount.Controls.Add(Me.GroupBox1)
+		Me.tpAccount.Controls.Add(Me.GroupBox2)
 		Me.tpAccount.Location = New System.Drawing.Point(4, 29)
 		Me.tpAccount.Name = "tpAccount"
 		Me.tpAccount.Size = New System.Drawing.Size(1894, 695)
@@ -1151,6 +1197,7 @@ Partial Class formMain
 		'
 		'tpCheckIn
 		'
+		Me.tpCheckIn.BackColor = System.Drawing.Color.Gainsboro
 		Me.tpCheckIn.Controls.Add(Me.Button1)
 		Me.tpCheckIn.Controls.Add(Me.tbCirculationCheckinResult)
 		Me.tpCheckIn.Controls.Add(Me.Label5)
@@ -1161,16 +1208,16 @@ Partial Class formMain
 		Me.tpCheckIn.Size = New System.Drawing.Size(1894, 695)
 		Me.tpCheckIn.TabIndex = 13
 		Me.tpCheckIn.Text = "Check In"
-		Me.tpCheckIn.UseVisualStyleBackColor = True
 		'
 		'Button1
 		'
+		Me.Button1.BackColor = System.Drawing.Color.White
 		Me.Button1.Location = New System.Drawing.Point(398, 52)
 		Me.Button1.Name = "Button1"
 		Me.Button1.Size = New System.Drawing.Size(92, 26)
 		Me.Button1.TabIndex = 3
 		Me.Button1.Text = "Check In"
-		Me.Button1.UseVisualStyleBackColor = True
+		Me.Button1.UseVisualStyleBackColor = False
 		'
 		'tbCirculationCheckinResult
 		'
@@ -1207,6 +1254,229 @@ Partial Class formMain
 		Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
 		Me.ContextMenuStrip2.Size = New System.Drawing.Size(61, 4)
 		'
+		'Button2
+		'
+		Me.Button2.AutoSize = True
+		Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Button2.Location = New System.Drawing.Point(571, 329)
+		Me.Button2.Name = "Button2"
+		Me.Button2.Size = New System.Drawing.Size(98, 35)
+		Me.Button2.TabIndex = 0
+		Me.Button2.Text = "Change"
+		Me.Button2.UseVisualStyleBackColor = True
+		'
+		'Button3
+		'
+		Me.Button3.AutoSize = True
+		Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Button3.Location = New System.Drawing.Point(214, 404)
+		Me.Button3.Name = "Button3"
+		Me.Button3.Size = New System.Drawing.Size(91, 35)
+		Me.Button3.TabIndex = 1
+		Me.Button3.Text = "Update"
+		Me.Button3.UseVisualStyleBackColor = True
+		'
+		'Label17
+		'
+		Me.Label17.AutoSize = True
+		Me.Label17.BackColor = System.Drawing.Color.White
+		Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label17.Location = New System.Drawing.Point(133, 118)
+		Me.Label17.Name = "Label17"
+		Me.Label17.Size = New System.Drawing.Size(118, 25)
+		Me.Label17.TabIndex = 2
+		Me.Label17.Text = "Account ID"
+		'
+		'Label18
+		'
+		Me.Label18.AutoSize = True
+		Me.Label18.BackColor = System.Drawing.Color.White
+		Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label18.Location = New System.Drawing.Point(141, 165)
+		Me.Label18.Name = "Label18"
+		Me.Label18.Size = New System.Drawing.Size(110, 25)
+		Me.Label18.TabIndex = 3
+		Me.Label18.Text = "Username"
+		'
+		'Label19
+		'
+		Me.Label19.AutoSize = True
+		Me.Label19.BackColor = System.Drawing.Color.White
+		Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label19.Location = New System.Drawing.Point(111, 208)
+		Me.Label19.Name = "Label19"
+		Me.Label19.Size = New System.Drawing.Size(140, 25)
+		Me.Label19.TabIndex = 4
+		Me.Label19.Text = "Date Created"
+		'
+		'Label22
+		'
+		Me.Label22.AutoSize = True
+		Me.Label22.BackColor = System.Drawing.Color.White
+		Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label22.Location = New System.Drawing.Point(139, 259)
+		Me.Label22.Name = "Label22"
+		Me.Label22.Size = New System.Drawing.Size(112, 25)
+		Me.Label22.TabIndex = 5
+		Me.Label22.Text = "Last Login"
+		'
+		'Label24
+		'
+		Me.Label24.AutoSize = True
+		Me.Label24.BackColor = System.Drawing.Color.White
+		Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label24.Location = New System.Drawing.Point(190, 306)
+		Me.Label24.Name = "Label24"
+		Me.Label24.Size = New System.Drawing.Size(61, 25)
+		Me.Label24.TabIndex = 7
+		Me.Label24.Text = "Type"
+		'
+		'Label25
+		'
+		Me.Label25.BackColor = System.Drawing.Color.White
+		Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label25.Location = New System.Drawing.Point(456, 190)
+		Me.Label25.Name = "Label25"
+		Me.Label25.Size = New System.Drawing.Size(154, 25)
+		Me.Label25.TabIndex = 8
+		Me.Label25.Text = "Old Password"
+		'
+		'Label26
+		'
+		Me.Label26.BackColor = System.Drawing.Color.White
+		Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label26.Location = New System.Drawing.Point(456, 241)
+		Me.Label26.Name = "Label26"
+		Me.Label26.Size = New System.Drawing.Size(154, 23)
+		Me.Label26.TabIndex = 9
+		Me.Label26.Text = "New Password"
+		'
+		'tbAccountAccountID
+		'
+		Me.tbAccountAccountID.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.tbAccountAccountID.Location = New System.Drawing.Point(264, 118)
+		Me.tbAccountAccountID.Name = "tbAccountAccountID"
+		Me.tbAccountAccountID.ReadOnly = True
+		Me.tbAccountAccountID.Size = New System.Drawing.Size(100, 30)
+		Me.tbAccountAccountID.TabIndex = 10
+		'
+		'tbAccountUsername
+		'
+		Me.tbAccountUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.tbAccountUsername.Location = New System.Drawing.Point(264, 165)
+		Me.tbAccountUsername.Name = "tbAccountUsername"
+		Me.tbAccountUsername.Size = New System.Drawing.Size(100, 30)
+		Me.tbAccountUsername.TabIndex = 11
+		'
+		'tbAccountBalance
+		'
+		Me.tbAccountBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.tbAccountBalance.Location = New System.Drawing.Point(264, 353)
+		Me.tbAccountBalance.Name = "tbAccountBalance"
+		Me.tbAccountBalance.ReadOnly = True
+		Me.tbAccountBalance.Size = New System.Drawing.Size(100, 30)
+		Me.tbAccountBalance.TabIndex = 12
+		'
+		'tbAccountType
+		'
+		Me.tbAccountType.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.tbAccountType.Location = New System.Drawing.Point(264, 306)
+		Me.tbAccountType.Name = "tbAccountType"
+		Me.tbAccountType.ReadOnly = True
+		Me.tbAccountType.Size = New System.Drawing.Size(100, 30)
+		Me.tbAccountType.TabIndex = 13
+		'
+		'tbAccountCurrentPassword
+		'
+		Me.tbAccountCurrentPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.tbAccountCurrentPassword.Location = New System.Drawing.Point(627, 185)
+		Me.tbAccountCurrentPassword.Name = "tbAccountCurrentPassword"
+		Me.tbAccountCurrentPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+		Me.tbAccountCurrentPassword.Size = New System.Drawing.Size(100, 30)
+		Me.tbAccountCurrentPassword.TabIndex = 14
+		'
+		'tbAccountNewPassword
+		'
+		Me.tbAccountNewPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.tbAccountNewPassword.Location = New System.Drawing.Point(627, 234)
+		Me.tbAccountNewPassword.Name = "tbAccountNewPassword"
+		Me.tbAccountNewPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+		Me.tbAccountNewPassword.Size = New System.Drawing.Size(100, 30)
+		Me.tbAccountNewPassword.TabIndex = 15
+		'
+		'LinkLabel4
+		'
+		Me.LinkLabel4.AutoSize = True
+		Me.LinkLabel4.BackColor = System.Drawing.Color.White
+		Me.LinkLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.LinkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+		Me.LinkLabel4.Location = New System.Drawing.Point(161, 352)
+		Me.LinkLabel4.Name = "LinkLabel4"
+		Me.LinkLabel4.Size = New System.Drawing.Size(90, 25)
+		Me.LinkLabel4.TabIndex = 16
+		Me.LinkLabel4.TabStop = True
+		Me.LinkLabel4.Text = "Balance"
+		'
+		'tbAccountDateCreated
+		'
+		Me.tbAccountDateCreated.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.tbAccountDateCreated.Location = New System.Drawing.Point(264, 209)
+		Me.tbAccountDateCreated.Name = "tbAccountDateCreated"
+		Me.tbAccountDateCreated.ReadOnly = True
+		Me.tbAccountDateCreated.Size = New System.Drawing.Size(100, 30)
+		Me.tbAccountDateCreated.TabIndex = 17
+		'
+		'tbAccountLastLogin
+		'
+		Me.tbAccountLastLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.tbAccountLastLogin.Location = New System.Drawing.Point(264, 258)
+		Me.tbAccountLastLogin.Name = "tbAccountLastLogin"
+		Me.tbAccountLastLogin.ReadOnly = True
+		Me.tbAccountLastLogin.Size = New System.Drawing.Size(100, 30)
+		Me.tbAccountLastLogin.TabIndex = 18
+		'
+		'tbAccountNewPasswordConfirm
+		'
+		Me.tbAccountNewPasswordConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.tbAccountNewPasswordConfirm.Location = New System.Drawing.Point(627, 281)
+		Me.tbAccountNewPasswordConfirm.Name = "tbAccountNewPasswordConfirm"
+		Me.tbAccountNewPasswordConfirm.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+		Me.tbAccountNewPasswordConfirm.Size = New System.Drawing.Size(100, 30)
+		Me.tbAccountNewPasswordConfirm.TabIndex = 19
+		'
+		'GroupBox1
+		'
+		Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.GroupBox1.ForeColor = System.Drawing.SystemColors.WindowText
+		Me.GroupBox1.Location = New System.Drawing.Point(43, 75)
+		Me.GroupBox1.Name = "GroupBox1"
+		Me.GroupBox1.Size = New System.Drawing.Size(360, 407)
+		Me.GroupBox1.TabIndex = 20
+		Me.GroupBox1.TabStop = False
+		Me.GroupBox1.Text = "User Account Information"
+		'
+		'GroupBox2
+		'
+		Me.GroupBox2.Controls.Add(Me.Label23)
+		Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.GroupBox2.ForeColor = System.Drawing.SystemColors.WindowText
+		Me.GroupBox2.Location = New System.Drawing.Point(443, 141)
+		Me.GroupBox2.Name = "GroupBox2"
+		Me.GroupBox2.Size = New System.Drawing.Size(321, 252)
+		Me.GroupBox2.TabIndex = 21
+		Me.GroupBox2.TabStop = False
+		Me.GroupBox2.Text = "Change Password"
+		'
+		'Label23
+		'
+		Me.Label23.BackColor = System.Drawing.Color.White
+		Me.Label23.Location = New System.Drawing.Point(13, 145)
+		Me.Label23.Name = "Label23"
+		Me.Label23.Size = New System.Drawing.Size(154, 23)
+		Me.Label23.TabIndex = 0
+		Me.Label23.Text = "Confirm"
+		Me.Label23.TextAlign = System.Drawing.ContentAlignment.TopRight
+		'
 		'formMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1227,6 +1497,8 @@ Partial Class formMain
 		Me.tpContacts.PerformLayout()
 		Me.tpHelp.ResumeLayout(False)
 		Me.tpHelp.PerformLayout()
+		Me.tpAccount.ResumeLayout(False)
+		Me.tpAccount.PerformLayout()
 		Me.tpCheckOut.ResumeLayout(False)
 		Me.tpCheckOut.PerformLayout()
 		Me.MenuStrip3.ResumeLayout(False)
@@ -1251,6 +1523,7 @@ Partial Class formMain
 		Me.tpBook.PerformLayout()
 		Me.tpCheckIn.ResumeLayout(False)
 		Me.tpCheckIn.PerformLayout()
+		Me.GroupBox2.ResumeLayout(False)
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
@@ -1377,4 +1650,26 @@ Partial Class formMain
     Friend WithEvents btnRemoveHold As Button
 	Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
 	Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+	Friend WithEvents LinkLabel4 As LinkLabel
+	Friend WithEvents tbAccountNewPassword As TextBox
+	Friend WithEvents tbAccountCurrentPassword As TextBox
+	Friend WithEvents tbAccountType As TextBox
+	Friend WithEvents tbAccountBalance As TextBox
+	Friend WithEvents tbAccountUsername As TextBox
+	Friend WithEvents tbAccountAccountID As TextBox
+	Friend WithEvents Label26 As Label
+	Friend WithEvents Label25 As Label
+	Friend WithEvents Label24 As Label
+	Friend WithEvents Label22 As Label
+	Friend WithEvents Label19 As Label
+	Friend WithEvents Label18 As Label
+	Friend WithEvents Label17 As Label
+	Friend WithEvents Button3 As Button
+	Friend WithEvents Button2 As Button
+	Friend WithEvents tbAccountNewPasswordConfirm As TextBox
+	Friend WithEvents tbAccountLastLogin As TextBox
+	Friend WithEvents tbAccountDateCreated As TextBox
+	Friend WithEvents GroupBox1 As GroupBox
+	Friend WithEvents GroupBox2 As GroupBox
+	Friend WithEvents Label23 As Label
 End Class
