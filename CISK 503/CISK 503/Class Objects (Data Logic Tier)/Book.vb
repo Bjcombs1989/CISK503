@@ -1,13 +1,23 @@
 ﻿Public Class Book
+    'declare mysql database connector var
     Dim _mysql As MySQLDatabaseConnector
+    'declare isbn var as 
     Dim _isbn As ISBN
+    'declare title var
     Dim _title As String
+    'declare genre var
     Dim _genre As String
+    'declare publisher var
     Dim _publisher As String
+    'declare author var
     Dim _author As String
+    'declare available var to allow checkout
     Dim _available As Boolean
+    'declare var for holding books
     Dim _hold As Hold
+    'declare var for reservations
     Dim _reservation As Reservation
+    'declare var to hold values as strings
     Dim info As Dictionary(Of String, String)
 
     ' Constructor(s)
@@ -51,7 +61,7 @@
         End If
     End Sub
 
-    ' Properties
+    ' Properties to return
     Public Property IsAvailable As Boolean
         Get
             Return _available
@@ -106,6 +116,7 @@
         End Set
     End Property
 
+    'public property to return the reservation
     Public Property Reservation As Reservation
         Get
             Return _reservation
@@ -116,7 +127,7 @@
     End Property
     ' Methods
 
-
+    'overridable function to format and return Book information
     Public Overrides Function ToString() As String
         Return String.Format("{0}, ISBN: {1}, Author: {2}, Publisher: {3}, Author: {4}", _title, _isbn, _author, _publisher, _author)
     End Function
@@ -126,10 +137,12 @@
     Public Class ISBN
         Dim _isbn As String
 
+        'declare method for isbn
         Public Sub New(isbn As String)
             _isbn = isbn
         End Sub
 
+        'declare overridable function to return the isbn
         Public Overrides Function ToString() As String
             Return _isbn
         End Function
