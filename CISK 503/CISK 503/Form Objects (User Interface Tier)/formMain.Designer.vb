@@ -33,8 +33,8 @@ Partial Class formMain
         Me.CirculationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewAccountToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
-        Me.CheckInOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ReservationsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckInToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckOutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
         Me.AccountsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PaymentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -57,46 +57,29 @@ Partial Class formMain
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.tpAccount = New System.Windows.Forms.TabPage()
-        Me.tbAccountNewPasswordConfirm = New System.Windows.Forms.TextBox()
-        Me.tbAccountLastLogin = New System.Windows.Forms.TextBox()
-        Me.tbAccountDateCreated = New System.Windows.Forms.TextBox()
-        Me.LinkLabel4 = New System.Windows.Forms.LinkLabel()
-        Me.tbAccountNewPassword = New System.Windows.Forms.TextBox()
-        Me.tbAccountCurrentPassword = New System.Windows.Forms.TextBox()
-        Me.tbAccountType = New System.Windows.Forms.TextBox()
-        Me.tbAccountBalance = New System.Windows.Forms.TextBox()
-        Me.tbAccountUsername = New System.Windows.Forms.TextBox()
-        Me.tbAccountAccountID = New System.Windows.Forms.TextBox()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.tbAccountLastLogin = New System.Windows.Forms.TextBox()
+        Me.tbAccountAccountID = New System.Windows.Forms.TextBox()
+        Me.tbAccountDateCreated = New System.Windows.Forms.TextBox()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.LinkLabel4 = New System.Windows.Forms.LinkLabel()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.tbAccountType = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.tbAccountBalance = New System.Windows.Forms.TextBox()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.tbAccountUsername = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.tbAccountNewPasswordConfirm = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.tpCheckOut = New System.Windows.Forms.TabPage()
-        Me.btCirculationCheckoutCheckout = New System.Windows.Forms.Button()
-        Me.MenuStrip3 = New System.Windows.Forms.MenuStrip()
-        Me.ToolStripTextBox7 = New System.Windows.Forms.ToolStripTextBox()
-        Me.tbCirculationCheckoutUsername = New System.Windows.Forms.ToolStripTextBox()
-        Me.ToolStripTextBox8 = New System.Windows.Forms.ToolStripTextBox()
-        Me.tbCirculationCheckoutIsbn = New System.Windows.Forms.ToolStripTextBox()
-        Me.ToolStripTextBox9 = New System.Windows.Forms.ToolStripTextBox()
-        Me.tbCirculationCheckoutDate = New System.Windows.Forms.ToolStripTextBox()
-        Me.tpReservations = New System.Windows.Forms.TabPage()
-        Me.tbCirculationReservationsLastnameCombo = New System.Windows.Forms.MenuStrip()
-        Me.ReservationsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripTextBox5 = New System.Windows.Forms.ToolStripTextBox()
-        Me.cbCirculationReservationLastnameCombo = New System.Windows.Forms.ToolStripComboBox()
-        Me.ToolStripTextBox6 = New System.Windows.Forms.ToolStripTextBox()
-        Me.cbCirculationReservationStatusCombo = New System.Windows.Forms.ToolStripComboBox()
+        Me.tbAccountCurrentPassword = New System.Windows.Forms.TextBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.tbAccountNewPassword = New System.Windows.Forms.TextBox()
+        Me.Label26 = New System.Windows.Forms.Label()
         Me.tpReservation = New System.Windows.Forms.TabPage()
-        Me.Label21 = New System.Windows.Forms.Label()
         Me.txtReservationName = New System.Windows.Forms.TextBox()
         Me.txtReservationPublisher = New System.Windows.Forms.TextBox()
         Me.txtReservationAuthor = New System.Windows.Forms.TextBox()
@@ -148,7 +131,6 @@ Partial Class formMain
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tpBook = New System.Windows.Forms.TabPage()
         Me.btnRemoveHold = New System.Windows.Forms.Button()
-        Me.Label20 = New System.Windows.Forms.Label()
         Me.txtBookName = New System.Windows.Forms.TextBox()
         Me.txtBookPublisher = New System.Windows.Forms.TextBox()
         Me.txtBookAuthor = New System.Windows.Forms.TextBox()
@@ -160,24 +142,18 @@ Partial Class formMain
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.tpCheckIn = New System.Windows.Forms.TabPage()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.tbCirculationCheckinResult = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.tbCirculationCheckinIsbn = New System.Windows.Forms.TextBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.btnReservationCheckOut = New System.Windows.Forms.Button()
+        Me.btnReservationCheckIn = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpAbout.SuspendLayout()
         Me.tpContacts.SuspendLayout()
         Me.tpHelp.SuspendLayout()
         Me.tpAccount.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.tpCheckOut.SuspendLayout()
-        Me.MenuStrip3.SuspendLayout()
-        Me.tpReservations.SuspendLayout()
-        Me.tbCirculationReservationsLastnameCombo.SuspendLayout()
         Me.tpReservation.SuspendLayout()
         Me.tpSearch.SuspendLayout()
         CType(Me.dgvSearch, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -186,7 +162,6 @@ Partial Class formMain
         Me.tpLogin.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.tpBook.SuspendLayout()
-        Me.tpCheckIn.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -231,7 +206,7 @@ Partial Class formMain
         '
         'CirculationToolStripMenuItem
         '
-        Me.CirculationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewAccountToolStripMenuItem, Me.ToolStripSeparator6, Me.CheckInOutToolStripMenuItem, Me.ReservationsToolStripMenuItem, Me.ToolStripSeparator7, Me.AccountsToolStripMenuItem, Me.PaymentsToolStripMenuItem})
+        Me.CirculationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewAccountToolStripMenuItem, Me.ToolStripSeparator6, Me.CheckInToolStripMenuItem, Me.CheckOutToolStripMenuItem, Me.ToolStripSeparator7, Me.AccountsToolStripMenuItem, Me.PaymentsToolStripMenuItem})
         Me.CirculationToolStripMenuItem.Name = "CirculationToolStripMenuItem"
         Me.CirculationToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
         Me.CirculationToolStripMenuItem.Text = "&Circulation"
@@ -247,17 +222,17 @@ Partial Class formMain
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
         Me.ToolStripSeparator6.Size = New System.Drawing.Size(168, 6)
         '
-        'CheckInOutToolStripMenuItem
+        'CheckInToolStripMenuItem
         '
-        Me.CheckInOutToolStripMenuItem.Name = "CheckInOutToolStripMenuItem"
-        Me.CheckInOutToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.CheckInOutToolStripMenuItem.Text = "&Check In / Out"
+        Me.CheckInToolStripMenuItem.Name = "CheckInToolStripMenuItem"
+        Me.CheckInToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.CheckInToolStripMenuItem.Text = "Check &In"
         '
-        'ReservationsToolStripMenuItem
+        'CheckOutToolStripMenuItem
         '
-        Me.ReservationsToolStripMenuItem.Name = "ReservationsToolStripMenuItem"
-        Me.ReservationsToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.ReservationsToolStripMenuItem.Text = "&Reservations"
+        Me.CheckOutToolStripMenuItem.Name = "CheckOutToolStripMenuItem"
+        Me.CheckOutToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.CheckOutToolStripMenuItem.Text = "Check &Out"
         '
         'ToolStripSeparator7
         '
@@ -305,24 +280,24 @@ Partial Class formMain
         'FAQToolStripMenuItem1
         '
         Me.FAQToolStripMenuItem1.Name = "FAQToolStripMenuItem1"
-        Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
         Me.FAQToolStripMenuItem1.Text = "&FAQ"
         '
         'ContactsToolStripMenuItem1
         '
         Me.ContactsToolStripMenuItem1.Name = "ContactsToolStripMenuItem1"
-        Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
         Me.ContactsToolStripMenuItem1.Text = "&Contacts"
         '
         'ToolStripSeparator9
         '
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(118, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'LoginToolStripMenuItem
@@ -339,7 +314,7 @@ Partial Class formMain
         '
         Me.tpAbout.Controls.Add(Me.Label8)
         Me.tpAbout.Location = New System.Drawing.Point(4, 22)
-        Me.tpAbout.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpAbout.Margin = New System.Windows.Forms.Padding(2)
         Me.tpAbout.Name = "tpAbout"
         Me.tpAbout.Size = New System.Drawing.Size(1260, 446)
         Me.tpAbout.TabIndex = 12
@@ -360,7 +335,7 @@ Partial Class formMain
         '
         Me.tpContacts.Controls.Add(Me.Label7)
         Me.tpContacts.Location = New System.Drawing.Point(4, 22)
-        Me.tpContacts.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpContacts.Margin = New System.Windows.Forms.Padding(2)
         Me.tpContacts.Name = "tpContacts"
         Me.tpContacts.Size = New System.Drawing.Size(1260, 446)
         Me.tpContacts.TabIndex = 11
@@ -384,9 +359,9 @@ Partial Class formMain
         Me.tpHelp.Controls.Add(Me.LinkLabel2)
         Me.tpHelp.Controls.Add(Me.LinkLabel1)
         Me.tpHelp.Location = New System.Drawing.Point(4, 22)
-        Me.tpHelp.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpHelp.Margin = New System.Windows.Forms.Padding(2)
         Me.tpHelp.Name = "tpHelp"
-        Me.tpHelp.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpHelp.Padding = New System.Windows.Forms.Padding(2)
         Me.tpHelp.Size = New System.Drawing.Size(1260, 446)
         Me.tpHelp.TabIndex = 10
         Me.tpHelp.Text = "Help"
@@ -428,64 +403,83 @@ Partial Class formMain
         'tpAccount
         '
         Me.tpAccount.BackgroundImage = CType(resources.GetObject("tpAccount.BackgroundImage"), System.Drawing.Image)
-        Me.tpAccount.Controls.Add(Me.tbAccountNewPasswordConfirm)
-        Me.tpAccount.Controls.Add(Me.tbAccountLastLogin)
-        Me.tpAccount.Controls.Add(Me.tbAccountDateCreated)
-        Me.tpAccount.Controls.Add(Me.LinkLabel4)
-        Me.tpAccount.Controls.Add(Me.tbAccountNewPassword)
-        Me.tpAccount.Controls.Add(Me.tbAccountCurrentPassword)
-        Me.tpAccount.Controls.Add(Me.tbAccountType)
-        Me.tpAccount.Controls.Add(Me.tbAccountBalance)
-        Me.tpAccount.Controls.Add(Me.tbAccountUsername)
-        Me.tpAccount.Controls.Add(Me.tbAccountAccountID)
-        Me.tpAccount.Controls.Add(Me.Label26)
-        Me.tpAccount.Controls.Add(Me.Label25)
-        Me.tpAccount.Controls.Add(Me.Label24)
-        Me.tpAccount.Controls.Add(Me.Label22)
-        Me.tpAccount.Controls.Add(Me.Label19)
-        Me.tpAccount.Controls.Add(Me.Label18)
-        Me.tpAccount.Controls.Add(Me.Label17)
-        Me.tpAccount.Controls.Add(Me.Button3)
-        Me.tpAccount.Controls.Add(Me.Button2)
         Me.tpAccount.Controls.Add(Me.GroupBox1)
         Me.tpAccount.Controls.Add(Me.GroupBox2)
         Me.tpAccount.Location = New System.Drawing.Point(4, 22)
-        Me.tpAccount.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpAccount.Margin = New System.Windows.Forms.Padding(2)
         Me.tpAccount.Name = "tpAccount"
         Me.tpAccount.Size = New System.Drawing.Size(1260, 446)
         Me.tpAccount.TabIndex = 9
         Me.tpAccount.Text = "Account"
         Me.tpAccount.UseVisualStyleBackColor = True
         '
-        'tbAccountNewPasswordConfirm
+        'GroupBox1
         '
-        Me.tbAccountNewPasswordConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountNewPasswordConfirm.Location = New System.Drawing.Point(418, 183)
-        Me.tbAccountNewPasswordConfirm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbAccountNewPasswordConfirm.Name = "tbAccountNewPasswordConfirm"
-        Me.tbAccountNewPasswordConfirm.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.tbAccountNewPasswordConfirm.Size = New System.Drawing.Size(68, 23)
-        Me.tbAccountNewPasswordConfirm.TabIndex = 19
+        Me.GroupBox1.Controls.Add(Me.tbAccountLastLogin)
+        Me.GroupBox1.Controls.Add(Me.tbAccountAccountID)
+        Me.GroupBox1.Controls.Add(Me.tbAccountDateCreated)
+        Me.GroupBox1.Controls.Add(Me.Button3)
+        Me.GroupBox1.Controls.Add(Me.LinkLabel4)
+        Me.GroupBox1.Controls.Add(Me.Label17)
+        Me.GroupBox1.Controls.Add(Me.tbAccountType)
+        Me.GroupBox1.Controls.Add(Me.Label18)
+        Me.GroupBox1.Controls.Add(Me.tbAccountBalance)
+        Me.GroupBox1.Controls.Add(Me.Label19)
+        Me.GroupBox1.Controls.Add(Me.tbAccountUsername)
+        Me.GroupBox1.Controls.Add(Me.Label22)
+        Me.GroupBox1.Controls.Add(Me.Label24)
+        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.GroupBox1.Location = New System.Drawing.Point(56, 38)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
+        Me.GroupBox1.Size = New System.Drawing.Size(240, 265)
+        Me.GroupBox1.TabIndex = 20
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "User Account Information"
         '
         'tbAccountLastLogin
         '
         Me.tbAccountLastLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountLastLogin.Location = New System.Drawing.Point(176, 168)
-        Me.tbAccountLastLogin.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbAccountLastLogin.Location = New System.Drawing.Point(138, 125)
+        Me.tbAccountLastLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountLastLogin.Name = "tbAccountLastLogin"
         Me.tbAccountLastLogin.ReadOnly = True
         Me.tbAccountLastLogin.Size = New System.Drawing.Size(68, 23)
         Me.tbAccountLastLogin.TabIndex = 18
         '
+        'tbAccountAccountID
+        '
+        Me.tbAccountAccountID.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAccountAccountID.Location = New System.Drawing.Point(138, 34)
+        Me.tbAccountAccountID.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbAccountAccountID.Name = "tbAccountAccountID"
+        Me.tbAccountAccountID.ReadOnly = True
+        Me.tbAccountAccountID.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountAccountID.TabIndex = 10
+        '
         'tbAccountDateCreated
         '
         Me.tbAccountDateCreated.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountDateCreated.Location = New System.Drawing.Point(176, 136)
-        Me.tbAccountDateCreated.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbAccountDateCreated.Location = New System.Drawing.Point(138, 93)
+        Me.tbAccountDateCreated.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountDateCreated.Name = "tbAccountDateCreated"
         Me.tbAccountDateCreated.ReadOnly = True
         Me.tbAccountDateCreated.Size = New System.Drawing.Size(68, 23)
         Me.tbAccountDateCreated.TabIndex = 17
+        '
+        'Button3
+        '
+        Me.Button3.AutoSize = True
+        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button3.Location = New System.Drawing.Point(105, 220)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(70, 27)
+        Me.Button3.TabIndex = 1
+        Me.Button3.Text = "Update"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'LinkLabel4
         '
@@ -493,7 +487,7 @@ Partial Class formMain
         Me.LinkLabel4.BackColor = System.Drawing.Color.White
         Me.LinkLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LinkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
-        Me.LinkLabel4.Location = New System.Drawing.Point(107, 229)
+        Me.LinkLabel4.Location = New System.Drawing.Point(69, 186)
         Me.LinkLabel4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LinkLabel4.Name = "LinkLabel4"
         Me.LinkLabel4.Size = New System.Drawing.Size(66, 17)
@@ -501,197 +495,124 @@ Partial Class formMain
         Me.LinkLabel4.TabStop = True
         Me.LinkLabel4.Text = "Balance"
         '
-        'tbAccountNewPassword
-        '
-        Me.tbAccountNewPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountNewPassword.Location = New System.Drawing.Point(418, 152)
-        Me.tbAccountNewPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbAccountNewPassword.Name = "tbAccountNewPassword"
-        Me.tbAccountNewPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.tbAccountNewPassword.Size = New System.Drawing.Size(68, 23)
-        Me.tbAccountNewPassword.TabIndex = 15
-        '
-        'tbAccountCurrentPassword
-        '
-        Me.tbAccountCurrentPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountCurrentPassword.Location = New System.Drawing.Point(418, 120)
-        Me.tbAccountCurrentPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbAccountCurrentPassword.Name = "tbAccountCurrentPassword"
-        Me.tbAccountCurrentPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.tbAccountCurrentPassword.Size = New System.Drawing.Size(68, 23)
-        Me.tbAccountCurrentPassword.TabIndex = 14
-        '
-        'tbAccountType
-        '
-        Me.tbAccountType.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountType.Location = New System.Drawing.Point(176, 199)
-        Me.tbAccountType.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbAccountType.Name = "tbAccountType"
-        Me.tbAccountType.ReadOnly = True
-        Me.tbAccountType.Size = New System.Drawing.Size(68, 23)
-        Me.tbAccountType.TabIndex = 13
-        '
-        'tbAccountBalance
-        '
-        Me.tbAccountBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountBalance.Location = New System.Drawing.Point(176, 229)
-        Me.tbAccountBalance.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbAccountBalance.Name = "tbAccountBalance"
-        Me.tbAccountBalance.ReadOnly = True
-        Me.tbAccountBalance.Size = New System.Drawing.Size(68, 23)
-        Me.tbAccountBalance.TabIndex = 12
-        '
-        'tbAccountUsername
-        '
-        Me.tbAccountUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountUsername.Location = New System.Drawing.Point(176, 107)
-        Me.tbAccountUsername.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbAccountUsername.Name = "tbAccountUsername"
-        Me.tbAccountUsername.Size = New System.Drawing.Size(68, 23)
-        Me.tbAccountUsername.TabIndex = 11
-        '
-        'tbAccountAccountID
-        '
-        Me.tbAccountAccountID.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountAccountID.Location = New System.Drawing.Point(176, 77)
-        Me.tbAccountAccountID.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbAccountAccountID.Name = "tbAccountAccountID"
-        Me.tbAccountAccountID.ReadOnly = True
-        Me.tbAccountAccountID.Size = New System.Drawing.Size(68, 23)
-        Me.tbAccountAccountID.TabIndex = 10
-        '
-        'Label26
-        '
-        Me.Label26.BackColor = System.Drawing.Color.White
-        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(304, 157)
-        Me.Label26.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(103, 15)
-        Me.Label26.TabIndex = 9
-        Me.Label26.Text = "New Password"
-        '
-        'Label25
-        '
-        Me.Label25.BackColor = System.Drawing.Color.White
-        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(304, 123)
-        Me.Label25.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(103, 16)
-        Me.Label25.TabIndex = 8
-        Me.Label25.Text = "Old Password"
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.BackColor = System.Drawing.Color.White
-        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(127, 199)
-        Me.Label24.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(44, 17)
-        Me.Label24.TabIndex = 7
-        Me.Label24.Text = "Type"
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.BackColor = System.Drawing.Color.White
-        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(93, 168)
-        Me.Label22.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(84, 17)
-        Me.Label22.TabIndex = 5
-        Me.Label22.Text = "Last Login"
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.BackColor = System.Drawing.Color.White
-        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(74, 135)
-        Me.Label19.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(104, 17)
-        Me.Label19.TabIndex = 4
-        Me.Label19.Text = "Date Created"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.BackColor = System.Drawing.Color.White
-        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(94, 107)
-        Me.Label18.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(81, 17)
-        Me.Label18.TabIndex = 3
-        Me.Label18.Text = "Username"
-        '
         'Label17
         '
         Me.Label17.AutoSize = True
         Me.Label17.BackColor = System.Drawing.Color.White
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(89, 77)
+        Me.Label17.Location = New System.Drawing.Point(51, 34)
         Me.Label17.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(86, 17)
         Me.Label17.TabIndex = 2
         Me.Label17.Text = "Account ID"
         '
-        'Button3
+        'tbAccountType
         '
-        Me.Button3.AutoSize = True
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(143, 263)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(70, 27)
-        Me.Button3.TabIndex = 1
-        Me.Button3.Text = "Update"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.tbAccountType.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAccountType.Location = New System.Drawing.Point(138, 156)
+        Me.tbAccountType.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbAccountType.Name = "tbAccountType"
+        Me.tbAccountType.ReadOnly = True
+        Me.tbAccountType.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountType.TabIndex = 13
         '
-        'Button2
+        'Label18
         '
-        Me.Button2.AutoSize = True
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(381, 214)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(73, 27)
-        Me.Button2.TabIndex = 0
-        Me.Button2.Text = "Change"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Label18.AutoSize = True
+        Me.Label18.BackColor = System.Drawing.Color.White
+        Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.Location = New System.Drawing.Point(56, 64)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(81, 17)
+        Me.Label18.TabIndex = 3
+        Me.Label18.Text = "Username"
         '
-        'GroupBox1
+        'tbAccountBalance
         '
-        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.GroupBox1.Location = New System.Drawing.Point(29, 49)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.GroupBox1.Size = New System.Drawing.Size(240, 265)
-        Me.GroupBox1.TabIndex = 20
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "User Account Information"
+        Me.tbAccountBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAccountBalance.Location = New System.Drawing.Point(138, 186)
+        Me.tbAccountBalance.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbAccountBalance.Name = "tbAccountBalance"
+        Me.tbAccountBalance.ReadOnly = True
+        Me.tbAccountBalance.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountBalance.TabIndex = 12
+        '
+        'Label19
+        '
+        Me.Label19.AutoSize = True
+        Me.Label19.BackColor = System.Drawing.Color.White
+        Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label19.Location = New System.Drawing.Point(36, 92)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(104, 17)
+        Me.Label19.TabIndex = 4
+        Me.Label19.Text = "Date Created"
+        '
+        'tbAccountUsername
+        '
+        Me.tbAccountUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAccountUsername.Location = New System.Drawing.Point(138, 64)
+        Me.tbAccountUsername.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbAccountUsername.Name = "tbAccountUsername"
+        Me.tbAccountUsername.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountUsername.TabIndex = 11
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.BackColor = System.Drawing.Color.White
+        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label22.Location = New System.Drawing.Point(55, 125)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(84, 17)
+        Me.Label22.TabIndex = 5
+        Me.Label22.Text = "Last Login"
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.BackColor = System.Drawing.Color.White
+        Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label24.Location = New System.Drawing.Point(89, 156)
+        Me.Label24.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(44, 17)
+        Me.Label24.TabIndex = 7
+        Me.Label24.Text = "Type"
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.tbAccountNewPasswordConfirm)
         Me.GroupBox2.Controls.Add(Me.Label23)
+        Me.GroupBox2.Controls.Add(Me.tbAccountCurrentPassword)
+        Me.GroupBox2.Controls.Add(Me.Button2)
+        Me.GroupBox2.Controls.Add(Me.Label25)
+        Me.GroupBox2.Controls.Add(Me.tbAccountNewPassword)
+        Me.GroupBox2.Controls.Add(Me.Label26)
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.GroupBox2.Location = New System.Drawing.Point(295, 92)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox2.Location = New System.Drawing.Point(346, 47)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Size = New System.Drawing.Size(214, 164)
         Me.GroupBox2.TabIndex = 21
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Change Password"
+        '
+        'tbAccountNewPasswordConfirm
+        '
+        Me.tbAccountNewPasswordConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAccountNewPasswordConfirm.Location = New System.Drawing.Point(127, 93)
+        Me.tbAccountNewPasswordConfirm.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbAccountNewPasswordConfirm.Name = "tbAccountNewPasswordConfirm"
+        Me.tbAccountNewPasswordConfirm.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.tbAccountNewPasswordConfirm.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountNewPasswordConfirm.TabIndex = 19
         '
         'Label23
         '
@@ -704,128 +625,64 @@ Partial Class formMain
         Me.Label23.Text = "Confirm"
         Me.Label23.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'tpCheckOut
+        'tbAccountCurrentPassword
         '
-        Me.tpCheckOut.Controls.Add(Me.btCirculationCheckoutCheckout)
-        Me.tpCheckOut.Controls.Add(Me.MenuStrip3)
-        Me.tpCheckOut.Location = New System.Drawing.Point(4, 22)
-        Me.tpCheckOut.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tpCheckOut.Name = "tpCheckOut"
-        Me.tpCheckOut.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tpCheckOut.Size = New System.Drawing.Size(1260, 446)
-        Me.tpCheckOut.TabIndex = 8
-        Me.tpCheckOut.Text = "Check Out"
-        Me.tpCheckOut.UseVisualStyleBackColor = True
+        Me.tbAccountCurrentPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAccountCurrentPassword.Location = New System.Drawing.Point(127, 30)
+        Me.tbAccountCurrentPassword.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbAccountCurrentPassword.Name = "tbAccountCurrentPassword"
+        Me.tbAccountCurrentPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.tbAccountCurrentPassword.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountCurrentPassword.TabIndex = 14
         '
-        'btCirculationCheckoutCheckout
+        'Button2
         '
-        Me.btCirculationCheckoutCheckout.Location = New System.Drawing.Point(580, 1)
-        Me.btCirculationCheckoutCheckout.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.btCirculationCheckoutCheckout.Name = "btCirculationCheckoutCheckout"
-        Me.btCirculationCheckoutCheckout.Size = New System.Drawing.Size(69, 23)
-        Me.btCirculationCheckoutCheckout.TabIndex = 2
-        Me.btCirculationCheckoutCheckout.Text = "Check Out"
-        Me.btCirculationCheckoutCheckout.UseVisualStyleBackColor = True
+        Me.Button2.AutoSize = True
+        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button2.Location = New System.Drawing.Point(90, 124)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(73, 27)
+        Me.Button2.TabIndex = 0
+        Me.Button2.Text = "Change"
+        Me.Button2.UseVisualStyleBackColor = True
         '
-        'MenuStrip3
+        'Label25
         '
-        Me.MenuStrip3.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.MenuStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripTextBox7, Me.tbCirculationCheckoutUsername, Me.ToolStripTextBox8, Me.tbCirculationCheckoutIsbn, Me.ToolStripTextBox9, Me.tbCirculationCheckoutDate})
-        Me.MenuStrip3.Location = New System.Drawing.Point(2, 2)
-        Me.MenuStrip3.Name = "MenuStrip3"
-        Me.MenuStrip3.Padding = New System.Windows.Forms.Padding(4, 1, 0, 1)
-        Me.MenuStrip3.Size = New System.Drawing.Size(1256, 25)
-        Me.MenuStrip3.TabIndex = 1
-        Me.MenuStrip3.Text = "MenuStrip3"
+        Me.Label25.BackColor = System.Drawing.Color.White
+        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.Location = New System.Drawing.Point(13, 33)
+        Me.Label25.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(103, 16)
+        Me.Label25.TabIndex = 8
+        Me.Label25.Text = "Old Password"
         '
-        'ToolStripTextBox7
+        'tbAccountNewPassword
         '
-        Me.ToolStripTextBox7.Name = "ToolStripTextBox7"
-        Me.ToolStripTextBox7.Size = New System.Drawing.Size(68, 23)
-        Me.ToolStripTextBox7.Text = "Username"
+        Me.tbAccountNewPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAccountNewPassword.Location = New System.Drawing.Point(127, 62)
+        Me.tbAccountNewPassword.Margin = New System.Windows.Forms.Padding(2)
+        Me.tbAccountNewPassword.Name = "tbAccountNewPassword"
+        Me.tbAccountNewPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.tbAccountNewPassword.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountNewPassword.TabIndex = 15
         '
-        'tbCirculationCheckoutUsername
+        'Label26
         '
-        Me.tbCirculationCheckoutUsername.Name = "tbCirculationCheckoutUsername"
-        Me.tbCirculationCheckoutUsername.Size = New System.Drawing.Size(82, 23)
-        '
-        'ToolStripTextBox8
-        '
-        Me.ToolStripTextBox8.Name = "ToolStripTextBox8"
-        Me.ToolStripTextBox8.Size = New System.Drawing.Size(68, 23)
-        Me.ToolStripTextBox8.Text = "ISBN"
-        '
-        'tbCirculationCheckoutIsbn
-        '
-        Me.tbCirculationCheckoutIsbn.Name = "tbCirculationCheckoutIsbn"
-        Me.tbCirculationCheckoutIsbn.Size = New System.Drawing.Size(68, 23)
-        '
-        'ToolStripTextBox9
-        '
-        Me.ToolStripTextBox9.Name = "ToolStripTextBox9"
-        Me.ToolStripTextBox9.Size = New System.Drawing.Size(68, 23)
-        Me.ToolStripTextBox9.Text = "Due Date"
-        '
-        'tbCirculationCheckoutDate
-        '
-        Me.tbCirculationCheckoutDate.Name = "tbCirculationCheckoutDate"
-        Me.tbCirculationCheckoutDate.Size = New System.Drawing.Size(85, 23)
-        Me.tbCirculationCheckoutDate.Text = "MM/DD/YYYY"
-        '
-        'tpReservations
-        '
-        Me.tpReservations.Controls.Add(Me.tbCirculationReservationsLastnameCombo)
-        Me.tpReservations.Location = New System.Drawing.Point(4, 22)
-        Me.tpReservations.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tpReservations.Name = "tpReservations"
-        Me.tpReservations.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tpReservations.Size = New System.Drawing.Size(1260, 446)
-        Me.tpReservations.TabIndex = 6
-        Me.tpReservations.Text = "Reservations"
-        Me.tpReservations.UseVisualStyleBackColor = True
-        '
-        'tbCirculationReservationsLastnameCombo
-        '
-        Me.tbCirculationReservationsLastnameCombo.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.tbCirculationReservationsLastnameCombo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReservationsToolStripMenuItem1, Me.ToolStripTextBox5, Me.cbCirculationReservationLastnameCombo, Me.ToolStripTextBox6, Me.cbCirculationReservationStatusCombo})
-        Me.tbCirculationReservationsLastnameCombo.Location = New System.Drawing.Point(2, 2)
-        Me.tbCirculationReservationsLastnameCombo.Name = "tbCirculationReservationsLastnameCombo"
-        Me.tbCirculationReservationsLastnameCombo.Padding = New System.Windows.Forms.Padding(4, 1, 0, 1)
-        Me.tbCirculationReservationsLastnameCombo.Size = New System.Drawing.Size(1256, 25)
-        Me.tbCirculationReservationsLastnameCombo.TabIndex = 0
-        Me.tbCirculationReservationsLastnameCombo.Text = "MenuStrip3"
-        '
-        'ReservationsToolStripMenuItem1
-        '
-        Me.ReservationsToolStripMenuItem1.Name = "ReservationsToolStripMenuItem1"
-        Me.ReservationsToolStripMenuItem1.Size = New System.Drawing.Size(85, 23)
-        Me.ReservationsToolStripMenuItem1.Text = "Reservations"
-        '
-        'ToolStripTextBox5
-        '
-        Me.ToolStripTextBox5.Name = "ToolStripTextBox5"
-        Me.ToolStripTextBox5.Size = New System.Drawing.Size(68, 23)
-        Me.ToolStripTextBox5.Text = "Customer Lastname"
-        '
-        'cbCirculationReservationLastnameCombo
-        '
-        Me.cbCirculationReservationLastnameCombo.Name = "cbCirculationReservationLastnameCombo"
-        Me.cbCirculationReservationLastnameCombo.Size = New System.Drawing.Size(82, 23)
-        '
-        'ToolStripTextBox6
-        '
-        Me.ToolStripTextBox6.Name = "ToolStripTextBox6"
-        Me.ToolStripTextBox6.Size = New System.Drawing.Size(68, 23)
-        Me.ToolStripTextBox6.Text = "Status"
-        '
-        'cbCirculationReservationStatusCombo
-        '
-        Me.cbCirculationReservationStatusCombo.Name = "cbCirculationReservationStatusCombo"
-        Me.cbCirculationReservationStatusCombo.Size = New System.Drawing.Size(82, 23)
+        Me.Label26.BackColor = System.Drawing.Color.White
+        Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(13, 67)
+        Me.Label26.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(103, 15)
+        Me.Label26.TabIndex = 9
+        Me.Label26.Text = "New Password"
         '
         'tpReservation
         '
-        Me.tpReservation.Controls.Add(Me.Label21)
+        Me.tpReservation.Controls.Add(Me.btnReservationCheckIn)
+        Me.tpReservation.Controls.Add(Me.btnReservationCheckOut)
         Me.tpReservation.Controls.Add(Me.txtReservationName)
         Me.tpReservation.Controls.Add(Me.txtReservationPublisher)
         Me.tpReservation.Controls.Add(Me.txtReservationAuthor)
@@ -837,23 +694,13 @@ Partial Class formMain
         Me.tpReservation.Controls.Add(Me.Label16)
         Me.tpReservation.Controls.Add(Me.listviewReservation)
         Me.tpReservation.Location = New System.Drawing.Point(4, 22)
-        Me.tpReservation.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpReservation.Margin = New System.Windows.Forms.Padding(2)
         Me.tpReservation.Name = "tpReservation"
-        Me.tpReservation.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpReservation.Padding = New System.Windows.Forms.Padding(2)
         Me.tpReservation.Size = New System.Drawing.Size(1260, 446)
         Me.tpReservation.TabIndex = 4
         Me.tpReservation.Text = "Reservation"
         Me.tpReservation.UseVisualStyleBackColor = True
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(827, 215)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(314, 26)
-        Me.Label21.TabIndex = 14
-        Me.Label21.Text = "This page is done and is ready for visual stuff." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please delete this label when y" &
-    "ou add the visual stuff to this page"
         '
         'txtReservationName
         '
@@ -889,6 +736,7 @@ Partial Class formMain
         '
         'btnReservationRemoveHold
         '
+        Me.btnReservationRemoveHold.Enabled = False
         Me.btnReservationRemoveHold.Location = New System.Drawing.Point(898, 150)
         Me.btnReservationRemoveHold.Name = "btnReservationRemoveHold"
         Me.btnReservationRemoveHold.Size = New System.Drawing.Size(90, 23)
@@ -936,8 +784,8 @@ Partial Class formMain
         '
         Me.listviewReservation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.listviewReservation.BackgroundImage = CType(resources.GetObject("listviewReservation.BackgroundImage"), System.Drawing.Image)
         Me.listviewReservation.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6})
+        Me.listviewReservation.ForeColor = System.Drawing.SystemColors.InfoText
         Me.listviewReservation.FullRowSelect = True
         Me.listviewReservation.Location = New System.Drawing.Point(0, 0)
         Me.listviewReservation.MultiSelect = False
@@ -984,9 +832,9 @@ Partial Class formMain
         Me.tpSearch.Controls.Add(Me.ToolStrip1)
         Me.tpSearch.Controls.Add(Me.btPatronSearchHold)
         Me.tpSearch.Location = New System.Drawing.Point(4, 22)
-        Me.tpSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.tpSearch.Name = "tpSearch"
-        Me.tpSearch.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpSearch.Padding = New System.Windows.Forms.Padding(2)
         Me.tpSearch.Size = New System.Drawing.Size(1260, 446)
         Me.tpSearch.TabIndex = 3
         Me.tpSearch.Text = "Search"
@@ -1096,7 +944,7 @@ Partial Class formMain
         'btPatronSearchHold
         '
         Me.btPatronSearchHold.Location = New System.Drawing.Point(639, 4)
-        Me.btPatronSearchHold.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btPatronSearchHold.Margin = New System.Windows.Forms.Padding(2)
         Me.btPatronSearchHold.Name = "btPatronSearchHold"
         Me.btPatronSearchHold.Size = New System.Drawing.Size(61, 22)
         Me.btPatronSearchHold.TabIndex = 1
@@ -1115,7 +963,7 @@ Partial Class formMain
         Me.tpCreate.Controls.Add(Me.Label4)
         Me.tpCreate.Location = New System.Drawing.Point(4, 22)
         Me.tpCreate.Name = "tpCreate"
-        Me.tpCreate.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tpCreate.Padding = New System.Windows.Forms.Padding(3)
         Me.tpCreate.Size = New System.Drawing.Size(1260, 446)
         Me.tpCreate.TabIndex = 1
         Me.tpCreate.Text = "CreateAcct"
@@ -1124,7 +972,7 @@ Partial Class formMain
         'cmboxAccountTypeAddAccount
         '
         Me.cmboxAccountTypeAddAccount.FormattingEnabled = True
-        Me.cmboxAccountTypeAddAccount.Location = New System.Drawing.Point(113, 92)
+        Me.cmboxAccountTypeAddAccount.Location = New System.Drawing.Point(146, 97)
         Me.cmboxAccountTypeAddAccount.Name = "cmboxAccountTypeAddAccount"
         Me.cmboxAccountTypeAddAccount.Size = New System.Drawing.Size(232, 21)
         Me.cmboxAccountTypeAddAccount.TabIndex = 11
@@ -1134,7 +982,7 @@ Partial Class formMain
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.White
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(6, 91)
+        Me.Label6.Location = New System.Drawing.Point(28, 98)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(112, 17)
         Me.Label6.TabIndex = 10
@@ -1142,16 +990,16 @@ Partial Class formMain
         '
         'btnAddAccount
         '
-        Me.btnAddAccount.Location = New System.Drawing.Point(170, 124)
+        Me.btnAddAccount.Location = New System.Drawing.Point(146, 137)
         Me.btnAddAccount.Name = "btnAddAccount"
-        Me.btnAddAccount.Size = New System.Drawing.Size(100, 23)
+        Me.btnAddAccount.Size = New System.Drawing.Size(232, 23)
         Me.btnAddAccount.TabIndex = 9
         Me.btnAddAccount.Text = "Add Account"
         Me.btnAddAccount.UseVisualStyleBackColor = True
         '
         'txtPasswordAddAccount
         '
-        Me.txtPasswordAddAccount.Location = New System.Drawing.Point(113, 57)
+        Me.txtPasswordAddAccount.Location = New System.Drawing.Point(146, 57)
         Me.txtPasswordAddAccount.Name = "txtPasswordAddAccount"
         Me.txtPasswordAddAccount.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPasswordAddAccount.Size = New System.Drawing.Size(232, 20)
@@ -1159,7 +1007,7 @@ Partial Class formMain
         '
         'txtUsernameAddAccount
         '
-        Me.txtUsernameAddAccount.Location = New System.Drawing.Point(113, 27)
+        Me.txtUsernameAddAccount.Location = New System.Drawing.Point(146, 24)
         Me.txtUsernameAddAccount.Name = "txtUsernameAddAccount"
         Me.txtUsernameAddAccount.Size = New System.Drawing.Size(232, 20)
         Me.txtUsernameAddAccount.TabIndex = 6
@@ -1169,22 +1017,22 @@ Partial Class formMain
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.White
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(31, 58)
+        Me.Label3.Location = New System.Drawing.Point(58, 58)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(77, 17)
+        Me.Label3.Size = New System.Drawing.Size(82, 17)
         Me.Label3.TabIndex = 7
-        Me.Label3.Text = "Password"
+        Me.Label3.Text = "Password:"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.White
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(29, 27)
+        Me.Label4.Location = New System.Drawing.Point(54, 25)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(81, 17)
+        Me.Label4.Size = New System.Drawing.Size(86, 17)
         Me.Label4.TabIndex = 5
-        Me.Label4.Text = "Username"
+        Me.Label4.Text = "Username:"
         '
         'tpLogin
         '
@@ -1196,7 +1044,7 @@ Partial Class formMain
         Me.tpLogin.Controls.Add(Me.Label1)
         Me.tpLogin.Location = New System.Drawing.Point(4, 22)
         Me.tpLogin.Name = "tpLogin"
-        Me.tpLogin.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tpLogin.Padding = New System.Windows.Forms.Padding(3)
         Me.tpLogin.Size = New System.Drawing.Size(1260, 446)
         Me.tpLogin.TabIndex = 0
         Me.tpLogin.Text = "Login"
@@ -1204,16 +1052,16 @@ Partial Class formMain
         '
         'btnLogin
         '
-        Me.btnLogin.Location = New System.Drawing.Point(288, 192)
+        Me.btnLogin.Location = New System.Drawing.Point(202, 140)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(100, 23)
+        Me.btnLogin.Size = New System.Drawing.Size(115, 23)
         Me.btnLogin.TabIndex = 4
         Me.btnLogin.Text = "Login"
         Me.btnLogin.UseVisualStyleBackColor = True
         '
         'txtPassword
         '
-        Me.txtPassword.Location = New System.Drawing.Point(288, 159)
+        Me.txtPassword.Location = New System.Drawing.Point(202, 100)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(115, 20)
@@ -1221,7 +1069,7 @@ Partial Class formMain
         '
         'txtUsername
         '
-        Me.txtUsername.Location = New System.Drawing.Point(288, 127)
+        Me.txtUsername.Location = New System.Drawing.Point(202, 58)
         Me.txtUsername.Name = "txtUsername"
         Me.txtUsername.Size = New System.Drawing.Size(115, 20)
         Me.txtUsername.TabIndex = 1
@@ -1231,22 +1079,22 @@ Partial Class formMain
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.White
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(208, 159)
+        Me.Label2.Location = New System.Drawing.Point(114, 101)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(77, 17)
+        Me.Label2.Size = New System.Drawing.Size(82, 17)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Password"
+        Me.Label2.Text = "Password:"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.White
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(205, 128)
+        Me.Label1.Location = New System.Drawing.Point(110, 59)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(81, 17)
+        Me.Label1.Size = New System.Drawing.Size(86, 17)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Username"
+        Me.Label1.Text = "Username:"
         '
         'TabControl1
         '
@@ -1256,9 +1104,6 @@ Partial Class formMain
         Me.TabControl1.Controls.Add(Me.tpBook)
         Me.TabControl1.Controls.Add(Me.tpReservation)
         Me.TabControl1.Controls.Add(Me.tpAccount)
-        Me.TabControl1.Controls.Add(Me.tpReservations)
-        Me.TabControl1.Controls.Add(Me.tpCheckOut)
-        Me.TabControl1.Controls.Add(Me.tpCheckIn)
         Me.TabControl1.Controls.Add(Me.tpHelp)
         Me.TabControl1.Controls.Add(Me.tpContacts)
         Me.TabControl1.Controls.Add(Me.tpAbout)
@@ -1274,7 +1119,6 @@ Partial Class formMain
         '
         Me.tpBook.BackgroundImage = CType(resources.GetObject("tpBook.BackgroundImage"), System.Drawing.Image)
         Me.tpBook.Controls.Add(Me.btnRemoveHold)
-        Me.tpBook.Controls.Add(Me.Label20)
         Me.tpBook.Controls.Add(Me.txtBookName)
         Me.tpBook.Controls.Add(Me.txtBookPublisher)
         Me.tpBook.Controls.Add(Me.txtBookAuthor)
@@ -1288,7 +1132,7 @@ Partial Class formMain
         Me.tpBook.Controls.Add(Me.Label9)
         Me.tpBook.Location = New System.Drawing.Point(4, 22)
         Me.tpBook.Name = "tpBook"
-        Me.tpBook.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tpBook.Padding = New System.Windows.Forms.Padding(3)
         Me.tpBook.Size = New System.Drawing.Size(1260, 446)
         Me.tpBook.TabIndex = 14
         Me.tpBook.Text = "Book"
@@ -1302,16 +1146,6 @@ Partial Class formMain
         Me.btnRemoveHold.TabIndex = 14
         Me.btnRemoveHold.Text = "Remove Hold"
         Me.btnRemoveHold.UseVisualStyleBackColor = True
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(111, 236)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(532, 13)
-        Me.Label20.TabIndex = 13
-        Me.Label20.Text = "This page is done and is ready for visual stuff. Please delete this label when yo" &
-    "u add the visual stuff to this page"
         '
         'txtBookName
         '
@@ -1416,58 +1250,6 @@ Partial Class formMain
         Me.Label9.TabIndex = 0
         Me.Label9.Text = "Name"
         '
-        'tpCheckIn
-        '
-        Me.tpCheckIn.BackColor = System.Drawing.Color.Gainsboro
-        Me.tpCheckIn.Controls.Add(Me.Button1)
-        Me.tpCheckIn.Controls.Add(Me.tbCirculationCheckinResult)
-        Me.tpCheckIn.Controls.Add(Me.Label5)
-        Me.tpCheckIn.Controls.Add(Me.tbCirculationCheckinIsbn)
-        Me.tpCheckIn.Location = New System.Drawing.Point(4, 22)
-        Me.tpCheckIn.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tpCheckIn.Name = "tpCheckIn"
-        Me.tpCheckIn.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tpCheckIn.Size = New System.Drawing.Size(1260, 446)
-        Me.tpCheckIn.TabIndex = 13
-        Me.tpCheckIn.Text = "Check In"
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(265, 34)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(61, 17)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Check In"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'tbCirculationCheckinResult
-        '
-        Me.tbCirculationCheckinResult.Location = New System.Drawing.Point(171, 77)
-        Me.tbCirculationCheckinResult.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbCirculationCheckinResult.Name = "tbCirculationCheckinResult"
-        Me.tbCirculationCheckinResult.Size = New System.Drawing.Size(68, 20)
-        Me.tbCirculationCheckinResult.TabIndex = 2
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(117, 36)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(32, 13)
-        Me.Label5.TabIndex = 1
-        Me.Label5.Text = "ISBN"
-        '
-        'tbCirculationCheckinIsbn
-        '
-        Me.tbCirculationCheckinIsbn.Location = New System.Drawing.Point(171, 34)
-        Me.tbCirculationCheckinIsbn.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tbCirculationCheckinIsbn.Name = "tbCirculationCheckinIsbn"
-        Me.tbCirculationCheckinIsbn.Size = New System.Drawing.Size(68, 20)
-        Me.tbCirculationCheckinIsbn.TabIndex = 0
-        '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
@@ -1479,6 +1261,26 @@ Partial Class formMain
         Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
         Me.ContextMenuStrip2.Size = New System.Drawing.Size(61, 4)
+        '
+        'btnReservationCheckOut
+        '
+        Me.btnReservationCheckOut.Enabled = False
+        Me.btnReservationCheckOut.Location = New System.Drawing.Point(994, 150)
+        Me.btnReservationCheckOut.Name = "btnReservationCheckOut"
+        Me.btnReservationCheckOut.Size = New System.Drawing.Size(75, 23)
+        Me.btnReservationCheckOut.TabIndex = 14
+        Me.btnReservationCheckOut.Text = "Check Out"
+        Me.btnReservationCheckOut.UseVisualStyleBackColor = True
+        '
+        'btnReservationCheckIn
+        '
+        Me.btnReservationCheckIn.Enabled = False
+        Me.btnReservationCheckIn.Location = New System.Drawing.Point(1075, 150)
+        Me.btnReservationCheckIn.Name = "btnReservationCheckIn"
+        Me.btnReservationCheckIn.Size = New System.Drawing.Size(90, 23)
+        Me.btnReservationCheckIn.TabIndex = 15
+        Me.btnReservationCheckIn.Text = "Check In"
+        Me.btnReservationCheckIn.UseVisualStyleBackColor = True
         '
         'formMain
         '
@@ -1500,16 +1302,10 @@ Partial Class formMain
         Me.tpHelp.ResumeLayout(False)
         Me.tpHelp.PerformLayout()
         Me.tpAccount.ResumeLayout(False)
-        Me.tpAccount.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
-        Me.tpCheckOut.ResumeLayout(False)
-        Me.tpCheckOut.PerformLayout()
-        Me.MenuStrip3.ResumeLayout(False)
-        Me.MenuStrip3.PerformLayout()
-        Me.tpReservations.ResumeLayout(False)
-        Me.tpReservations.PerformLayout()
-        Me.tbCirculationReservationsLastnameCombo.ResumeLayout(False)
-        Me.tbCirculationReservationsLastnameCombo.PerformLayout()
+        Me.GroupBox2.PerformLayout()
         Me.tpReservation.ResumeLayout(False)
         Me.tpReservation.PerformLayout()
         Me.tpSearch.ResumeLayout(False)
@@ -1524,8 +1320,6 @@ Partial Class formMain
         Me.TabControl1.ResumeLayout(False)
         Me.tpBook.ResumeLayout(False)
         Me.tpBook.PerformLayout()
-        Me.tpCheckIn.ResumeLayout(False)
-        Me.tpCheckIn.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1541,8 +1335,8 @@ Partial Class formMain
     Friend WithEvents SearchToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReservationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AccountToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ReservationsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CheckInOutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckOutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckInToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AccountsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PaymentsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CatalogeManagerToolStripMenuItem As ToolStripMenuItem
@@ -1565,27 +1359,6 @@ Partial Class formMain
     Friend WithEvents tpSearch As TabPage
     Friend WithEvents btPatronSearchHold As Button
     Friend WithEvents tpReservation As TabPage
-    Friend WithEvents tpReservations As TabPage
-    Friend WithEvents tbCirculationReservationsLastnameCombo As MenuStrip
-    Friend WithEvents ReservationsToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents ToolStripTextBox5 As ToolStripTextBox
-    Friend WithEvents cbCirculationReservationLastnameCombo As ToolStripComboBox
-    Friend WithEvents ToolStripTextBox6 As ToolStripTextBox
-    Friend WithEvents cbCirculationReservationStatusCombo As ToolStripComboBox
-    Friend WithEvents tpCheckOut As TabPage
-    Friend WithEvents btCirculationCheckoutCheckout As Button
-    Friend WithEvents MenuStrip3 As MenuStrip
-    Friend WithEvents ToolStripTextBox7 As ToolStripTextBox
-    Friend WithEvents tbCirculationCheckoutUsername As ToolStripTextBox
-    Friend WithEvents ToolStripTextBox8 As ToolStripTextBox
-    Friend WithEvents tbCirculationCheckoutIsbn As ToolStripTextBox
-    Friend WithEvents ToolStripTextBox9 As ToolStripTextBox
-    Friend WithEvents tbCirculationCheckoutDate As ToolStripTextBox
-    Friend WithEvents tpCheckIn As TabPage
-    Friend WithEvents Button1 As Button
-    Friend WithEvents tbCirculationCheckinResult As TextBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents tbCirculationCheckinIsbn As TextBox
     Friend WithEvents tpAccount As TabPage
     Friend WithEvents tpHelp As TabPage
     Friend WithEvents tpContacts As TabPage
@@ -1646,8 +1419,6 @@ Partial Class formMain
     Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
     Friend WithEvents ToolStripSeparator9 As ToolStripSeparator
-	Friend WithEvents Label20 As Label
-	Friend WithEvents Label21 As Label
     Friend WithEvents btnCheckIn As Button
     Friend WithEvents btnRemoveHold As Button
 	Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
@@ -1674,4 +1445,6 @@ Partial Class formMain
 	Friend WithEvents GroupBox1 As GroupBox
 	Friend WithEvents GroupBox2 As GroupBox
 	Friend WithEvents Label23 As Label
+    Friend WithEvents btnReservationCheckIn As Button
+    Friend WithEvents btnReservationCheckOut As Button
 End Class

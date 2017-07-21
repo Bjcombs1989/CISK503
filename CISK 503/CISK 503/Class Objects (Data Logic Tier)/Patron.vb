@@ -97,8 +97,14 @@ Public Class Patron
     End Sub
 
     Public Sub New(pMySQL As MySQLDatabaseConnector, ID As Integer)
+        Dim ac As MySQLDatabaseConnector.AccountInfo = pMySQL.GetUserInfo(ID)
+
         _id = ID
-        _level = AccountLevel.Patron
+        _level = ac.Level
+        _username = ac.Username
+        _password = ac.Password
+        _mysql = pMySQL
+
     End Sub
     ' Methods
     Public Function HashPassword(password As String) As String

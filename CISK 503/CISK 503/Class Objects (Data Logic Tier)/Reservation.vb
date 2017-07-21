@@ -1,10 +1,13 @@
-﻿Public Class Reservation
+﻿Imports CISK_503
+
+Public Class Reservation
     Inherits ListViewItem
 
     Dim _reservedBy As Patron
     Dim _book As Book
     Dim _feesDue As Decimal
     Dim _dueDate As Date
+    Private hold As Hold
 
     Public Sub New(pReserved_by As Patron, pBook As Book, Optional pDueDate As DateTime = Nothing, Optional pFeesDue As Double = 0)
         Text = pBook.Title
@@ -28,6 +31,14 @@
         Else
             SubItems.Add("Checked Out")
         End If
+    End Sub
+
+    Public Sub New(hold As Hold)
+        Me.hold = hold
+        _reservedBy = hold.Patron
+        _book = hold.Book
+        _feesDue = 0
+        _dueDate = DateTime.Today.AddDays(7)
     End Sub
 
     ' Properties

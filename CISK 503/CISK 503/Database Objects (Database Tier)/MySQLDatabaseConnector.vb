@@ -53,6 +53,34 @@ Public Class MySQLDatabaseConnector
         End Try
     End Function
 
+    Function GetUserInfo(id As Integer) As AccountInfo
+        Dim ac As New AccountInfo()
+        Dim cmd As New MySqlCommand("SELECT * FROM `User` WHERE `ID` = @id", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@id", id)
+
+        Try
+            Dim reader As MySqlDataReader = cmd.ExecuteReader()
+            Dim accountInfo As AccountInfo = Nothing
+
+            While reader.Read()
+                accountInfo = New AccountInfo()
+                accountInfo.ID = reader.GetInt32("ID")
+                accountInfo.Level = reader.GetInt32("Account_Level")
+                accountInfo.Username = reader.GetString("Username")
+                accountInfo.Password = reader.GetString("Password")
+                DateTime.TryParse(reader.GetString("Created_Date"), accountInfo.Created_Date)
+            End While
+
+            reader.Close()
+
+            Return accountInfo
+        Catch ex As Exception
+            ' otherwise throw exception
+            Throw New InternalExceptions(ex.Message)
+        End Try
+    End Function
+
     ''' <summary>
     ''' 
     ''' </summary>
@@ -137,7 +165,18 @@ Public Class MySQLDatabaseConnector
         End Try
     End Sub
     Sub RemoveReservation(pReservation As Reservation)
-        Throw New NotImplementedException()
+        Dim cmd As New MySqlCommand("DELETE FROM `Reservations` WHERE `Book` = @book AND `User` = @user AND `Due_Date` = @date", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@book", pReservation.Book.BookISBN)
+        cmd.Parameters.AddWithValue("@user", pReservation.Patron.ID)
+        cmd.Parameters.AddWithValue("@date", pReservation.DueDate.ToString("yyyy-MM-dd"))
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            ' otherwise throw exception
+            Throw New InternalExceptions(ex.Message)
+        End Try
     End Sub
 
     ' Get and List Methods
@@ -175,13 +214,18 @@ Public Class MySQLDatabaseConnector
         Return genres.ToArray()
     End Function
 
-    Public Function GetReservations(user As Patron) As Reservation()
+    Public Function GetReservations(Optional user As Patron = Nothing) As Reservation()
         Dim reseravations As List(Of Reservation) = New List(Of Reservation)()
-        Dim cmd As New MySqlCommand("SELECT * FROM `Reservations` WHERE `User` = @userID", conn)
-        cmd.Prepare()
-        cmd.Parameters.AddWithValue("@userID", user.ID)
-
         Dim books As List(Of ReservationInfo) = New List(Of ReservationInfo)()
+        Dim cmd As New MySqlCommand("SELECT * FROM `Reservations`", conn)
+        cmd.Prepare()
+
+        If Not user Is Nothing Then
+            cmd = New MySqlCommand("SELECT * FROM `Reservations` WHERE `User` = @userID", conn)
+            cmd.Prepare()
+            cmd.Parameters.AddWithValue("@userID", user.ID)
+        End If
+
 
         Dim reader As MySqlDataReader = Nothing
 
@@ -189,7 +233,7 @@ Public Class MySQLDatabaseConnector
             reader = cmd.ExecuteReader()
 
             While reader.Read()
-                books.Add(New ReservationInfo(reader.GetString("Book"), reader.GetDateTime("Due_Date"), reader.GetDecimal("Late_Fees")))
+                books.Add(New ReservationInfo(reader.GetString("Book"), reader.GetInt32("User"), reader.GetDateTime("Due_Date"), reader.GetDecimal("Late_Fees")))
             End While
 
             reader.Close()
@@ -197,10 +241,17 @@ Public Class MySQLDatabaseConnector
             For Each b As ReservationInfo In books
                 Dim res As Reservation
                 Dim book As Book
+                Dim held_by As Patron
+
+                If user Is Nothing Then
+                    held_by = New Patron(Me, b.user)
+                Else
+                    held_by = user
+                End If
 
                 ' Set the variables to their instances
                 book = New Book(Me, New Book.ISBN(b.isbn))
-                res = New Reservation(user, book, b.due, b.amount)
+                res = New Reservation(held_by, book, b.due, b.amount)
 
                 ' Add the reservation to the list
                 reseravations.Add(res)
@@ -217,21 +268,25 @@ Public Class MySQLDatabaseConnector
         Return reseravations.ToArray()
     End Function
 
-    Public Function GetHolds(user As Patron) As Hold()
+    Public Function GetHolds(Optional user As Patron = Nothing) As Hold()
         Dim reseravations As List(Of Hold) = New List(Of Hold)()
-        Dim cmd As New MySqlCommand("SELECT * FROM `Hold` WHERE `User` = @userID", conn)
-        cmd.Prepare()
-        cmd.Parameters.AddWithValue("@userID", user.ID)
-
         Dim books As List(Of ReservationInfo) = New List(Of ReservationInfo)()
-
         Dim reader As MySqlDataReader = Nothing
 
-        Try
-            reader = cmd.ExecuteReader()
+        Dim cmd As New MySqlCommand("SELECT * FROM `Hold` WHERE `Hold_Until` >= SYSDATE()", conn)
+        cmd.Prepare()
+
+        If Not user Is Nothing Then
+            cmd = New MySqlCommand("SELECT * FROM `Hold` WHERE `User` = @userID", conn)
+            cmd.Prepare()
+            cmd.Parameters.AddWithValue("@userID", user.ID)
+        End If
+
+        'Try
+        reader = cmd.ExecuteReader()
 
             While reader.Read()
-                books.Add(New ReservationInfo(reader.GetString("Book"), reader.GetDateTime("Hold_Until"), 0))
+                books.Add(New ReservationInfo(reader.GetString("Book"), reader.GetInt32("User"), reader.GetDateTime("Hold_Until"), 0))
             End While
 
             reader.Close()
@@ -239,10 +294,17 @@ Public Class MySQLDatabaseConnector
             For Each b As ReservationInfo In books
                 Dim res As Hold
                 Dim book As Book
+                Dim held_by As Patron
+
+                If user Is Nothing Then
+                    held_by = New Patron(Me, b.user)
+                Else
+                    held_by = user
+                End If
 
                 ' Set the variables to their instances
                 book = New Book(Me, New Book.ISBN(b.isbn))
-                res = New Hold(user, book, b.due)
+                res = New Hold(held_by, book, b.due)
 
                 ' Add the reservation to the list
                 reseravations.Add(res)
@@ -250,19 +312,18 @@ Public Class MySQLDatabaseConnector
             ' Declare the variables
 
 
-        Catch ex As Exception
-            Throw ex
-        Finally
-            If Not reader Is Nothing Then reader.Close()
-        End Try
+            'Catch ex As Exception
+            '    Throw ex
+            'Finally
+            '    If Not reader Is Nothing Then reader.Close()
+            'End Try
 
-        Return reseravations.ToArray()
+            Return reseravations.ToArray()
     End Function
 
 
 
     ' Book
-
     Public Function GetBook(isbn As Book.ISBN) As Dictionary(Of String, String)
         ' Create the data row
         Dim info As Dictionary(Of String, String) = New Dictionary(Of String, String)()
@@ -377,16 +438,21 @@ Public Class MySQLDatabaseConnector
 
         Public ID As Integer
         Public Level As Patron.AccountLevel
+        Public Username As String
+        Public Password As String
+        Public Created_Date As DateTime
     End Class
 
     Public Class ReservationInfo
         Public isbn As String
         Public due As DateTime
+        Public user As Integer
         Public amount As Decimal
 
-        Public Sub New(isbn As String, due As DateTime, amount As Decimal)
+        Public Sub New(isbn As String, user As Integer, due As DateTime, amount As Decimal)
             Me.isbn = isbn
             Me.due = due
+            Me.user = user
             Me.amount = amount
         End Sub
     End Class

@@ -171,7 +171,7 @@
     End Sub
 
     ' Search Page               TAB INDEX = 2
-    Private Sub SearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click, CheckInOutToolStripMenuItem.Click
+    Private Sub SearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
         TabControl1.SelectedIndex = 2
         txtSearchISBN.Select()
         AcceptButton = Nothing
@@ -304,29 +304,76 @@
 
 
     ' Reservations Page         TAB INDEX = 4
+    Dim action As MenuAction
+
     Private Sub ReservationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationToolStripMenuItem.Click
         TabControl1.SelectedIndex = 4 ' Use the index of the page (Reservations = 4, Account = 5)
         AcceptButton = Nothing ' Select the button to press when you hit "Enter"
+        action = MenuAction.MyReservations
 
         ' Load reservations
         listviewReservation.Items.Clear()
         listviewReservation.Items.AddRange(mysql.GetReservations(user))
         listviewReservation.Items.AddRange(mysql.GetHolds(user))
+    End Sub
 
+    Private Sub CheckOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckOutToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 4 ' Use the index of the page (Reservations = 4, Account = 5)
+        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
+        action = MenuAction.CheckOut
+
+        ' Load reservations
+        listviewReservation.Items.Clear()
+        listviewReservation.Items.AddRange(mysql.GetHolds())
+    End Sub
+
+    Private Sub CheckInToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckInToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 4 ' Use the index of the page (Reservations = 4, Account = 5)
+        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
+        action = MenuAction.CheckIn
+
+        ' Load reservations
+        listviewReservation.Items.Clear()
+        listviewReservation.Items.AddRange(mysql.GetReservations())
     End Sub
 
     Private Sub btnReservationRemoveHold_Click(sender As Object, e As EventArgs) Handles btnReservationRemoveHold.Click
         Try
             mysql.RemoveHold(book.Hold)
-            MessageBox.Show("The hold has been removed for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("You have removed the hold for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            ' Load reservations
-            listviewReservation.Items.Clear()
-            listviewReservation.Items.AddRange(mysql.GetReservations(user))
-            listviewReservation.Items.AddRange(mysql.GetHolds(user))
-
+            If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnReservationCheckOut_Click(sender As Object, e As EventArgs) Handles btnReservationCheckOut.Click
+        Try
+            mysql.RemoveHold(book.Hold)
+            mysql.AddReservation(New Reservation(book.Hold))
+            MessageBox.Show("You have checked this book out", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub btnReservationCheckIn_Click(sender As Object, e As EventArgs) Handles btnReservationCheckIn.Click
+        Try
+            mysql.RemoveReservation(book.Reservation)
+            MessageBox.Show("You have checked this book in", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Check In", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -362,6 +409,8 @@
             txtReservationName.Text = hold.Book.Title
             txtReservationPublisher.Text = hold.Book.Publisher
             btnReservationRemoveHold.Enabled = True
+            btnReservationCheckOut.Enabled = TypeOf (user) Is Librarian ' enable check out button
+            btnReservationCheckIn.Enabled = False ' enable the check in button
         ElseIf Not res Is Nothing Then
             book = res.Book
             book.Reservation = res
@@ -370,31 +419,44 @@
             txtReservationName.Text = res.Book.Title
             txtReservationPublisher.Text = res.Book.Publisher
             btnReservationRemoveHold.Enabled = False
+            btnReservationCheckOut.Enabled = False ' enable check out button
+            btnReservationCheckIn.Enabled = TypeOf (user) Is Librarian ' enable the check in button
         End If
+
 
     End Sub
 
 
 
-	'''''''''''''''''' NEW ITEMS will be added below here. Please move code into proper groups for organization purposes
 
-	'PLACE INSIDE TAB 5 ACCOUNT TAB
-	'Event to use link lable on account balance to open tab 4 to 
-	'show reservation history For billing
-	Private Sub LinkLabel4_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
 
-	End Sub
 
-	'Event Update User information
-	'Only item I see that could be updated is the username
-	'All other information does not seem to be a user edit item
-	Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    '''''''''''''''''' NEW ITEMS will be added below here. Please move code into proper groups for organization purposes
 
-	End Sub
+    'PLACE INSIDE TAB 5 ACCOUNT TAB
+    'Event to use link lable on account balance to open tab 4 to 
+    'show reservation history For billing
+    Private Sub LinkLabel4_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
 
-	'Event to update password
-	Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    End Sub
 
-	End Sub
+    'Event Update User information
+    'Only item I see that could be updated is the username
+    'All other information does not seem to be a user edit item
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+
+    End Sub
+
+    'Event to update password
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+
+    End Sub
+
 
 End Class
+
+Public Enum MenuAction
+    MyReservations
+    CheckIn
+    CheckOut
+End Enum
