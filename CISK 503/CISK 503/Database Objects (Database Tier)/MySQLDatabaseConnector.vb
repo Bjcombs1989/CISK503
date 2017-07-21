@@ -421,7 +421,32 @@ Public Class MySQLDatabaseConnector
 
         Return table
     End Function
+    
+    Public Function ListUsers() As KeyValuePair(Of Integer, String)()
+        Dim list As List(Of KeyValuePair(Of Integer, String)) = New List(Of KeyValuePair(Of Integer, String))
+        Dim reader As MySqlDataReader = Nothing
+        Dim cmd As New MySqlCommand("SELECT `ID`, `Username` FROM `User`", conn)
+        cmd.Prepare()
 
+        list.Add(New KeyValuePair(Of Integer, String)(-1, ""))
+
+        Try
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                list.Add(New KeyValuePair(Of Integer, String)(reader.GetInt32("ID"), reader.GetString("Username")))
+            End While
+
+            reader.Close()
+        Catch ex As Exception
+            Throw ex
+        Finally
+            If Not reader Is Nothing Then reader.Close()
+        End Try
+
+
+        Return list.ToArray()
+    End Function
 
     ' Dispose
     Public Sub Dispose()

@@ -9,7 +9,7 @@
     Dim book As Book
     Dim action As MenuAction
 
-    ' Form load
+    ' Form 
     ''' <summary>
     ''' Form load event, sets the tab control properties, creates the mySQL object and fills any default values/dropdowns
     ''' </summary>
@@ -39,7 +39,13 @@
         ' Load things for the Search Tab
         cmbxSearchGenre.ComboBox.DisplayMember = "Value"
         cmbxSearchGenre.ComboBox.DataSource = MySql.ListGenres()
-        books = MySql.ListBooks()
+        books = mysql.ListBooks()
+
+        ' Load reservations tab
+        cmbxCheckOutTo.DisplayMember = "Value"
+        cmbxCheckOutTo.DataSource = mysql.ListUsers()
+        cmbxPlaceHoldFor.DisplayMember = "Value"
+        cmbxPlaceHoldFor.DataSource = mysql.ListUsers()
 
         loading = False
     End Sub
@@ -263,12 +269,16 @@
 
         If Not book.IsHeld Then
             btnRemoveHold.Enabled = False
+            cmbxPlaceHoldFor.Enabled = False
         Else
             btnRemoveHold.Enabled = (TypeOf (user) Is Librarian Or book.Hold.Patron.ID = user.ID)
+            cmbxPlaceHoldFor.Enabled = (TypeOf (user) Is Librarian Or book.Hold.Patron.ID = user.ID)
         End If
 
         btnCheckOut.Enabled = book.IsAvailable And TypeOf (user) Is Librarian ' enable check out button
-        btnCheckIn.Enabled = book.IsReservered And TypeOf (user) Is Librarian ' enable the check in button
+        cmbxCheckOutTo.Enabled = book.IsAvailable And TypeOf (user) Is Librarian ' enable check out button
+
+        btnCheckIn.Enabled = book.IsReservered And TypeOf (user) Is Librarian ' enable the check in buttond
     End Sub
 
     Private Sub btnPlaceHold_Click(sender As Object, e As EventArgs) Handles btnPlaceHold.Click
@@ -423,6 +433,54 @@
 
     End Sub
 
+    Private Sub cmbxCheckOutTo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxCheckOutTo.SelectedIndexChanged
+        If loading Then Return
+        Dim selected As KeyValuePair(Of Integer, String)
+
+        Try
+            selected = DirectCast(cmbxCheckOutTo.SelectedItem, KeyValuePair(Of Integer, String))
+        Catch ex As Exception
+            cmbxCheckOutTo.SelectedIndex = -1
+            Return
+        End Try
+
+        Try
+            mysql.AddReservation(New Reservation(New Patron(mysql, selected.Key), book))
+            MessageBox.Show("You have checked this book out to " + selected.Value, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.Balance) Then ReservationToolStripMenuItem_Click(btnAccountBalanceLabel, Nothing)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub cmbxPlaceHoldFor_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxPlaceHoldFor.SelectedIndexChanged
+        If loading Then Return
+        Dim selected As KeyValuePair(Of Integer, String)
+
+        Try
+            selected = DirectCast(cmbxPlaceHoldFor.SelectedItem, KeyValuePair(Of Integer, String))
+        Catch ex As Exception
+            cmbxPlaceHoldFor.SelectedIndex = -1
+            Return
+        End Try
+
+        Try
+            mysql.AddHold(New Hold(New Patron(mysql, selected.Key), book))
+            MessageBox.Show("You have placed a hold on this book for " + selected.Value, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.Balance) Then ReservationToolStripMenuItem_Click(btnAccountBalanceLabel, Nothing)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
     ' Accounts Page             TAB INDEX = 5
     Private Sub AccountToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AccountToolStripMenuItem.Click
         TabControl1.SelectedIndex = 5 ' Use the index of the page (Reservations = 4, Account = 5)
@@ -447,6 +505,7 @@
     Private Sub btnAccountChange_Click(sender As Object, e As EventArgs) Handles btnAccountChange.Click
 
     End Sub
+
 
 
 

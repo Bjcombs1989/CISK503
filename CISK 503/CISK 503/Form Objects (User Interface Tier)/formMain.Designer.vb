@@ -78,6 +78,8 @@ Partial Class formMain
         Me.tbAccountNewPassword = New System.Windows.Forms.TextBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.tpReservation = New System.Windows.Forms.TabPage()
+        Me.btnReservationCheckIn = New System.Windows.Forms.Button()
+        Me.btnReservationCheckOut = New System.Windows.Forms.Button()
         Me.txtReservationName = New System.Windows.Forms.TextBox()
         Me.txtReservationPublisher = New System.Windows.Forms.TextBox()
         Me.txtReservationAuthor = New System.Windows.Forms.TextBox()
@@ -142,8 +144,10 @@ Partial Class formMain
         Me.Label9 = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.btnReservationCheckOut = New System.Windows.Forms.Button()
-        Me.btnReservationCheckIn = New System.Windows.Forms.Button()
+        Me.cmbxCheckOutTo = New System.Windows.Forms.ComboBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.cmbxPlaceHoldFor = New System.Windows.Forms.ComboBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpAbout.SuspendLayout()
@@ -278,24 +282,24 @@ Partial Class formMain
         'FAQToolStripMenuItem1
         '
         Me.FAQToolStripMenuItem1.Name = "FAQToolStripMenuItem1"
-        Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
+        Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.FAQToolStripMenuItem1.Text = "&FAQ"
         '
         'ContactsToolStripMenuItem1
         '
         Me.ContactsToolStripMenuItem1.Name = "ContactsToolStripMenuItem1"
-        Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
+        Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.ContactsToolStripMenuItem1.Text = "&Contacts"
         '
         'ToolStripSeparator9
         '
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(118, 6)
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(149, 6)
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'LoginToolStripMenuItem
@@ -674,6 +678,26 @@ Partial Class formMain
         Me.tpReservation.TabIndex = 4
         Me.tpReservation.Text = "Reservation"
         Me.tpReservation.UseVisualStyleBackColor = True
+        '
+        'btnReservationCheckIn
+        '
+        Me.btnReservationCheckIn.Enabled = False
+        Me.btnReservationCheckIn.Location = New System.Drawing.Point(1075, 150)
+        Me.btnReservationCheckIn.Name = "btnReservationCheckIn"
+        Me.btnReservationCheckIn.Size = New System.Drawing.Size(90, 23)
+        Me.btnReservationCheckIn.TabIndex = 15
+        Me.btnReservationCheckIn.Text = "Check In"
+        Me.btnReservationCheckIn.UseVisualStyleBackColor = True
+        '
+        'btnReservationCheckOut
+        '
+        Me.btnReservationCheckOut.Enabled = False
+        Me.btnReservationCheckOut.Location = New System.Drawing.Point(994, 150)
+        Me.btnReservationCheckOut.Name = "btnReservationCheckOut"
+        Me.btnReservationCheckOut.Size = New System.Drawing.Size(75, 23)
+        Me.btnReservationCheckOut.TabIndex = 14
+        Me.btnReservationCheckOut.Text = "Check Out"
+        Me.btnReservationCheckOut.UseVisualStyleBackColor = True
         '
         'txtReservationName
         '
@@ -1091,6 +1115,8 @@ Partial Class formMain
         'tpBook
         '
         Me.tpBook.BackgroundImage = CType(resources.GetObject("tpBook.BackgroundImage"), System.Drawing.Image)
+        Me.tpBook.Controls.Add(Me.cmbxPlaceHoldFor)
+        Me.tpBook.Controls.Add(Me.cmbxCheckOutTo)
         Me.tpBook.Controls.Add(Me.btnRemoveHold)
         Me.tpBook.Controls.Add(Me.txtBookName)
         Me.tpBook.Controls.Add(Me.txtBookPublisher)
@@ -1100,6 +1126,8 @@ Partial Class formMain
         Me.tpBook.Controls.Add(Me.btnCheckOut)
         Me.tpBook.Controls.Add(Me.btnPlaceHold)
         Me.tpBook.Controls.Add(Me.Label10)
+        Me.tpBook.Controls.Add(Me.Label20)
+        Me.tpBook.Controls.Add(Me.Label5)
         Me.tpBook.Controls.Add(Me.Label12)
         Me.tpBook.Controls.Add(Me.Label11)
         Me.tpBook.Controls.Add(Me.Label9)
@@ -1113,7 +1141,7 @@ Partial Class formMain
         '
         'btnRemoveHold
         '
-        Me.btnRemoveHold.Location = New System.Drawing.Point(146, 172)
+        Me.btnRemoveHold.Location = New System.Drawing.Point(196, 128)
         Me.btnRemoveHold.Name = "btnRemoveHold"
         Me.btnRemoveHold.Size = New System.Drawing.Size(90, 23)
         Me.btnRemoveHold.TabIndex = 14
@@ -1154,7 +1182,7 @@ Partial Class formMain
         '
         'btnCheckIn
         '
-        Me.btnCheckIn.Location = New System.Drawing.Point(264, 172)
+        Me.btnCheckIn.Location = New System.Drawing.Point(292, 128)
         Me.btnCheckIn.Name = "btnCheckIn"
         Me.btnCheckIn.Size = New System.Drawing.Size(75, 23)
         Me.btnCheckIn.TabIndex = 1
@@ -1163,7 +1191,7 @@ Partial Class formMain
         '
         'btnCheckOut
         '
-        Me.btnCheckOut.Location = New System.Drawing.Point(264, 143)
+        Me.btnCheckOut.Location = New System.Drawing.Point(115, 128)
         Me.btnCheckOut.Name = "btnCheckOut"
         Me.btnCheckOut.Size = New System.Drawing.Size(75, 23)
         Me.btnCheckOut.TabIndex = 1
@@ -1172,7 +1200,7 @@ Partial Class formMain
         '
         'btnPlaceHold
         '
-        Me.btnPlaceHold.Location = New System.Drawing.Point(146, 143)
+        Me.btnPlaceHold.Location = New System.Drawing.Point(19, 128)
         Me.btnPlaceHold.Name = "btnPlaceHold"
         Me.btnPlaceHold.Size = New System.Drawing.Size(90, 23)
         Me.btnPlaceHold.TabIndex = 1
@@ -1235,25 +1263,43 @@ Partial Class formMain
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
         Me.ContextMenuStrip2.Size = New System.Drawing.Size(61, 4)
         '
-        'btnReservationCheckOut
+        'cmbxCheckOutTo
         '
-        Me.btnReservationCheckOut.Enabled = False
-        Me.btnReservationCheckOut.Location = New System.Drawing.Point(994, 150)
-        Me.btnReservationCheckOut.Name = "btnReservationCheckOut"
-        Me.btnReservationCheckOut.Size = New System.Drawing.Size(75, 23)
-        Me.btnReservationCheckOut.TabIndex = 14
-        Me.btnReservationCheckOut.Text = "Check Out"
-        Me.btnReservationCheckOut.UseVisualStyleBackColor = True
+        Me.cmbxCheckOutTo.FormattingEnabled = True
+        Me.cmbxCheckOutTo.Location = New System.Drawing.Point(153, 208)
+        Me.cmbxCheckOutTo.Name = "cmbxCheckOutTo"
+        Me.cmbxCheckOutTo.Size = New System.Drawing.Size(259, 21)
+        Me.cmbxCheckOutTo.TabIndex = 15
         '
-        'btnReservationCheckIn
+        'Label5
         '
-        Me.btnReservationCheckIn.Enabled = False
-        Me.btnReservationCheckIn.Location = New System.Drawing.Point(1075, 150)
-        Me.btnReservationCheckIn.Name = "btnReservationCheckIn"
-        Me.btnReservationCheckIn.Size = New System.Drawing.Size(90, 23)
-        Me.btnReservationCheckIn.TabIndex = 15
-        Me.btnReservationCheckIn.Text = "Check In"
-        Me.btnReservationCheckIn.UseVisualStyleBackColor = True
+        Me.Label5.BackColor = System.Drawing.Color.White
+        Me.Label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(19, 208)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(128, 21)
+        Me.Label5.TabIndex = 0
+        Me.Label5.Text = "Check out to:"
+        '
+        'Label20
+        '
+        Me.Label20.BackColor = System.Drawing.Color.White
+        Me.Label20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.Location = New System.Drawing.Point(19, 240)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(128, 21)
+        Me.Label20.TabIndex = 0
+        Me.Label20.Text = "Place hold for:"
+        '
+        'cmbxPlaceHoldFor
+        '
+        Me.cmbxPlaceHoldFor.FormattingEnabled = True
+        Me.cmbxPlaceHoldFor.Location = New System.Drawing.Point(153, 240)
+        Me.cmbxPlaceHoldFor.Name = "cmbxPlaceHoldFor"
+        Me.cmbxPlaceHoldFor.Size = New System.Drawing.Size(259, 21)
+        Me.cmbxPlaceHoldFor.TabIndex = 15
         '
         'formMain
         '
@@ -1418,4 +1464,8 @@ Partial Class formMain
 	Friend WithEvents Label23 As Label
     Friend WithEvents btnReservationCheckIn As Button
     Friend WithEvents btnReservationCheckOut As Button
+    Friend WithEvents cmbxPlaceHoldFor As ComboBox
+    Friend WithEvents cmbxCheckOutTo As ComboBox
+    Friend WithEvents Label20 As Label
+    Friend WithEvents Label5 As Label
 End Class
