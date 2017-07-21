@@ -42,6 +42,12 @@ Public Class Reservation
     End Sub
 
     ' Properties
+    Public ReadOnly Property FeesDue As Integer
+        Get
+            Return _feesDue
+        End Get
+    End Property
+
     Public ReadOnly Property DaysLate As Integer
         Get
             If _dueDate < DateTime.Today Then

@@ -58,24 +58,22 @@ Partial Class formMain
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.tpAccount = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.tbAccountLastLogin = New System.Windows.Forms.TextBox()
         Me.tbAccountAccountID = New System.Windows.Forms.TextBox()
         Me.tbAccountDateCreated = New System.Windows.Forms.TextBox()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.LinkLabel4 = New System.Windows.Forms.LinkLabel()
+        Me.btnAccountUpdate = New System.Windows.Forms.Button()
+        Me.btnAccountBalanceLabel = New System.Windows.Forms.LinkLabel()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.tbAccountType = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.tbAccountBalance = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.tbAccountUsername = New System.Windows.Forms.TextBox()
-        Me.Label22 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.tbAccountNewPasswordConfirm = New System.Windows.Forms.TextBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.tbAccountCurrentPassword = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.btnAccountChange = New System.Windows.Forms.Button()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.tbAccountNewPassword = New System.Windows.Forms.TextBox()
         Me.Label26 = New System.Windows.Forms.Label()
@@ -415,18 +413,16 @@ Partial Class formMain
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.tbAccountLastLogin)
         Me.GroupBox1.Controls.Add(Me.tbAccountAccountID)
         Me.GroupBox1.Controls.Add(Me.tbAccountDateCreated)
-        Me.GroupBox1.Controls.Add(Me.Button3)
-        Me.GroupBox1.Controls.Add(Me.LinkLabel4)
+        Me.GroupBox1.Controls.Add(Me.btnAccountUpdate)
+        Me.GroupBox1.Controls.Add(Me.btnAccountBalanceLabel)
         Me.GroupBox1.Controls.Add(Me.Label17)
         Me.GroupBox1.Controls.Add(Me.tbAccountType)
         Me.GroupBox1.Controls.Add(Me.Label18)
         Me.GroupBox1.Controls.Add(Me.tbAccountBalance)
         Me.GroupBox1.Controls.Add(Me.Label19)
         Me.GroupBox1.Controls.Add(Me.tbAccountUsername)
-        Me.GroupBox1.Controls.Add(Me.Label22)
         Me.GroupBox1.Controls.Add(Me.Label24)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.ForeColor = System.Drawing.SystemColors.WindowText
@@ -434,20 +430,10 @@ Partial Class formMain
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(240, 265)
+        Me.GroupBox1.Size = New System.Drawing.Size(286, 265)
         Me.GroupBox1.TabIndex = 20
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "User Account Information"
-        '
-        'tbAccountLastLogin
-        '
-        Me.tbAccountLastLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountLastLogin.Location = New System.Drawing.Point(138, 125)
-        Me.tbAccountLastLogin.Margin = New System.Windows.Forms.Padding(2)
-        Me.tbAccountLastLogin.Name = "tbAccountLastLogin"
-        Me.tbAccountLastLogin.ReadOnly = True
-        Me.tbAccountLastLogin.Size = New System.Drawing.Size(68, 23)
-        Me.tbAccountLastLogin.TabIndex = 18
         '
         'tbAccountAccountID
         '
@@ -456,7 +442,7 @@ Partial Class formMain
         Me.tbAccountAccountID.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountAccountID.Name = "tbAccountAccountID"
         Me.tbAccountAccountID.ReadOnly = True
-        Me.tbAccountAccountID.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountAccountID.Size = New System.Drawing.Size(137, 23)
         Me.tbAccountAccountID.TabIndex = 10
         '
         'tbAccountDateCreated
@@ -466,34 +452,34 @@ Partial Class formMain
         Me.tbAccountDateCreated.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountDateCreated.Name = "tbAccountDateCreated"
         Me.tbAccountDateCreated.ReadOnly = True
-        Me.tbAccountDateCreated.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountDateCreated.Size = New System.Drawing.Size(137, 23)
         Me.tbAccountDateCreated.TabIndex = 17
         '
-        'Button3
+        'btnAccountUpdate
         '
-        Me.Button3.AutoSize = True
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.Location = New System.Drawing.Point(105, 220)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(70, 27)
-        Me.Button3.TabIndex = 1
-        Me.Button3.Text = "Update"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.btnAccountUpdate.AutoSize = True
+        Me.btnAccountUpdate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAccountUpdate.Location = New System.Drawing.Point(105, 184)
+        Me.btnAccountUpdate.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAccountUpdate.Name = "btnAccountUpdate"
+        Me.btnAccountUpdate.Size = New System.Drawing.Size(70, 27)
+        Me.btnAccountUpdate.TabIndex = 1
+        Me.btnAccountUpdate.Text = "Update"
+        Me.btnAccountUpdate.UseVisualStyleBackColor = True
         '
-        'LinkLabel4
+        'btnAccountBalanceLabel
         '
-        Me.LinkLabel4.AutoSize = True
-        Me.LinkLabel4.BackColor = System.Drawing.Color.White
-        Me.LinkLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LinkLabel4.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
-        Me.LinkLabel4.Location = New System.Drawing.Point(69, 186)
-        Me.LinkLabel4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.LinkLabel4.Name = "LinkLabel4"
-        Me.LinkLabel4.Size = New System.Drawing.Size(66, 17)
-        Me.LinkLabel4.TabIndex = 16
-        Me.LinkLabel4.TabStop = True
-        Me.LinkLabel4.Text = "Balance"
+        Me.btnAccountBalanceLabel.AutoSize = True
+        Me.btnAccountBalanceLabel.BackColor = System.Drawing.Color.White
+        Me.btnAccountBalanceLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAccountBalanceLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+        Me.btnAccountBalanceLabel.Location = New System.Drawing.Point(71, 153)
+        Me.btnAccountBalanceLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.btnAccountBalanceLabel.Name = "btnAccountBalanceLabel"
+        Me.btnAccountBalanceLabel.Size = New System.Drawing.Size(66, 17)
+        Me.btnAccountBalanceLabel.TabIndex = 16
+        Me.btnAccountBalanceLabel.TabStop = True
+        Me.btnAccountBalanceLabel.Text = "Balance"
         '
         'Label17
         '
@@ -510,11 +496,11 @@ Partial Class formMain
         'tbAccountType
         '
         Me.tbAccountType.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountType.Location = New System.Drawing.Point(138, 156)
+        Me.tbAccountType.Location = New System.Drawing.Point(138, 120)
         Me.tbAccountType.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountType.Name = "tbAccountType"
         Me.tbAccountType.ReadOnly = True
-        Me.tbAccountType.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountType.Size = New System.Drawing.Size(137, 23)
         Me.tbAccountType.TabIndex = 13
         '
         'Label18
@@ -532,11 +518,11 @@ Partial Class formMain
         'tbAccountBalance
         '
         Me.tbAccountBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbAccountBalance.Location = New System.Drawing.Point(138, 186)
+        Me.tbAccountBalance.Location = New System.Drawing.Point(138, 150)
         Me.tbAccountBalance.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountBalance.Name = "tbAccountBalance"
         Me.tbAccountBalance.ReadOnly = True
-        Me.tbAccountBalance.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountBalance.Size = New System.Drawing.Size(137, 23)
         Me.tbAccountBalance.TabIndex = 12
         '
         'Label19
@@ -557,27 +543,15 @@ Partial Class formMain
         Me.tbAccountUsername.Location = New System.Drawing.Point(138, 64)
         Me.tbAccountUsername.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountUsername.Name = "tbAccountUsername"
-        Me.tbAccountUsername.Size = New System.Drawing.Size(68, 23)
+        Me.tbAccountUsername.Size = New System.Drawing.Size(137, 23)
         Me.tbAccountUsername.TabIndex = 11
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.BackColor = System.Drawing.Color.White
-        Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(55, 125)
-        Me.Label22.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(84, 17)
-        Me.Label22.TabIndex = 5
-        Me.Label22.Text = "Last Login"
         '
         'Label24
         '
         Me.Label24.AutoSize = True
         Me.Label24.BackColor = System.Drawing.Color.White
         Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(89, 156)
+        Me.Label24.Location = New System.Drawing.Point(89, 120)
         Me.Label24.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(44, 17)
@@ -589,7 +563,7 @@ Partial Class formMain
         Me.GroupBox2.Controls.Add(Me.tbAccountNewPasswordConfirm)
         Me.GroupBox2.Controls.Add(Me.Label23)
         Me.GroupBox2.Controls.Add(Me.tbAccountCurrentPassword)
-        Me.GroupBox2.Controls.Add(Me.Button2)
+        Me.GroupBox2.Controls.Add(Me.btnAccountChange)
         Me.GroupBox2.Controls.Add(Me.Label25)
         Me.GroupBox2.Controls.Add(Me.tbAccountNewPassword)
         Me.GroupBox2.Controls.Add(Me.Label26)
@@ -623,7 +597,6 @@ Partial Class formMain
         Me.Label23.Size = New System.Drawing.Size(103, 15)
         Me.Label23.TabIndex = 0
         Me.Label23.Text = "Confirm"
-        Me.Label23.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'tbAccountCurrentPassword
         '
@@ -635,17 +608,17 @@ Partial Class formMain
         Me.tbAccountCurrentPassword.Size = New System.Drawing.Size(68, 23)
         Me.tbAccountCurrentPassword.TabIndex = 14
         '
-        'Button2
+        'btnAccountChange
         '
-        Me.Button2.AutoSize = True
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.Location = New System.Drawing.Point(90, 124)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(2)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(73, 27)
-        Me.Button2.TabIndex = 0
-        Me.Button2.Text = "Change"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.btnAccountChange.AutoSize = True
+        Me.btnAccountChange.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAccountChange.Location = New System.Drawing.Point(122, 120)
+        Me.btnAccountChange.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAccountChange.Name = "btnAccountChange"
+        Me.btnAccountChange.Size = New System.Drawing.Size(73, 27)
+        Me.btnAccountChange.TabIndex = 0
+        Me.btnAccountChange.Text = "Change"
+        Me.btnAccountChange.UseVisualStyleBackColor = True
         '
         'Label25
         '
@@ -1423,7 +1396,7 @@ Partial Class formMain
     Friend WithEvents btnRemoveHold As Button
 	Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
 	Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
-	Friend WithEvents LinkLabel4 As LinkLabel
+	Friend WithEvents btnAccountBalanceLabel As LinkLabel
 	Friend WithEvents tbAccountNewPassword As TextBox
 	Friend WithEvents tbAccountCurrentPassword As TextBox
 	Friend WithEvents tbAccountType As TextBox
@@ -1433,16 +1406,14 @@ Partial Class formMain
 	Friend WithEvents Label26 As Label
 	Friend WithEvents Label25 As Label
 	Friend WithEvents Label24 As Label
-	Friend WithEvents Label22 As Label
-	Friend WithEvents Label19 As Label
-	Friend WithEvents Label18 As Label
-	Friend WithEvents Label17 As Label
-	Friend WithEvents Button3 As Button
-	Friend WithEvents Button2 As Button
-	Friend WithEvents tbAccountNewPasswordConfirm As TextBox
-	Friend WithEvents tbAccountLastLogin As TextBox
-	Friend WithEvents tbAccountDateCreated As TextBox
-	Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label19 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label17 As Label
+    Friend WithEvents btnAccountUpdate As Button
+    Friend WithEvents btnAccountChange As Button
+    Friend WithEvents tbAccountNewPasswordConfirm As TextBox
+    Friend WithEvents tbAccountDateCreated As TextBox
+    Friend WithEvents GroupBox1 As GroupBox
 	Friend WithEvents GroupBox2 As GroupBox
 	Friend WithEvents Label23 As Label
     Friend WithEvents btnReservationCheckIn As Button

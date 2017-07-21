@@ -24,8 +24,6 @@ Public Class MySQLDatabaseConnector
 
     End Sub
 
-    ' Methods
-
     ' Accounts
     ''' <summary>
     ''' 
@@ -268,6 +266,11 @@ Public Class MySQLDatabaseConnector
         Return reseravations.ToArray()
     End Function
 
+    Public Function GetReservationsWithBalance(Optional user As Patron = Nothing) As Reservation()
+        Dim reseravations As Reservation() = GetReservations(user)
+        Return reseravations.Where(Function(res) res.FeesDue > 0).ToArray()
+    End Function
+
     Public Function GetHolds(Optional user As Patron = Nothing) As Hold()
         Dim reseravations As List(Of Hold) = New List(Of Hold)()
         Dim books As List(Of ReservationInfo) = New List(Of ReservationInfo)()
@@ -321,9 +324,6 @@ Public Class MySQLDatabaseConnector
             Return reseravations.ToArray()
     End Function
 
-
-
-    ' Book
     Public Function GetBook(isbn As Book.ISBN) As Dictionary(Of String, String)
         ' Create the data row
         Dim info As Dictionary(Of String, String) = New Dictionary(Of String, String)()
@@ -428,7 +428,7 @@ Public Class MySQLDatabaseConnector
         conn.Close()
     End Sub
 
-
+    ' Internal Classes
     Public Class AccountInfo
         Public Sub New() : End Sub
         Public Sub New(pID As Integer, pLevel As Patron.AccountLevel)

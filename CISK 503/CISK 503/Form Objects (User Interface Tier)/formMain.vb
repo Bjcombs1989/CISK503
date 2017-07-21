@@ -7,6 +7,7 @@
     Dim books As DataTable
     Dim loading As Boolean = True
     Dim book As Book
+    Dim action As MenuAction
 
     ' Form load
     ''' <summary>
@@ -302,19 +303,21 @@
 
     End Sub
 
-
     ' Reservations Page         TAB INDEX = 4
-    Dim action As MenuAction
-
     Private Sub ReservationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationToolStripMenuItem.Click
         TabControl1.SelectedIndex = 4 ' Use the index of the page (Reservations = 4, Account = 5)
         AcceptButton = Nothing ' Select the button to press when you hit "Enter"
         action = MenuAction.MyReservations
 
-        ' Load reservations
         listviewReservation.Items.Clear()
-        listviewReservation.Items.AddRange(mysql.GetReservations(user))
-        listviewReservation.Items.AddRange(mysql.GetHolds(user))
+
+        ' Load reservations and holds
+        If (sender Is btnAccountBalanceLabel) Then
+            listviewReservation.Items.AddRange(mysql.GetReservationsWithBalance(user))
+        Else
+            listviewReservation.Items.AddRange(mysql.GetReservations(user))
+            listviewReservation.Items.AddRange(mysql.GetHolds(user))
+        End If
     End Sub
 
     Private Sub CheckOutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckOutToolStripMenuItem.Click
@@ -345,6 +348,7 @@
             If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
             If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
             If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.Balance) Then ReservationToolStripMenuItem_Click(btnAccountBalanceLabel, Nothing)
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -359,6 +363,7 @@
             If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
             If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
             If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.Balance) Then ReservationToolStripMenuItem_Click(btnAccountBalanceLabel, Nothing)
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -372,18 +377,10 @@
             If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
             If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
             If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
+            If (action = MenuAction.Balance) Then ReservationToolStripMenuItem_Click(btnAccountBalanceLabel, Nothing)
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Check In", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Sub
-
-
-    ' Accounts Page             TAB INDEX = 5
-    Private Sub AccountToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AccountToolStripMenuItem.Click
-        TabControl1.SelectedIndex = 5 ' Use the index of the page (Reservations = 4, Account = 5)
-        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
-
-
     End Sub
 
     Private Sub listviewReservation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles listviewReservation.SelectedIndexChanged
@@ -426,32 +423,35 @@
 
     End Sub
 
+    ' Accounts Page             TAB INDEX = 5
+    Private Sub AccountToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AccountToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 5 ' Use the index of the page (Reservations = 4, Account = 5)
+        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
 
 
+    End Sub
 
-
-
-    '''''''''''''''''' NEW ITEMS will be added below here. Please move code into proper groups for organization purposes
-
-    'PLACE INSIDE TAB 5 ACCOUNT TAB
-    'Event to use link lable on account balance to open tab 4 to 
-    'show reservation history For billing
-    Private Sub LinkLabel4_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel4.LinkClicked
-
+    Private Sub btnAccountBalanceLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles btnAccountBalanceLabel.LinkClicked
+        ReservationToolStripMenuItem_Click(btnAccountBalanceLabel, Nothing)
     End Sub
 
     'Event Update User information
     'Only item I see that could be updated is the username
     'All other information does not seem to be a user edit item
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+    Private Sub btnAccountUpdate_Click(sender As Object, e As EventArgs) Handles btnAccountUpdate.Click
 
     End Sub
 
     'Event to update password
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    ' 
+    Private Sub btnAccountChange_Click(sender As Object, e As EventArgs) Handles btnAccountChange.Click
 
     End Sub
 
+
+
+
+    '''''''''''''''''' NEW ITEMS will be added below here. Please move code into proper groups for organization purposes
 
 End Class
 
@@ -459,4 +459,5 @@ Public Enum MenuAction
     MyReservations
     CheckIn
     CheckOut
+    Balance
 End Enum
