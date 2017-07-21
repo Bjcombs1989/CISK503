@@ -285,9 +285,13 @@
         Try
             mysql.AddHold(New Hold(user, book))
             MessageBox.Show("A hold has been placed for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            btnRemoveHold.Enabled = True ' enable the remove hold button
             btnPlaceHold.Enabled = False ' disable hold button
             btnCheckOut.Enabled = False ' disable check out button
             btnCheckIn.Enabled = False ' disable check in button
+            cmbxPlaceHoldFor.Enabled = False ' disable the place hold combobox
+            cmbxCheckOutTo.Enabled = False ' disable the check out button
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -297,20 +301,100 @@
         Try
             mysql.AddReservation(New Reservation(user, book))
             MessageBox.Show("This book has been checked out", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            btnRemoveHold.Enabled = False ' enable the remove hold button
             btnPlaceHold.Enabled = False ' disable hold button
             btnCheckOut.Enabled = False ' disable check out button
-            btnCheckIn.Enabled = True ' enable check in button
+            btnCheckIn.Enabled = True ' disable check in button
+            cmbxPlaceHoldFor.Enabled = False ' disable the place hold combobox
+            cmbxCheckOutTo.Enabled = False ' disable the check out button
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
     Private Sub btnCheckIn_Click(sender As Object, e As EventArgs) Handles btnCheckIn.Click
+        Try
+            mysql.RemoveReservation(book.Reservation)
+            MessageBox.Show("You have checked this book in", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+            btnRemoveHold.Enabled = False ' enable the remove hold button
+            btnPlaceHold.Enabled = True ' disable hold button
+            btnCheckOut.Enabled = True ' disable check out button
+            btnCheckIn.Enabled = False ' disable check in button
+            cmbxPlaceHoldFor.Enabled = True ' disable the place hold combobox
+            cmbxCheckOutTo.Enabled = True ' disable the check out button
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Check In", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub btnRemoveHold_Click(sender As Object, e As EventArgs) Handles btnRemoveHold.Click
+        Try
+            mysql.RemoveHold(book.Hold)
+            MessageBox.Show("You have removed the hold for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+            btnRemoveHold.Enabled = False ' enable the remove hold button
+            btnPlaceHold.Enabled = True ' disable hold button
+            btnCheckOut.Enabled = True ' disable check out button
+            btnCheckIn.Enabled = False ' disable check in button
+            cmbxPlaceHoldFor.Enabled = True ' disable the place hold combobox
+            cmbxCheckOutTo.Enabled = True ' disable the check out button
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub cmbxCheckOutTo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxCheckOutTo.SelectedIndexChanged
+        If loading Then Return
+        Dim selected As KeyValuePair(Of Integer, String)
+
+        Try
+            selected = DirectCast(cmbxCheckOutTo.SelectedItem, KeyValuePair(Of Integer, String))
+        Catch ex As Exception
+            cmbxCheckOutTo.SelectedIndex = -1
+            Return
+        End Try
+
+        Try
+            mysql.AddReservation(New Reservation(New Patron(mysql, selected.Key), book))
+            MessageBox.Show("You have checked this book out to " + selected.Value, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            btnRemoveHold.Enabled = False ' enable the remove hold button
+            btnPlaceHold.Enabled = False ' disable hold button
+            btnCheckOut.Enabled = False ' disable check out button
+            btnCheckIn.Enabled = True ' disable check in button
+            cmbxPlaceHoldFor.Enabled = False ' disable the place hold combobox
+            cmbxCheckOutTo.Enabled = False ' disable the check out button
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub cmbxPlaceHoldFor_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxPlaceHoldFor.SelectedIndexChanged
+        If loading Then Return
+        Dim selected As KeyValuePair(Of Integer, String)
+
+        Try
+            selected = DirectCast(cmbxPlaceHoldFor.SelectedItem, KeyValuePair(Of Integer, String))
+        Catch ex As Exception
+            cmbxPlaceHoldFor.SelectedIndex = -1
+            Return
+        End Try
+
+        Try
+            mysql.AddHold(New Hold(New Patron(mysql, selected.Key), book))
+            MessageBox.Show("You have placed a hold on this book for " + selected.Value, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            btnRemoveHold.Enabled = True ' enable the remove hold button
+            btnPlaceHold.Enabled = False ' disable hold button
+            btnCheckOut.Enabled = False ' disable check out button
+            btnCheckIn.Enabled = False ' disable check in button
+            cmbxPlaceHoldFor.Enabled = False ' disable the place hold combobox
+            cmbxCheckOutTo.Enabled = False ' disable the check out button
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     ' Reservations Page         TAB INDEX = 4
@@ -431,54 +515,6 @@
         End If
 
 
-    End Sub
-
-    Private Sub cmbxCheckOutTo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxCheckOutTo.SelectedIndexChanged
-        If loading Then Return
-        Dim selected As KeyValuePair(Of Integer, String)
-
-        Try
-            selected = DirectCast(cmbxCheckOutTo.SelectedItem, KeyValuePair(Of Integer, String))
-        Catch ex As Exception
-            cmbxCheckOutTo.SelectedIndex = -1
-            Return
-        End Try
-
-        Try
-            mysql.AddReservation(New Reservation(New Patron(mysql, selected.Key), book))
-            MessageBox.Show("You have checked this book out to " + selected.Value, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
-            If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
-            If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
-            If (action = MenuAction.Balance) Then ReservationToolStripMenuItem_Click(btnAccountBalanceLabel, Nothing)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    Private Sub cmbxPlaceHoldFor_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxPlaceHoldFor.SelectedIndexChanged
-        If loading Then Return
-        Dim selected As KeyValuePair(Of Integer, String)
-
-        Try
-            selected = DirectCast(cmbxPlaceHoldFor.SelectedItem, KeyValuePair(Of Integer, String))
-        Catch ex As Exception
-            cmbxPlaceHoldFor.SelectedIndex = -1
-            Return
-        End Try
-
-        Try
-            mysql.AddHold(New Hold(New Patron(mysql, selected.Key), book))
-            MessageBox.Show("You have placed a hold on this book for " + selected.Value, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
-            If (action = MenuAction.CheckIn) Then CheckInToolStripMenuItem_Click(Nothing, Nothing)
-            If (action = MenuAction.CheckOut) Then CheckOutToolStripMenuItem_Click(Nothing, Nothing)
-            If (action = MenuAction.Balance) Then ReservationToolStripMenuItem_Click(btnAccountBalanceLabel, Nothing)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
     End Sub
 
     ' Accounts Page             TAB INDEX = 5
