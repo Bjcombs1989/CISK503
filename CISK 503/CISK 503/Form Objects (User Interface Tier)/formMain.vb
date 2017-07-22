@@ -1,6 +1,9 @@
 ﻿Public Class formMain
-    ''''''''' HOLD CONTROL, press M then L to expand/collapse all. I like to collapse all and expand as 
-    ''''''''' needed to see what I'm working on
+
+    ''''''''' READ ME!!!
+    ''''''''' HOLD CONTROL, press M then L to expand/collapse all
+    ''''''''' DO IT TWICE TO collapse ALL
+    ''''''''' Then expand as needed to see the organization
 
     Public Shared mysql As MySQLDatabaseConnector
     Dim user As Patron
@@ -8,6 +11,7 @@
     Dim loading As Boolean = True
     Dim book As Book
     Dim action As MenuAction
+    Dim selected_user As Patron
 
     ' Form 
     ''' <summary>
@@ -31,10 +35,13 @@
             MySql = New MySQLDatabaseConnector()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
+            Close()
+            Return
         End Try
 
         ' Load the account level enumeration into the combo boxes as needed
         cmboxAccountTypeAddAccount.DataSource = [Enum].GetValues(GetType(Patron.AccountLevel))
+        cbAccountType.DataSource = [Enum].GetValues(GetType(Patron.AccountLevel))
 
         ' Load things for the Search Tab
         cmbxSearchGenre.ComboBox.DisplayMember = "Value"
@@ -48,6 +55,28 @@
         cmbxPlaceHoldFor.DataSource = mysql.ListUsers()
 
         loading = False
+    End Sub
+
+    ''' <summary>
+    ''' This method will present about information to the user of the application
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <author>Juan Maldonado</author>
+    ''' <date>July 3, 2017</date>
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        MessageBox.Show("Library Circulation Desk" + vbCrLf + "Author : A Team" + vbCrLf + "Copyright : 2017" + vbCrLf + "CISK 503 Summer 2017", "About Library Circulation Desk",
+           MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+    End Sub
+
+    Private Sub FAQToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles FAQToolStripMenuItem1.Click
+        TabControl1.SelectedIndex = 6 ' Use the index of the page
+        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
+    End Sub
+
+    Private Sub ContactsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ContactsToolStripMenuItem1.Click
+        TabControl1.SelectedIndex = 7 ' Use the index of the page
+        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
     End Sub
 
     ' Login Page                TAB INDEX = 0
@@ -71,6 +100,7 @@
         CirculationToolStripMenuItem.Enabled = False
         AdministrationToolStripMenuItem.Enabled = False
     End Sub
+
     ''' <summary>
     ''' This method is used for the Login click event
     ''' </summary>
@@ -137,6 +167,7 @@
         txtUsernameAddAccount.Select()
         AcceptButton = btnAddAccount
     End Sub
+
     ''' <summary>
     ''' This method will be used to add the account on the new account page
     ''' </summary>
@@ -397,7 +428,7 @@
         End Try
     End Sub
 
-    ' Reservations Page         TAB INDEX = 4
+    ' Books Page         TAB INDEX = 4
     Private Sub ReservationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReservationToolStripMenuItem.Click
         TabControl1.SelectedIndex = 4 ' Use the index of the page (Reservations = 4, Account = 5)
         AcceptButton = Nothing ' Select the button to press when you hit "Enter"
@@ -431,7 +462,7 @@
 
         ' Load reservations
         listviewReservation.Items.Clear()
-        listviewReservation.Items.AddRange(mysql.GetReservations())
+        listviewReservation.Items.AddRange(mysql.GetReservations(selected_user))
     End Sub
 
     Private Sub btnReservationRemoveHold_Click(sender As Object, e As EventArgs) Handles btnReservationRemoveHold.Click
@@ -522,31 +553,183 @@
         TabControl1.SelectedIndex = 5 ' Use the index of the page (Reservations = 4, Account = 5)
         AcceptButton = Nothing ' Select the button to press when you hit "Enter"
 
+        ' Load the user information
+        selected_user = user
+        GroupBox3.Visible = False
+        LoadAccount()
 
+        ' Load accounts into listview
+        lvAccounts.Items.Clear()
+        action = MenuAction.Account
+    End Sub
+
+    Private Sub AccountsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AccountsToolStripMenuItem.Click, AccountManagerToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 5 ' Use the index of the page (Reservations = 4, Account = 5)
+        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
+
+        ' Load the user information
+        selected_user = user
+        LoadAccount()
+
+        GroupBox3.Visible = TypeOf (user) Is Administrator
+
+        ' Load accounts into listview
+        LoadAccounts()
+        action = MenuAction.Accounts
+    End Sub
+
+    Private Sub LoadAccount()
+        tbAccountAccountID.Text = selected_user.ID
+        tbAccountDateCreated.Text = selected_user.DateCreated.ToShortDateString()
+        tbAccountUsername.Text = selected_user.UserName
+        cbAccountType.SelectedIndex = Convert.ToInt32(selected_user.Level)
+        tbAccountBalance.Text = ""
+
+        GroupBox3.Visible = (Not selected_user.ID = user.ID) And TypeOf (user) Is Administrator
+    End Sub
+
+    Private Sub LoadAccounts()
+        lvAccounts.Items.Clear()
+        Dim patrons As Patron() = mysql.ListUserAccounts()
+        For Each patron As Patron In patrons
+            Dim lvi As Patron.ListViewPatron = New Patron.ListViewPatron(patron)
+            lvAccounts.Items.Add(lvi)
+        Next
     End Sub
 
     Private Sub btnAccountBalanceLabel_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles btnAccountBalanceLabel.LinkClicked
         ReservationToolStripMenuItem_Click(btnAccountBalanceLabel, Nothing)
     End Sub
 
-    'Event Update User information
-    'Only item I see that could be updated is the username
-    'All other information does not seem to be a user edit item
     Private Sub btnAccountUpdate_Click(sender As Object, e As EventArgs) Handles btnAccountUpdate.Click
+        If cbAccountType.SelectedIndex = -1 Then
+            MessageBox.Show("Please choose the account type")
+            Return
+        End If
 
+        If String.IsNullOrWhiteSpace(tbAccountUsername.Text) Then
+            MessageBox.Show("Please enter the username")
+            Return
+        End If
+
+        Try
+            mysql.UpdateUsername(selected_user, tbAccountUsername.Text)
+            selected_user.UserName = tbAccountUsername.Text
+
+            If TypeOf (user) Is Administrator Then
+                mysql.UpdateLevel(selected_user, Convert.ToInt32(cbAccountType.SelectedValue))
+                selected_user.Level = cbAccountType.SelectedValue
+            End If
+
+            If action = MenuAction.Accounts Then
+                LoadAccounts()
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        LoadAccount()
     End Sub
 
-    'Event to update password
-    ' 
     Private Sub btnAccountChange_Click(sender As Object, e As EventArgs) Handles btnAccountChange.Click
+        If String.IsNullOrWhiteSpace(tbAccountCurrentPassword.Text) Or
+           String.IsNullOrWhiteSpace(tbAccountNewPassword.Text) Or
+           String.IsNullOrWhiteSpace(tbAccountNewPasswordConfirm.Text) Then
+            MessageBox.Show("Please enter all fields")
+            Return
+        End If
+
+        If Not tbAccountCurrentPassword.Text = user.Password Then
+            MessageBox.Show("New password and confirm password must match")
+            Return
+        End If
+
+        If Not tbAccountNewPassword.Text = tbAccountNewPasswordConfirm.Text Then
+            MessageBox.Show("New password and confirm password must match")
+            Return
+        End If
+
+        Try
+            mysql.UpdatePassword(selected_user, tbAccountNewPassword.Text)
+
+            tbAccountCurrentPassword.Clear()
+            tbAccountNewPassword.Clear()
+            tbAccountNewPasswordConfirm.Clear()
+
+            If action = MenuAction.Accounts Then
+                LoadAccounts()
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        LoadAccount()
+    End Sub
+
+    Private Sub lvAccounts_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvAccounts.SelectedIndexChanged
+        Dim lvi As Patron.ListViewPatron
+
+        Try
+            lvi = DirectCast(lvAccounts.SelectedItems(0), Patron.ListViewPatron)
+        Catch ex As Exception
+            Return
+        End Try
+
+        selected_user = lvi.patron
+
+        LoadAccount()
+    End Sub
+
+    Private Sub btnAccountsDelete_Click(sender As Object, e As EventArgs) Handles btnAccountsDelete.Click
+        Try
+            If TypeOf (user) Is Administrator Then
+                mysql.DeleteAccount(selected_user)
+            Else
+                MessageBox.Show("You are not allowed to delete accounts")
+                Return
+            End If
+
+            tbAccountCurrentPassword.Clear()
+            tbAccountNewPassword.Clear()
+            tbAccountNewPasswordConfirm.Clear()
+            tbAccountAccountID.Clear()
+            tbAccountDateCreated.Clear()
+            tbAccountUsername.Clear()
+            cbAccountType.SelectedIndex = -1
+            tbAccountBalance.Clear()
+
+            If action = MenuAction.Accounts Then
+                LoadAccounts()
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
+    ' Catelog Manager Page      TAB INDEX = 8
+    Private Sub CatalogeManagerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CatalogeManagerToolStripMenuItem.Click
+        TabControl1.SelectedIndex = 8 ' Use the index of the page
+        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
+
+        lvCatalog.Items.Clear()
+
+        For Each row As DataRow In books.Rows
+            Dim lvi As New ListViewItem()
+            lvi.Text = row("ISBN").ToString()
+            lvi.SubItems.Add(row("Title").ToString())
+            lvi.SubItems.Add(row("Genre").ToString())
+            lvi.SubItems.Add(row("Author").ToString())
+            lvi.SubItems.Add(row("Publisher").ToString())
+
+            lvCatalog.Items.Add(lvi)
+        Next
 
     End Sub
 
+    Private Sub lvCatalog_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvCatalog.SelectedIndexChanged
 
+    End Sub
 
-
-
-    '''''''''''''''''' NEW ITEMS will be added below here. Please move code into proper groups for organization purposes
 
 End Class
 
@@ -555,4 +738,6 @@ Public Enum MenuAction
     CheckIn
     CheckOut
     Balance
+    Account
+    Accounts
 End Enum

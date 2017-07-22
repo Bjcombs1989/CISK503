@@ -133,7 +133,7 @@
     End Function
 
 
-    ' Internal Class
+    ' Internal Classes
     Public Class ISBN
         Dim _isbn As String
 
@@ -149,3 +149,4 @@
     End Class
 
 End Class
+

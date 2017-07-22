@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports CISK_503
+Imports MySql.Data.MySqlClient
 
 Public Class MySQLDatabaseConnector
     Dim conn As New MySqlConnection
@@ -89,7 +90,7 @@ Public Class MySQLDatabaseConnector
     ''' <author>Brian Combs</author>
     ''' <date>June 25, 2017</date>
     Function LoginUser(username As String, password As String) As AccountInfo
-        Dim cmd As New MySqlCommand("SELECT `ID`, `Account_Level` FROM `User` WHERE `Password` LIKE @password AND `Username` LIKE @username", conn)
+        Dim cmd As New MySqlCommand("SELECT `ID`, `Account_Level`, `Created_Date` FROM `User` WHERE `Password` LIKE @password AND `Username` LIKE @username", conn)
         cmd.Prepare()
         cmd.Parameters.AddWithValue("@password", password)
         cmd.Parameters.AddWithValue("@username", username)
@@ -102,6 +103,7 @@ Public Class MySQLDatabaseConnector
                 accountInfo = New AccountInfo()
                 accountInfo.ID = reader.GetInt32("ID")
                 accountInfo.Level = reader.GetInt32("Account_Level")
+                DateTime.TryParse(reader.GetString("Created_Date"), accountInfo.Created_Date)
             End While
 
             reader.Close()
@@ -113,9 +115,57 @@ Public Class MySQLDatabaseConnector
         End Try
     End Function
 
-    Sub ChangeAccountLevel(userID As Integer, newLevel As Patron.AccountLevel)
+    Public Sub UpdateLevel(user As Patron, new_level As Patron.AccountLevel)
+        Dim cmd As New MySqlCommand("UPDATE `User` SET `Account_Level` = @level WHERE `ID` = @id", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@id", user.ID)
+        cmd.Parameters.AddWithValue("@level", Convert.ToInt32(new_level))
 
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Throw ex
+        End Try
     End Sub
+
+    Public Sub UpdatePassword(user As Patron, new_password As String)
+        Dim cmd As New MySqlCommand("UPDATE `User` SET `Password` = @password WHERE `ID` = @id", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@password", user.HashPassword(new_password))
+        cmd.Parameters.AddWithValue("@id", user.ID)
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub DeleteAccount(user As Patron)
+        Dim cmd As New MySqlCommand("DELETE FROM `User` WHERE `ID` = @id", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@id", user.ID)
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub UpdateUsername(user As Patron, new_username As String)
+        Dim cmd As New MySqlCommand("UPDATE `User` SET `Username` = @username WHERE `ID` = @id", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@username", new_username)
+        cmd.Parameters.AddWithValue("@id", user.ID)
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
 
     ' Holds
     Sub AddHold(pHold As Hold)
@@ -178,6 +228,35 @@ Public Class MySQLDatabaseConnector
     End Sub
 
     ' Get and List Methods
+    Public Function ListUserAccounts() As Patron()
+        Dim ids As List(Of Integer) = New List(Of Integer)
+        Dim list As List(Of Patron) = New List(Of Patron)
+        Dim reader As MySqlDataReader = Nothing
+        Dim cmd As New MySqlCommand("SELECT `ID` FROM `User`", conn)
+        cmd.Prepare()
+
+        Try
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                ids.Add(reader.GetInt32("ID"))
+            End While
+
+            reader.Close()
+
+            For Each id As Integer In ids
+                list.Add(New Patron(Me, id))
+            Next
+
+        Catch ex As Exception
+            Throw ex
+        Finally
+            If Not reader Is Nothing Then reader.Close()
+        End Try
+
+        Return list.ToArray()
+    End Function
+
     Public Function GetLateFee(days_late As Integer) As Decimal
         Dim daily_fee As Decimal
 
@@ -288,40 +367,40 @@ Public Class MySQLDatabaseConnector
         'Try
         reader = cmd.ExecuteReader()
 
-            While reader.Read()
-                books.Add(New ReservationInfo(reader.GetString("Book"), reader.GetInt32("User"), reader.GetDateTime("Hold_Until"), 0))
-            End While
+        While reader.Read()
+            books.Add(New ReservationInfo(reader.GetString("Book"), reader.GetInt32("User"), reader.GetDateTime("Hold_Until"), 0))
+        End While
 
-            reader.Close()
+        reader.Close()
 
-            For Each b As ReservationInfo In books
-                Dim res As Hold
-                Dim book As Book
-                Dim held_by As Patron
+        For Each b As ReservationInfo In books
+            Dim res As Hold
+            Dim book As Book
+            Dim held_by As Patron
 
-                If user Is Nothing Then
-                    held_by = New Patron(Me, b.user)
-                Else
-                    held_by = user
-                End If
+            If user Is Nothing Then
+                held_by = New Patron(Me, b.user)
+            Else
+                held_by = user
+            End If
 
-                ' Set the variables to their instances
-                book = New Book(Me, New Book.ISBN(b.isbn))
-                res = New Hold(held_by, book, b.due)
+            ' Set the variables to their instances
+            book = New Book(Me, New Book.ISBN(b.isbn))
+            res = New Hold(held_by, book, b.due)
 
-                ' Add the reservation to the list
-                reseravations.Add(res)
-            Next
-            ' Declare the variables
+            ' Add the reservation to the list
+            reseravations.Add(res)
+        Next
+        ' Declare the variables
 
 
-            'Catch ex As Exception
-            '    Throw ex
-            'Finally
-            '    If Not reader Is Nothing Then reader.Close()
-            'End Try
+        'Catch ex As Exception
+        '    Throw ex
+        'Finally
+        '    If Not reader Is Nothing Then reader.Close()
+        'End Try
 
-            Return reseravations.ToArray()
+        Return reseravations.ToArray()
     End Function
 
     Public Function GetBook(isbn As Book.ISBN) As Dictionary(Of String, String)
@@ -421,7 +500,7 @@ Public Class MySQLDatabaseConnector
 
         Return table
     End Function
-    
+
     Public Function ListUsers() As KeyValuePair(Of Integer, String)()
         Dim list As List(Of KeyValuePair(Of Integer, String)) = New List(Of KeyValuePair(Of Integer, String))
         Dim reader As MySqlDataReader = Nothing
@@ -481,4 +560,5 @@ Public Class MySQLDatabaseConnector
             Me.amount = amount
         End Sub
     End Class
+
 End Class

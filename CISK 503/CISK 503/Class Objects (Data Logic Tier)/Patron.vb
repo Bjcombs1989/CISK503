@@ -9,6 +9,7 @@ Public Class Patron
     Dim _id As Integer
     Dim _level As AccountLevel
     Dim _mysql As MySQLDatabaseConnector
+    Dim _datecreated As DateTime
     Protected _feesDue As Decimal
 
     ' Properties
@@ -27,10 +28,13 @@ Public Class Patron
     ''' </summary>
     ''' <date>2017-06-26</date>
     ''' <author>Brian Combs</author>
-    Public ReadOnly Property UserName As String
+    Public Property UserName As String
         Get
             Return _username
         End Get
+        Set(value As String)
+            _username = value
+        End Set
     End Property
     ''' <summary>
     ''' This property will be used to access the password in the child objects
@@ -60,9 +64,18 @@ Public Class Patron
     ''' <returns>The AccountLevel that is assigned to the account</returns>
     ''' <date>2017-06-07</date>
     ''' <author>Brian Combs</author>
-    Public ReadOnly Property Level As AccountLevel
+    Public Property Level As AccountLevel
         Get
             Return _level
+        End Get
+        Set(value As AccountLevel)
+            _level = value
+        End Set
+    End Property
+
+    Public ReadOnly Property DateCreated As DateTime
+        Get
+            Return _datecreated
         End Get
     End Property
 
@@ -90,6 +103,7 @@ Public Class Patron
 
             _id = login.ID
             _level = login.Level
+            _datecreated = login.Created_Date
         Catch ex As Exception
             Throw ex
         End Try
@@ -104,8 +118,10 @@ Public Class Patron
         _username = ac.Username
         _password = ac.Password
         _mysql = pMySQL
+        _datecreated = ac.Created_Date
 
     End Sub
+
     ' Methods
     Public Function HashPassword(password As String) As String
         Return password & "hashed"
@@ -119,26 +135,6 @@ Public Class Patron
         Return String.Format("{0}", _username)
     End Function
 
-    ' A patron (or any of it's children) can Place Holds and Remove Holds where it is the patron on it
-    Public Sub PlaceHold(book As Book)
-        If Not book.IsAvailable Then
-            Throw New ConstraintException("This book is not available to be placed on hold")
-        End If
-
-        Dim _hold As New Hold(Me, book)
-        MySQL.AddHold(_hold)
-        book.IsAvailable = False
-    End Sub
-
-    Public Overridable Sub RemoveHold(hold As Hold)
-        If Not hold.Patron.ID = ID Then
-            Throw New InternalExceptions.PermissionsNotSufficientException("You do not have permission to remove a hold for another user")
-        End If
-
-        MySQL.RemoveHold(hold)
-        hold.Book.IsAvailable = True
-    End Sub
-
     ' Internal
     ''' <summary>
     ''' This enum will be used to manage account permissions
@@ -150,5 +146,19 @@ Public Class Patron
         Librarian = 1
         Administation = 2
     End Enum
+
+    Public Class ListViewPatron
+        Inherits ListViewItem
+
+        Public patron As Patron
+
+        Public Sub New(patron As Patron)
+            Me.patron = patron
+            Text = patron.ID
+            SubItems.Add(patron.UserName)
+            SubItems.Add(patron.DateCreated.ToShortDateString())
+            SubItems.Add(patron.Level.ToString())
+        End Sub
+    End Class
 
 End Class
