@@ -381,6 +381,7 @@ Partial Class formMain
 		'tpAccount
 		'
 		Me.tpAccount.BackgroundImage = CType(resources.GetObject("tpAccount.BackgroundImage"), System.Drawing.Image)
+		Me.tpAccount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
 		Me.tpAccount.Controls.Add(Me.GroupBox3)
 		Me.tpAccount.Controls.Add(Me.lvAccounts)
 		Me.tpAccount.Controls.Add(Me.GroupBox1)
@@ -673,6 +674,7 @@ Partial Class formMain
 		'tpBooks
 		'
 		Me.tpBooks.BackgroundImage = CType(resources.GetObject("tpBooks.BackgroundImage"), System.Drawing.Image)
+		Me.tpBooks.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
 		Me.tpBooks.Controls.Add(Me.btnReservationCheckIn)
 		Me.tpBooks.Controls.Add(Me.btnReservationCheckOut)
 		Me.tpBooks.Controls.Add(Me.txtReservationName)
@@ -994,6 +996,7 @@ Partial Class formMain
 		'tpCreate
 		'
 		Me.tpCreate.BackgroundImage = CType(resources.GetObject("tpCreate.BackgroundImage"), System.Drawing.Image)
+		Me.tpCreate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
 		Me.tpCreate.Controls.Add(Me.cmboxAccountTypeAddAccount)
 		Me.tpCreate.Controls.Add(Me.Label6)
 		Me.tpCreate.Controls.Add(Me.btnAddAccount)
@@ -1085,6 +1088,7 @@ Partial Class formMain
 		'tpLogin
 		'
 		Me.tpLogin.BackgroundImage = CType(resources.GetObject("tpLogin.BackgroundImage"), System.Drawing.Image)
+		Me.tpLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
 		Me.tpLogin.Controls.Add(Me.btnLogin)
 		Me.tpLogin.Controls.Add(Me.txtPassword)
 		Me.tpLogin.Controls.Add(Me.txtUsername)
@@ -1581,8 +1585,10 @@ Partial Class formMain
 		Me.ClientSize = New System.Drawing.Size(1690, 843)
 		Me.Controls.Add(Me.TabControl1)
 		Me.Controls.Add(Me.MenuStrip1)
+		Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
 		Me.MainMenuStrip = Me.MenuStrip1
 		Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.MaximizeBox = False
 		Me.Name = "formMain"
 		Me.Text = "Library Circulation Desk"
 		Me.MenuStrip1.ResumeLayout(False)
