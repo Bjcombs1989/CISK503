@@ -324,6 +324,7 @@ Partial Class formMain
 		'
 		'tpContacts
 		'
+		Me.tpContacts.BackgroundImage = CType(resources.GetObject("tpContacts.BackgroundImage"), System.Drawing.Image)
 		Me.tpContacts.Controls.Add(Me.Label7)
 		Me.tpContacts.Location = New System.Drawing.Point(4, 29)
 		Me.tpContacts.Name = "tpContacts"
@@ -335,15 +336,21 @@ Partial Class formMain
 		'Label7
 		'
 		Me.Label7.AutoSize = True
-		Me.Label7.Location = New System.Drawing.Point(52, 46)
+		Me.Label7.BackColor = System.Drawing.Color.White
+		Me.Label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.Label7.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+		Me.Label7.Font = New System.Drawing.Font("Modern No. 20", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label7.Location = New System.Drawing.Point(112, 174)
 		Me.Label7.Name = "Label7"
-		Me.Label7.Size = New System.Drawing.Size(214, 220)
+		Me.Label7.Size = New System.Drawing.Size(369, 277)
 		Me.Label7.TabIndex = 0
 		Me.Label7.Text = "Warrior Hall University Library" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Phone: " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(254) 519-5798" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Address: " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "1001 Lea" &
 	"dership Place" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Killeen, Texas 76549" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Email: " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "library@tamuct.edu"
 		'
 		'tpHelp
 		'
+		Me.tpHelp.BackgroundImage = CType(resources.GetObject("tpHelp.BackgroundImage"), System.Drawing.Image)
+		Me.tpHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
 		Me.tpHelp.Controls.Add(Me.LinkLabel3)
 		Me.tpHelp.Controls.Add(Me.LinkLabel2)
 		Me.tpHelp.Controls.Add(Me.LinkLabel1)
@@ -425,6 +432,7 @@ Partial Class formMain
 		'
 		'lvAccounts
 		'
+		Me.lvAccounts.BackColor = System.Drawing.Color.WhiteSmoke
 		Me.lvAccounts.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ID, Me.Username, Me.Created, Me.Type})
 		Me.lvAccounts.Dock = System.Windows.Forms.DockStyle.Left
 		Me.lvAccounts.FullRowSelect = True
@@ -828,6 +836,7 @@ Partial Class formMain
 		'
 		Me.listviewReservation.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
 			Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+		Me.listviewReservation.BackColor = System.Drawing.Color.WhiteSmoke
 		Me.listviewReservation.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5, Me.ColumnHeader6})
 		Me.listviewReservation.ForeColor = System.Drawing.SystemColors.InfoText
 		Me.listviewReservation.FullRowSelect = True
@@ -1384,6 +1393,7 @@ Partial Class formMain
 		'
 		'tpCatalog
 		'
+		Me.tpCatalog.BackgroundImage = CType(resources.GetObject("tpCatalog.BackgroundImage"), System.Drawing.Image)
 		Me.tpCatalog.Controls.Add(Me.lvCatalog)
 		Me.tpCatalog.Controls.Add(Me.TextBox1)
 		Me.tpCatalog.Controls.Add(Me.TextBox2)
