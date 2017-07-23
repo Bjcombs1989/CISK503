@@ -329,7 +329,7 @@ Partial Class formMain
         Me.tpContacts.Location = New System.Drawing.Point(4, 22)
         Me.tpContacts.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.tpContacts.Name = "tpContacts"
-        Me.tpContacts.Size = New System.Drawing.Size(1119, 499)
+        Me.tpContacts.Size = New System.Drawing.Size(1119, 498)
         Me.tpContacts.TabIndex = 11
         Me.tpContacts.Text = "Contacts"
         Me.tpContacts.UseVisualStyleBackColor = True
@@ -434,7 +434,7 @@ Partial Class formMain
         Me.tpAccount.Location = New System.Drawing.Point(4, 22)
         Me.tpAccount.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.tpAccount.Name = "tpAccount"
-        Me.tpAccount.Size = New System.Drawing.Size(1119, 499)
+        Me.tpAccount.Size = New System.Drawing.Size(1119, 498)
         Me.tpAccount.TabIndex = 9
         Me.tpAccount.Text = "Account"
         Me.tpAccount.UseVisualStyleBackColor = True
@@ -475,7 +475,7 @@ Partial Class formMain
         Me.lvAccounts.Location = New System.Drawing.Point(0, 0)
         Me.lvAccounts.MultiSelect = False
         Me.lvAccounts.Name = "lvAccounts"
-        Me.lvAccounts.Size = New System.Drawing.Size(495, 499)
+        Me.lvAccounts.Size = New System.Drawing.Size(495, 498)
         Me.lvAccounts.TabIndex = 22
         Me.lvAccounts.UseCompatibleStateImageBehavior = False
         Me.lvAccounts.View = System.Windows.Forms.View.Details
@@ -759,7 +759,7 @@ Partial Class formMain
         Me.tpBooks.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.tpBooks.Name = "tpBooks"
         Me.tpBooks.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tpBooks.Size = New System.Drawing.Size(1119, 499)
+        Me.tpBooks.Size = New System.Drawing.Size(1119, 498)
         Me.tpBooks.TabIndex = 4
         Me.tpBooks.Text = "Books"
         Me.tpBooks.UseVisualStyleBackColor = True
@@ -889,7 +889,7 @@ Partial Class formMain
         Me.listviewReservation.Location = New System.Drawing.Point(0, 0)
         Me.listviewReservation.MultiSelect = False
         Me.listviewReservation.Name = "listviewReservation"
-        Me.listviewReservation.Size = New System.Drawing.Size(768, 505)
+        Me.listviewReservation.Size = New System.Drawing.Size(768, 504)
         Me.listviewReservation.TabIndex = 0
         Me.listviewReservation.TileSize = New System.Drawing.Size(505, 50)
         Me.listviewReservation.UseCompatibleStateImageBehavior = False
@@ -1250,7 +1250,7 @@ Partial Class formMain
         Me.tpBook.Location = New System.Drawing.Point(4, 22)
         Me.tpBook.Name = "tpBook"
         Me.tpBook.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.tpBook.Size = New System.Drawing.Size(1119, 499)
+        Me.tpBook.Size = New System.Drawing.Size(1119, 498)
         Me.tpBook.TabIndex = 14
         Me.tpBook.Text = "Book"
         Me.tpBook.UseVisualStyleBackColor = True
@@ -1419,7 +1419,7 @@ Partial Class formMain
         Me.tpCatalog.Controls.Add(Me.Label28)
         Me.tpCatalog.Location = New System.Drawing.Point(4, 22)
         Me.tpCatalog.Name = "tpCatalog"
-        Me.tpCatalog.Size = New System.Drawing.Size(1119, 499)
+        Me.tpCatalog.Size = New System.Drawing.Size(1119, 498)
         Me.tpCatalog.TabIndex = 15
         Me.tpCatalog.Text = "Catalog"
         Me.tpCatalog.UseVisualStyleBackColor = True
@@ -1434,7 +1434,7 @@ Partial Class formMain
         Me.lvCatalog.Location = New System.Drawing.Point(0, 1)
         Me.lvCatalog.MultiSelect = False
         Me.lvCatalog.Name = "lvCatalog"
-        Me.lvCatalog.Size = New System.Drawing.Size(705, 505)
+        Me.lvCatalog.Size = New System.Drawing.Size(705, 504)
         Me.lvCatalog.TabIndex = 12
         Me.lvCatalog.TileSize = New System.Drawing.Size(505, 50)
         Me.lvCatalog.UseCompatibleStateImageBehavior = False
