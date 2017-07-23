@@ -143,6 +143,12 @@
 
 			' Move to welcome page
 			TabControl1.SelectedIndex = 0
+
+
+			' Tried to Display Welcome Message
+			'MessageBox.Show("Welcome back " & txtUsername.Text + vbCrLf + "Select Your Menu Item to Begin", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+
+
 			' Clear the form for future use
 			txtUsername.Text = ""
 			txtPassword.Text = ""
