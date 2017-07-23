@@ -1,27 +1,27 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class formMain
-    Inherits System.Windows.Forms.Form
+	Inherits System.Windows.Forms.Form
 
-    'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
-    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-        Finally
-            MyBase.Dispose(disposing)
-        End Try
-    End Sub
+	'Form overrides dispose to clean up the component list.
+	<System.Diagnostics.DebuggerNonUserCode()>
+	Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+		Try
+			If disposing AndAlso components IsNot Nothing Then
+				components.Dispose()
+			End If
+		Finally
+			MyBase.Dispose(disposing)
+		End Try
+	End Sub
 
-    'Required by the Windows Form Designer
-    Private components As System.ComponentModel.IContainer
+	'Required by the Windows Form Designer
+	Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
-    Private Sub InitializeComponent()
+	'NOTE: The following procedure is required by the Windows Form Designer
+	'It can be modified using the Windows Form Designer.  
+	'Do not modify it using the code editor.
+	<System.Diagnostics.DebuggerStepThrough()>
+	Private Sub InitializeComponent()
 		Me.components = New System.ComponentModel.Container()
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formMain))
 		Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
@@ -49,9 +49,7 @@ Partial Class formMain
 		Me.tpContacts = New System.Windows.Forms.TabPage()
 		Me.Label7 = New System.Windows.Forms.Label()
 		Me.tpHelp = New System.Windows.Forms.TabPage()
-		Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
-		Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
-		Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+		Me.Label29 = New System.Windows.Forms.Label()
 		Me.tpAccount = New System.Windows.Forms.TabPage()
 		Me.GroupBox3 = New System.Windows.Forms.GroupBox()
 		Me.btnAccountsDelete = New System.Windows.Forms.Button()
@@ -167,6 +165,9 @@ Partial Class formMain
 		Me.Label28 = New System.Windows.Forms.Label()
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+		Me.Label30 = New System.Windows.Forms.Label()
+		Me.Label31 = New System.Windows.Forms.Label()
+		Me.HelpLinkContact = New System.Windows.Forms.LinkLabel()
 		Me.MenuStrip1.SuspendLayout()
 		CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.tpContacts.SuspendLayout()
@@ -297,19 +298,19 @@ Partial Class formMain
 		'FAQToolStripMenuItem1
 		'
 		Me.FAQToolStripMenuItem1.Name = "FAQToolStripMenuItem1"
-		Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(165, 30)
+		Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(210, 30)
 		Me.FAQToolStripMenuItem1.Text = "&FAQ"
 		'
 		'ContactsToolStripMenuItem1
 		'
 		Me.ContactsToolStripMenuItem1.Name = "ContactsToolStripMenuItem1"
-		Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(165, 30)
+		Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(210, 30)
 		Me.ContactsToolStripMenuItem1.Text = "&Contacts"
 		'
 		'AboutToolStripMenuItem
 		'
 		Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-		Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(165, 30)
+		Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(210, 30)
 		Me.AboutToolStripMenuItem.Text = "&About"
 		'
 		'LoginToolStripMenuItem
@@ -351,46 +352,31 @@ Partial Class formMain
 		'
 		Me.tpHelp.BackgroundImage = CType(resources.GetObject("tpHelp.BackgroundImage"), System.Drawing.Image)
 		Me.tpHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-		Me.tpHelp.Controls.Add(Me.LinkLabel3)
-		Me.tpHelp.Controls.Add(Me.LinkLabel2)
-		Me.tpHelp.Controls.Add(Me.LinkLabel1)
+		Me.tpHelp.Controls.Add(Me.HelpLinkContact)
+		Me.tpHelp.Controls.Add(Me.Label31)
+		Me.tpHelp.Controls.Add(Me.Label30)
+		Me.tpHelp.Controls.Add(Me.Label29)
 		Me.tpHelp.Location = New System.Drawing.Point(4, 29)
 		Me.tpHelp.Name = "tpHelp"
-		Me.tpHelp.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+		Me.tpHelp.Padding = New System.Windows.Forms.Padding(3)
 		Me.tpHelp.Size = New System.Drawing.Size(1682, 775)
 		Me.tpHelp.TabIndex = 10
 		Me.tpHelp.Text = "Help"
 		Me.tpHelp.UseVisualStyleBackColor = True
 		'
-		'LinkLabel3
+		'Label29
 		'
-		Me.LinkLabel3.AutoSize = True
-		Me.LinkLabel3.Location = New System.Drawing.Point(39, 138)
-		Me.LinkLabel3.Name = "LinkLabel3"
-		Me.LinkLabel3.Size = New System.Drawing.Size(109, 20)
-		Me.LinkLabel3.TabIndex = 2
-		Me.LinkLabel3.TabStop = True
-		Me.LinkLabel3.Text = "Reserve Book"
-		'
-		'LinkLabel2
-		'
-		Me.LinkLabel2.AutoSize = True
-		Me.LinkLabel2.Location = New System.Drawing.Point(39, 86)
-		Me.LinkLabel2.Name = "LinkLabel2"
-		Me.LinkLabel2.Size = New System.Drawing.Size(111, 20)
-		Me.LinkLabel2.TabIndex = 1
-		Me.LinkLabel2.TabStop = True
-		Me.LinkLabel2.Text = "Search Library"
-		'
-		'LinkLabel1
-		'
-		Me.LinkLabel1.AutoSize = True
-		Me.LinkLabel1.Location = New System.Drawing.Point(39, 38)
-		Me.LinkLabel1.Name = "LinkLabel1"
-		Me.LinkLabel1.Size = New System.Drawing.Size(120, 20)
-		Me.LinkLabel1.TabIndex = 0
-		Me.LinkLabel1.TabStop = True
-		Me.LinkLabel1.Text = "Create Account"
+		Me.Label29.AutoSize = True
+		Me.Label29.BackColor = System.Drawing.Color.White
+		Me.Label29.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label29.Location = New System.Drawing.Point(37, 62)
+		Me.Label29.Name = "Label29"
+		Me.Label29.Size = New System.Drawing.Size(680, 77)
+		Me.Label29.TabIndex = 3
+		Me.Label29.Text = "Request Account: Please contact the librarian on duty to request account." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Once y" &
+	"ou have received your login username and password you may access" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the library re" &
+	"sources."
 		'
 		'tpAccount
 		'
@@ -701,7 +687,7 @@ Partial Class formMain
 		Me.tpBooks.Controls.Add(Me.listviewReservation)
 		Me.tpBooks.Location = New System.Drawing.Point(4, 29)
 		Me.tpBooks.Name = "tpBooks"
-		Me.tpBooks.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+		Me.tpBooks.Padding = New System.Windows.Forms.Padding(3)
 		Me.tpBooks.Size = New System.Drawing.Size(1682, 775)
 		Me.tpBooks.TabIndex = 4
 		Me.tpBooks.Text = "Books"
@@ -887,7 +873,7 @@ Partial Class formMain
 		Me.tpSearch.Controls.Add(Me.btPatronSearchHold)
 		Me.tpSearch.Location = New System.Drawing.Point(4, 29)
 		Me.tpSearch.Name = "tpSearch"
-		Me.tpSearch.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+		Me.tpSearch.Padding = New System.Windows.Forms.Padding(3)
 		Me.tpSearch.Size = New System.Drawing.Size(1682, 775)
 		Me.tpSearch.TabIndex = 3
 		Me.tpSearch.Text = "Search"
@@ -1549,6 +1535,45 @@ Partial Class formMain
 		Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
 		Me.ContextMenuStrip2.Size = New System.Drawing.Size(61, 4)
 		'
+		'Label30
+		'
+		Me.Label30.AutoSize = True
+		Me.Label30.BackColor = System.Drawing.Color.White
+		Me.Label30.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label30.Location = New System.Drawing.Point(37, 186)
+		Me.Label30.Name = "Label30"
+		Me.Label30.Size = New System.Drawing.Size(584, 77)
+		Me.Label30.TabIndex = 4
+		Me.Label30.Text = "Account information is located through your Account in the Patron" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "drop down menu" &
+	". There you may change your password and veiw" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "your account balance."
+		'
+		'Label31
+		'
+		Me.Label31.AutoSize = True
+		Me.Label31.BackColor = System.Drawing.Color.White
+		Me.Label31.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label31.Location = New System.Drawing.Point(37, 310)
+		Me.Label31.Name = "Label31"
+		Me.Label31.Size = New System.Drawing.Size(643, 102)
+		Me.Label31.TabIndex = 5
+		Me.Label31.Text = resources.GetString("Label31.Text")
+		'
+		'HelpLinkContact
+		'
+		Me.HelpLinkContact.ActiveLinkColor = System.Drawing.Color.Blue
+		Me.HelpLinkContact.AutoSize = True
+		Me.HelpLinkContact.BackColor = System.Drawing.Color.White
+		Me.HelpLinkContact.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.HelpLinkContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.HelpLinkContact.Location = New System.Drawing.Point(37, 459)
+		Me.HelpLinkContact.Name = "HelpLinkContact"
+		Me.HelpLinkContact.Size = New System.Drawing.Size(641, 27)
+		Me.HelpLinkContact.TabIndex = 6
+		Me.HelpLinkContact.TabStop = True
+		Me.HelpLinkContact.Text = "Click HERE for contact information to answer additional questions"
+		'
 		'formMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1596,146 +1621,147 @@ Partial Class formMain
 	End Sub
 
 	Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents PatronToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CirculationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AdministrationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents LoginToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AddNewAccountToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents errProvider As ErrorProvider
-    Friend WithEvents SearchToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ReservationToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AccountToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CheckOutToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CheckInToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AccountsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CatalogeManagerToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AccountManagerToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TabControl1 As TabControl
-    Friend WithEvents tpLogin As TabPage
-    Friend WithEvents btnLogin As Button
-    Friend WithEvents txtPassword As TextBox
-    Friend WithEvents txtUsername As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents tpCreate As TabPage
-    Friend WithEvents cmboxAccountTypeAddAccount As ComboBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents btnAddAccount As Button
-    Friend WithEvents txtPasswordAddAccount As TextBox
-    Friend WithEvents txtUsernameAddAccount As TextBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
-    Friend WithEvents tpSearch As TabPage
-    Friend WithEvents btPatronSearchHold As Button
-    Friend WithEvents tpBooks As TabPage
-    Friend WithEvents tpAccount As TabPage
-    Friend WithEvents tpHelp As TabPage
-    Friend WithEvents tpContacts As TabPage
-    Friend WithEvents LinkLabel3 As LinkLabel
-    Friend WithEvents LinkLabel2 As LinkLabel
-    Friend WithEvents LinkLabel1 As LinkLabel
-    Friend WithEvents Label7 As Label
-    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents FAQToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents ContactsToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents dgvSearch As DataGridView
-    Friend WithEvents ToolStrip1 As ToolStrip
-    Friend WithEvents ToolStripLabel1 As ToolStripLabel
-    Friend WithEvents txtSearchISBN As ToolStripTextBox
-    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents ToolStripLabel2 As ToolStripLabel
-    Friend WithEvents txtSearchTitle As ToolStripTextBox
-    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents ToolStripLabel3 As ToolStripLabel
-    Friend WithEvents cmbxSearchGenre As ToolStripComboBox
-    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
-    Friend WithEvents ToolStripLabel4 As ToolStripLabel
-    Friend WithEvents cmbxSearchStatus As ToolStripComboBox
-    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
-    Friend WithEvents btnSearchClear As ToolStripButton
-    Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
-    Friend WithEvents tpBook As TabPage
-    Friend WithEvents listviewReservation As ListView
-    Friend WithEvents Label9 As Label
-    Friend WithEvents btnCheckOut As Button
-    Friend WithEvents btnPlaceHold As Button
-    Friend WithEvents ColumnHeader1 As ColumnHeader
-    Friend WithEvents ColumnHeader2 As ColumnHeader
-    Friend WithEvents ColumnHeader3 As ColumnHeader
-    Friend WithEvents ColumnHeader4 As ColumnHeader
-    Friend WithEvents ColumnHeader5 As ColumnHeader
-    Friend WithEvents txtBookName As TextBox
-    Friend WithEvents txtBookPublisher As TextBox
-    Friend WithEvents txtBookAuthor As TextBox
-    Friend WithEvents txtBookGenre As TextBox
-    Friend WithEvents Label10 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label11 As Label
-    Friend WithEvents ColumnHeader6 As ColumnHeader
-    Friend WithEvents txtReservationName As TextBox
-    Friend WithEvents txtReservationPublisher As TextBox
-    Friend WithEvents txtReservationAuthor As TextBox
-    Friend WithEvents txtReservationGenre As TextBox
-    Friend WithEvents btnReservationRemoveHold As Button
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
-    Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
-    Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
-    Friend WithEvents btnCheckIn As Button
-    Friend WithEvents btnRemoveHold As Button
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
-    Friend WithEvents btnAccountBalanceLabel As LinkLabel
-    Friend WithEvents tbAccountNewPassword As TextBox
-    Friend WithEvents tbAccountCurrentPassword As TextBox
-    Friend WithEvents tbAccountBalance As TextBox
-    Friend WithEvents tbAccountUsername As TextBox
-    Friend WithEvents tbAccountAccountID As TextBox
-    Friend WithEvents Label26 As Label
-    Friend WithEvents Label25 As Label
-    Friend WithEvents Label24 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents btnAccountUpdate As Button
-    Friend WithEvents btnAccountChange As Button
-    Friend WithEvents tbAccountNewPasswordConfirm As TextBox
-    Friend WithEvents tbAccountDateCreated As TextBox
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Label23 As Label
-    Friend WithEvents btnReservationCheckIn As Button
-    Friend WithEvents btnReservationCheckOut As Button
-    Friend WithEvents cmbxPlaceHoldFor As ComboBox
-    Friend WithEvents cmbxCheckOutTo As ComboBox
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents cbAccountType As ComboBox
-    Friend WithEvents lvAccounts As ListView
-    Friend WithEvents ID As ColumnHeader
-    Friend WithEvents Username As ColumnHeader
-    Friend WithEvents Created As ColumnHeader
-    Friend WithEvents Type As ColumnHeader
-    Friend WithEvents Label21 As Label
-    Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents btnAccountsDelete As Button
-    Friend WithEvents tpCatalog As TabPage
-    Friend WithEvents lvCatalog As ListView
-    Friend WithEvents Title As ColumnHeader
-    Friend WithEvents Author As ColumnHeader
-    Friend WithEvents Genre As ColumnHeader
-    Friend WithEvents Publisher As ColumnHeader
-    Friend WithEvents ISBN As ColumnHeader
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label22 As Label
-    Friend WithEvents Label27 As Label
-    Friend WithEvents Label28 As Label
+	Friend WithEvents PatronToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents CirculationToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents AdministrationToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents LoginToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents AddNewAccountToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents errProvider As ErrorProvider
+	Friend WithEvents SearchToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents ReservationToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents AccountToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents CheckOutToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents CheckInToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents AccountsToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents CatalogeManagerToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents AccountManagerToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents TabControl1 As TabControl
+	Friend WithEvents tpLogin As TabPage
+	Friend WithEvents btnLogin As Button
+	Friend WithEvents txtPassword As TextBox
+	Friend WithEvents txtUsername As TextBox
+	Friend WithEvents Label2 As Label
+	Friend WithEvents Label1 As Label
+	Friend WithEvents tpCreate As TabPage
+	Friend WithEvents cmboxAccountTypeAddAccount As ComboBox
+	Friend WithEvents Label6 As Label
+	Friend WithEvents btnAddAccount As Button
+	Friend WithEvents txtPasswordAddAccount As TextBox
+	Friend WithEvents txtUsernameAddAccount As TextBox
+	Friend WithEvents Label3 As Label
+	Friend WithEvents Label4 As Label
+	Friend WithEvents tpSearch As TabPage
+	Friend WithEvents btPatronSearchHold As Button
+	Friend WithEvents tpBooks As TabPage
+	Friend WithEvents tpAccount As TabPage
+	Friend WithEvents tpHelp As TabPage
+	Friend WithEvents tpContacts As TabPage
+	Friend WithEvents Label7 As Label
+	Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+	Friend WithEvents FAQToolStripMenuItem1 As ToolStripMenuItem
+	Friend WithEvents ContactsToolStripMenuItem1 As ToolStripMenuItem
+	Friend WithEvents dgvSearch As DataGridView
+	Friend WithEvents ToolStrip1 As ToolStrip
+	Friend WithEvents ToolStripLabel1 As ToolStripLabel
+	Friend WithEvents txtSearchISBN As ToolStripTextBox
+	Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+	Friend WithEvents ToolStripLabel2 As ToolStripLabel
+	Friend WithEvents txtSearchTitle As ToolStripTextBox
+	Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+	Friend WithEvents ToolStripLabel3 As ToolStripLabel
+	Friend WithEvents cmbxSearchGenre As ToolStripComboBox
+	Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+	Friend WithEvents ToolStripLabel4 As ToolStripLabel
+	Friend WithEvents cmbxSearchStatus As ToolStripComboBox
+	Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+	Friend WithEvents btnSearchClear As ToolStripButton
+	Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
+	Friend WithEvents tpBook As TabPage
+	Friend WithEvents listviewReservation As ListView
+	Friend WithEvents Label9 As Label
+	Friend WithEvents btnCheckOut As Button
+	Friend WithEvents btnPlaceHold As Button
+	Friend WithEvents ColumnHeader1 As ColumnHeader
+	Friend WithEvents ColumnHeader2 As ColumnHeader
+	Friend WithEvents ColumnHeader3 As ColumnHeader
+	Friend WithEvents ColumnHeader4 As ColumnHeader
+	Friend WithEvents ColumnHeader5 As ColumnHeader
+	Friend WithEvents txtBookName As TextBox
+	Friend WithEvents txtBookPublisher As TextBox
+	Friend WithEvents txtBookAuthor As TextBox
+	Friend WithEvents txtBookGenre As TextBox
+	Friend WithEvents Label10 As Label
+	Friend WithEvents Label12 As Label
+	Friend WithEvents Label11 As Label
+	Friend WithEvents ColumnHeader6 As ColumnHeader
+	Friend WithEvents txtReservationName As TextBox
+	Friend WithEvents txtReservationPublisher As TextBox
+	Friend WithEvents txtReservationAuthor As TextBox
+	Friend WithEvents txtReservationGenre As TextBox
+	Friend WithEvents btnReservationRemoveHold As Button
+	Friend WithEvents Label13 As Label
+	Friend WithEvents Label14 As Label
+	Friend WithEvents Label15 As Label
+	Friend WithEvents Label16 As Label
+	Friend WithEvents ToolStripSeparator8 As ToolStripSeparator
+	Friend WithEvents ToolStripSeparator6 As ToolStripSeparator
+	Friend WithEvents ToolStripSeparator7 As ToolStripSeparator
+	Friend WithEvents btnCheckIn As Button
+	Friend WithEvents btnRemoveHold As Button
+	Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+	Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+	Friend WithEvents btnAccountBalanceLabel As LinkLabel
+	Friend WithEvents tbAccountNewPassword As TextBox
+	Friend WithEvents tbAccountCurrentPassword As TextBox
+	Friend WithEvents tbAccountBalance As TextBox
+	Friend WithEvents tbAccountUsername As TextBox
+	Friend WithEvents tbAccountAccountID As TextBox
+	Friend WithEvents Label26 As Label
+	Friend WithEvents Label25 As Label
+	Friend WithEvents Label24 As Label
+	Friend WithEvents Label19 As Label
+	Friend WithEvents Label18 As Label
+	Friend WithEvents Label17 As Label
+	Friend WithEvents btnAccountUpdate As Button
+	Friend WithEvents btnAccountChange As Button
+	Friend WithEvents tbAccountNewPasswordConfirm As TextBox
+	Friend WithEvents tbAccountDateCreated As TextBox
+	Friend WithEvents GroupBox1 As GroupBox
+	Friend WithEvents GroupBox2 As GroupBox
+	Friend WithEvents Label23 As Label
+	Friend WithEvents btnReservationCheckIn As Button
+	Friend WithEvents btnReservationCheckOut As Button
+	Friend WithEvents cmbxPlaceHoldFor As ComboBox
+	Friend WithEvents cmbxCheckOutTo As ComboBox
+	Friend WithEvents Label20 As Label
+	Friend WithEvents Label5 As Label
+	Friend WithEvents cbAccountType As ComboBox
+	Friend WithEvents lvAccounts As ListView
+	Friend WithEvents ID As ColumnHeader
+	Friend WithEvents Username As ColumnHeader
+	Friend WithEvents Created As ColumnHeader
+	Friend WithEvents Type As ColumnHeader
+	Friend WithEvents Label21 As Label
+	Friend WithEvents GroupBox3 As GroupBox
+	Friend WithEvents btnAccountsDelete As Button
+	Friend WithEvents tpCatalog As TabPage
+	Friend WithEvents lvCatalog As ListView
+	Friend WithEvents Title As ColumnHeader
+	Friend WithEvents Author As ColumnHeader
+	Friend WithEvents Genre As ColumnHeader
+	Friend WithEvents Publisher As ColumnHeader
+	Friend WithEvents ISBN As ColumnHeader
+	Friend WithEvents TextBox1 As TextBox
+	Friend WithEvents TextBox2 As TextBox
+	Friend WithEvents TextBox3 As TextBox
+	Friend WithEvents TextBox4 As TextBox
+	Friend WithEvents Label8 As Label
+	Friend WithEvents Label22 As Label
+	Friend WithEvents Label27 As Label
+	Friend WithEvents Label28 As Label
+	Friend WithEvents Label29 As Label
+	Friend WithEvents HelpLinkContact As LinkLabel
+	Friend WithEvents Label31 As Label
+	Friend WithEvents Label30 As Label
 End Class
