@@ -740,7 +740,6 @@
     End Enum
 
     Private Sub HelpLinkContact_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles HelpLinkContact.LinkClicked
-        TabControl1.SelectedIndex = 6 ' Use the index of the page
-        AcceptButton = Nothing ' Select the button to press when you hit "Enter"
-    End Sub
+		TabControl1.SelectedIndex = 7 ' Use the index of the page
+	End Sub
 End Class
