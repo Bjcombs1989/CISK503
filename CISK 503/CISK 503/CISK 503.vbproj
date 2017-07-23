@@ -161,6 +161,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="Project Documentation\ATeamLibraryProjectDocumentationV2.docx" />
     <None Include="Project Documentation\ERD.vsdx" />
     <None Include="Project Documentation\UML.vsdx" />
   </ItemGroup>
