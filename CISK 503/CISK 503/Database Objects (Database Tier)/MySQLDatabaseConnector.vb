@@ -291,6 +291,56 @@ Public Class MySQLDatabaseConnector
         Return genres.ToArray()
     End Function
 
+    Public Function ListAuthors() As KeyValuePair(Of Integer, String)()
+        Dim genres As List(Of KeyValuePair(Of Integer, String)) = New List(Of KeyValuePair(Of Integer, String))()
+        Dim cmd As New MySqlCommand("SELECT `ID`, `Name` FROM `Author` ORDER BY `Name`", conn)
+        cmd.Prepare()
+
+        genres.Add(New KeyValuePair(Of Integer, String)(-1, ""))
+        Dim reader As MySqlDataReader = Nothing
+
+        Try
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                genres.Add(New KeyValuePair(Of Integer, String)(reader.GetInt32("ID"), reader.GetString("Name")))
+            End While
+
+            reader.Close()
+        Catch ex As Exception
+            Throw ex
+        Finally
+            If Not reader Is Nothing Then reader.Close()
+        End Try
+
+        Return genres.ToArray()
+    End Function
+
+    Public Function ListPublishers() As KeyValuePair(Of Integer, String)()
+        Dim genres As List(Of KeyValuePair(Of Integer, String)) = New List(Of KeyValuePair(Of Integer, String))()
+        Dim cmd As New MySqlCommand("SELECT `ID`, `Name` FROM `Publisher` ORDER BY `Name`", conn)
+        cmd.Prepare()
+
+        genres.Add(New KeyValuePair(Of Integer, String)(-1, ""))
+        Dim reader As MySqlDataReader = Nothing
+
+        Try
+            reader = cmd.ExecuteReader()
+
+            While reader.Read()
+                genres.Add(New KeyValuePair(Of Integer, String)(reader.GetInt32("ID"), reader.GetString("Name")))
+            End While
+
+            reader.Close()
+        Catch ex As Exception
+            Throw ex
+        Finally
+            If Not reader Is Nothing Then reader.Close()
+        End Try
+
+        Return genres.ToArray()
+    End Function
+
     Public Function GetReservations(Optional user As Patron = Nothing) As Reservation()
         Dim reseravations As List(Of Reservation) = New List(Of Reservation)()
         Dim books As List(Of ReservationInfo) = New List(Of ReservationInfo)()
@@ -526,6 +576,82 @@ Public Class MySQLDatabaseConnector
 
         Return list.ToArray()
     End Function
+
+    ' Catalog 
+    Public Sub AddAuthor(author As String)
+        Dim cmd As New MySqlCommand("INSERT INTO `Author` (Name) VALUES (@Author); ", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@Author", author)
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub AddGenre(Genre As String)
+        Dim cmd As New MySqlCommand("INSERT INTO Genre (Name) VALUES (@Genre)", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@Genre", Genre)
+
+        Dim id As Integer
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub AddPublisher(Publisher As String)
+        Dim cmd As New MySqlCommand("INSERT INTO `Publisher` (Name) VALUES (@Publisher);", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@Publisher", Publisher)
+
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Function AddBook(title As String, genre As Integer, publisher As Integer, author As Integer, patron As Patron) As String
+        ' Create the command
+        Dim cmd As New MySqlCommand("INSERT INTO Book (Name, Genre, Author, Publisher, User) VALUES (@name, @genre, @author, @publisher, @user); SELECT LAST_INSERT_ID(); ", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@name", title)
+        cmd.Parameters.AddWithValue("@genre", genre)
+        cmd.Parameters.AddWithValue("@author", author)
+        cmd.Parameters.AddWithValue("@publisher", publisher)
+        cmd.Parameters.AddWithValue("@user", patron.ID)
+
+        ' Execute the command
+        Try
+            Dim id As Integer = cmd.ExecuteScalar()
+            Return id
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Function
+
+    Public Sub UpdateBook(book As Book, title As String, genre As Integer, publisher As Integer, author As Integer)
+        ' Create the command
+        Dim cmd As New MySqlCommand("UPDATE Book SET Name = @name, Genre = @genre, Author = @author, Publisher = @publisher WHERE ID = @isbn ", conn)
+        cmd.Prepare()
+        cmd.Parameters.AddWithValue("@isbn", book.BookISBN)
+        cmd.Parameters.AddWithValue("@name", title)
+        cmd.Parameters.AddWithValue("@genre", genre)
+        cmd.Parameters.AddWithValue("@author", author)
+        cmd.Parameters.AddWithValue("@publisher", publisher)
+
+        ' Execute the command
+        Try
+            cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
 
     ' Dispose
     Public Sub Dispose()
