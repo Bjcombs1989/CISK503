@@ -13,7 +13,7 @@
     Dim action As MenuAction
     Dim selected_user As Patron
 
-    ' Form 
+    ' Main Form 
     ''' <summary>
     ''' Form load event, sets the tab control properties, creates the mySQL object and fills any default values/dropdowns
     ''' </summary>
@@ -39,6 +39,9 @@
             Return
         End Try
 
+        ' Load the book list
+        books = mysql.ListBooks()
+
         ' Load the account level enumeration into the combo boxes as needed
         cmboxAccountTypeAddAccount.DataSource = [Enum].GetValues(GetType(Patron.AccountLevel))
         cbAccountType.DataSource = [Enum].GetValues(GetType(Patron.AccountLevel))
@@ -46,13 +49,20 @@
         ' Load things for the Search Tab
         cmbxSearchGenre.ComboBox.DisplayMember = "Value"
         cmbxSearchGenre.ComboBox.DataSource = mysql.ListGenres()
-        books = mysql.ListBooks()
 
         ' Load reservations tab
         cmbxCheckOutTo.DisplayMember = "Value"
         cmbxCheckOutTo.DataSource = mysql.ListUsers()
         cmbxPlaceHoldFor.DisplayMember = "Value"
         cmbxPlaceHoldFor.DataSource = mysql.ListUsers()
+
+        ' Load the catalog tab
+        cbCatalogAuthor.DisplayMember = "Value"
+        cbCatalogAuthor.DataSource = mysql.ListAuthors()
+        cbCatalogGenre.DisplayMember = "Value"
+        cbCatalogGenre.DataSource = mysql.ListGenres()
+        cbCatalogPublisher.DisplayMember = "Value"
+        cbCatalogPublisher.DataSource = mysql.ListPublishers()
 
         loading = False
     End Sub
@@ -77,6 +87,10 @@
     Private Sub ContactsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ContactsToolStripMenuItem1.Click
         TabControl1.SelectedIndex = 7 ' Use the index of the page
         AcceptButton = Nothing ' Select the button to press when you hit "Enter"
+    End Sub
+
+    Private Sub HelpLinkContact_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles HelpLinkContact.LinkClicked
+        TabControl1.SelectedIndex = 7 ' Use the index of the page
     End Sub
 
     ' Login Page                TAB INDEX = 0
@@ -706,7 +720,7 @@
         End Try
     End Sub
 
-    ' Catelog Manager Page      TAB INDEX = 8
+    ' Catalog Manager Page      TAB INDEX = 8
     Private Sub CatalogeManagerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CatalogeManagerToolStripMenuItem.Click
         TabControl1.SelectedIndex = 8 ' Use the index of the page
         AcceptButton = Nothing ' Select the button to press when you hit "Enter"
@@ -727,8 +741,118 @@
     End Sub
 
     Private Sub lvCatalog_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lvCatalog.SelectedIndexChanged
+        Try
+            book = New Book(mysql, New Book.ISBN(lvCatalog.SelectedItems(0).Text))
+        Catch ex As Exception
+            Return
+        End Try
 
+        LoadCatalogBook()
+
+        btnCatalogAdd.Text = "Add New"
     End Sub
+
+    Private Sub LoadCatalogBook()
+        txtCatalogBookTitle.Text = book.Title
+        cbCatalogGenre.SelectedIndex = cbCatalogGenre.FindString(book.Genre)
+        cbCatalogPublisher.SelectedIndex = cbCatalogPublisher.FindString(book.Publisher)
+        cbCatalogAuthor.SelectedIndex = cbCatalogAuthor.FindString(book.Author)
+    End Sub
+
+    Private Sub btnCatalogAdd_Click(sender As Object, e As EventArgs) Handles btnCatalogAdd.Click
+        If book Is Nothing And btnCatalogAdd.Text = "Save" Then
+            If cbCatalogAuthor.SelectedIndex = -1 Or cbCatalogAuthor.SelectedIndex = -1 Or cbCatalogAuthor.SelectedIndex = -1 Then
+                MessageBox.Show("Please be sure to choose a publisher, author and genre")
+                Return
+            End If
+
+            book = New Book(mysql, txtCatalogBookTitle.Text,
+                                DirectCast(cbCatalogGenre.SelectedValue, KeyValuePair(Of Integer, String)).Key,
+                                DirectCast(cbCatalogPublisher.SelectedValue, KeyValuePair(Of Integer, String)).Key,
+                                DirectCast(cbCatalogAuthor.SelectedValue, KeyValuePair(Of Integer, String)).Key, user)
+            LoadCatalogBook()
+            btnCatalogAdd.Text = "Add New"
+
+            ' Load the book list
+            books = mysql.ListBooks()
+            CatalogeManagerToolStripMenuItem_Click(Nothing, Nothing)
+        Else
+            book = Nothing
+            btnCatalogAdd.Text = "Save"
+            txtCatalogBookTitle.Text = ""
+            cbCatalogAuthor.SelectedIndex = -1
+            cbCatalogGenre.SelectedIndex = -1
+            cbCatalogPublisher.SelectedIndex = -1
+        End If
+    End Sub
+
+    Private Sub btnCatalogUpdate_Click(sender As Object, e As EventArgs) Handles btnCatalogUpdate.Click
+        Try
+            book.UpdateBook(txtCatalogBookTitle.Text,
+                    DirectCast(cbCatalogGenre.SelectedValue, KeyValuePair(Of Integer, String)).Key,
+                    DirectCast(cbCatalogPublisher.SelectedValue, KeyValuePair(Of Integer, String)).Key,
+                    DirectCast(cbCatalogAuthor.SelectedValue, KeyValuePair(Of Integer, String)).Key)
+            MessageBox.Show("Successfully updated")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+
+        LoadCatalogBook()
+        btnCatalogAdd.Text = "Add New"
+
+        ' Load the book list
+        books = mysql.ListBooks()
+        CatalogeManagerToolStripMenuItem_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub btnCatalogAddGenre_Click(sender As Object, e As EventArgs) Handles btnCatalogAddGenre.Click
+        Try
+            mysql.AddGenre(txtCatalogGenre.Text)
+            txtCatalogGenre.Text = ""
+            MessageBox.Show("Genre added")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return
+        End Try
+
+
+        cbCatalogGenre.DisplayMember = "Value"
+        cbCatalogGenre.DataSource = mysql.ListGenres()
+    End Sub
+
+    Private Sub btnCatalogAddAuthor_Click(sender As Object, e As EventArgs) Handles btnCatalogAddAuthor.Click
+        Try
+            mysql.AddAuthor(txtCatalogAuthor.Text)
+            txtCatalogAuthor.Text = ""
+            MessageBox.Show("Author added")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return
+        End Try
+
+        cbCatalogAuthor.DisplayMember = "Value"
+        cbCatalogAuthor.DataSource = mysql.ListAuthors()
+    End Sub
+
+    Private Sub btnCatalogAddPublisher_Click(sender As Object, e As EventArgs) Handles btnCatalogAddPublisher.Click
+        Try
+            mysql.AddPublisher(txtCatalogPublisher.Text)
+            txtCatalogPublisher.Text = ""
+            MessageBox.Show("Publisher added")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+            Return
+        End Try
+
+        cbCatalogPublisher.DisplayMember = "Value"
+        cbCatalogPublisher.DataSource = mysql.ListPublishers()
+    End Sub
+
+
+
+
+
+
 
     Public Enum MenuAction
         MyReservations
@@ -739,7 +863,4 @@
         Accounts
     End Enum
 
-    Private Sub HelpLinkContact_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles HelpLinkContact.LinkClicked
-		TabControl1.SelectedIndex = 7 ' Use the index of the page
-	End Sub
 End Class

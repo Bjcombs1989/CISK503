@@ -21,12 +21,25 @@
     Dim info As Dictionary(Of String, String)
 
     ' Constructor(s)
-    Public Sub New(pMySQL As MySQLDatabaseConnector, isbn As Book.ISBN, title As String, genre As Integer, publisher As Integer, author As Integer)
+    Public Sub New(pMySQL As MySQLDatabaseConnector, title As String, genre As Integer, publisher As Integer, author As Integer, patron As Patron)
         ' This constructor will be used when creating a new database record
         _mysql = pMySQL
 
-        ' Insert this record into the database and fill in the properties
+        ' Insert this record into the database 
+        _isbn = New ISBN(_mysql.AddBook(title, genre, publisher, author, patron))
 
+        ' Fill in the properties
+        info = _mysql.GetBook(_isbn)
+
+        _title = info("Title")
+        _genre = info("Genre")
+        _author = info("Author")
+        _publisher = info("Publisher")
+        _available = True
+        Hold = Nothing
+        Reservation = Nothing
+
+        MessageBox.Show("Add to database")
     End Sub
 
     Public Sub New(pMySQL As MySQLDatabaseConnector, isbn As Book.ISBN)
@@ -61,6 +74,21 @@
         End If
     End Sub
 
+    ' Update
+    Public Sub UpdateBook(title As String, genre As Integer, publisher As Integer, author As Integer)
+        Try
+            _mysql.UpdateBook(Me, title, genre, publisher, author)
+
+            info = _mysql.GetBook(_isbn)
+            _title = info("Title")
+            _genre = info("Genre")
+            _author = info("Author")
+            _publisher = info("Publisher")
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
+
     ' Properties to return
     Public Property IsAvailable As Boolean
         Get
@@ -80,7 +108,6 @@
             Return Not info("Reservation") = "0"
         End Get
     End Property
-
     Public ReadOnly Property Title As String
         Get
             Return _title

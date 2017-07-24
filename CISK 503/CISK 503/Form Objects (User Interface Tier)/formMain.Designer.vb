@@ -152,18 +152,29 @@ Partial Class formMain
 		Me.Label11 = New System.Windows.Forms.Label()
 		Me.Label9 = New System.Windows.Forms.Label()
 		Me.tpCatalog = New System.Windows.Forms.TabPage()
+		Me.txtCatalogPublisher = New System.Windows.Forms.TextBox()
+		Me.txtCatalogAuthor = New System.Windows.Forms.TextBox()
+		Me.txtCatalogGenre = New System.Windows.Forms.TextBox()
+		Me.btnCatalogUpdate = New System.Windows.Forms.Button()
+		Me.btnCatalogAddAuthor = New System.Windows.Forms.Button()
+		Me.btnCatalogAddPublisher = New System.Windows.Forms.Button()
+		Me.btnCatalogAddGenre = New System.Windows.Forms.Button()
+		Me.btnCatalogAdd = New System.Windows.Forms.Button()
+		Me.cbCatalogPublisher = New System.Windows.Forms.ComboBox()
+		Me.cbCatalogAuthor = New System.Windows.Forms.ComboBox()
+		Me.cbCatalogGenre = New System.Windows.Forms.ComboBox()
 		Me.lvCatalog = New System.Windows.Forms.ListView()
 		Me.ISBN = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.Title = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.Genre = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.Author = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
 		Me.Publisher = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-		Me.TextBox1 = New System.Windows.Forms.TextBox()
-		Me.TextBox2 = New System.Windows.Forms.TextBox()
-		Me.TextBox3 = New System.Windows.Forms.TextBox()
-		Me.TextBox4 = New System.Windows.Forms.TextBox()
+		Me.txtCatalogBookTitle = New System.Windows.Forms.TextBox()
+		Me.Label34 = New System.Windows.Forms.Label()
 		Me.Label8 = New System.Windows.Forms.Label()
+		Me.Label32 = New System.Windows.Forms.Label()
 		Me.Label22 = New System.Windows.Forms.Label()
+		Me.Label33 = New System.Windows.Forms.Label()
 		Me.Label27 = New System.Windows.Forms.Label()
 		Me.Label28 = New System.Windows.Forms.Label()
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -298,19 +309,19 @@ Partial Class formMain
 		'FAQToolStripMenuItem1
 		'
 		Me.FAQToolStripMenuItem1.Name = "FAQToolStripMenuItem1"
-		Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(210, 30)
+		Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(165, 30)
 		Me.FAQToolStripMenuItem1.Text = "&FAQ"
 		'
 		'ContactsToolStripMenuItem1
 		'
 		Me.ContactsToolStripMenuItem1.Name = "ContactsToolStripMenuItem1"
-		Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(210, 30)
+		Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(165, 30)
 		Me.ContactsToolStripMenuItem1.Text = "&Contacts"
 		'
 		'AboutToolStripMenuItem
 		'
 		Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-		Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(210, 30)
+		Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(165, 30)
 		Me.AboutToolStripMenuItem.Text = "&About"
 		'
 		'LoginToolStripMenuItem
@@ -341,7 +352,7 @@ Partial Class formMain
 		Me.Label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
 		Me.Label7.FlatStyle = System.Windows.Forms.FlatStyle.Popup
 		Me.Label7.Font = New System.Drawing.Font("Modern No. 20", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label7.Location = New System.Drawing.Point(112, 174)
+		Me.Label7.Location = New System.Drawing.Point(52, 235)
 		Me.Label7.Name = "Label7"
 		Me.Label7.Size = New System.Drawing.Size(369, 277)
 		Me.Label7.TabIndex = 0
@@ -871,7 +882,7 @@ Partial Class formMain
 		Me.listviewReservation.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
 		Me.listviewReservation.MultiSelect = False
 		Me.listviewReservation.Name = "listviewReservation"
-		Me.listviewReservation.Size = New System.Drawing.Size(1150, 773)
+		Me.listviewReservation.Size = New System.Drawing.Size(1150, 772)
 		Me.listviewReservation.TabIndex = 0
 		Me.listviewReservation.TileSize = New System.Drawing.Size(505, 50)
 		Me.listviewReservation.UseCompatibleStateImageBehavior = False
@@ -915,7 +926,7 @@ Partial Class formMain
 		Me.tpSearch.Location = New System.Drawing.Point(4, 29)
 		Me.tpSearch.Name = "tpSearch"
 		Me.tpSearch.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-		Me.tpSearch.Size = New System.Drawing.Size(1682, 775)
+		Me.tpSearch.Size = New System.Drawing.Size(1682, 773)
 		Me.tpSearch.TabIndex = 3
 		Me.tpSearch.Text = "Search"
 		Me.tpSearch.UseVisualStyleBackColor = True
@@ -931,7 +942,7 @@ Partial Class formMain
 		Me.dgvSearch.Name = "dgvSearch"
 		Me.dgvSearch.ReadOnly = True
 		Me.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-		Me.dgvSearch.Size = New System.Drawing.Size(1676, 736)
+		Me.dgvSearch.Size = New System.Drawing.Size(1676, 734)
 		Me.dgvSearch.TabIndex = 2
 		'
 		'ToolStrip1
@@ -1423,22 +1434,134 @@ Partial Class formMain
 		'tpCatalog
 		'
 		Me.tpCatalog.BackgroundImage = CType(resources.GetObject("tpCatalog.BackgroundImage"), System.Drawing.Image)
+		Me.tpCatalog.Controls.Add(Me.txtCatalogPublisher)
+		Me.tpCatalog.Controls.Add(Me.txtCatalogAuthor)
+		Me.tpCatalog.Controls.Add(Me.txtCatalogGenre)
+		Me.tpCatalog.Controls.Add(Me.btnCatalogUpdate)
+		Me.tpCatalog.Controls.Add(Me.btnCatalogAddAuthor)
+		Me.tpCatalog.Controls.Add(Me.btnCatalogAddPublisher)
+		Me.tpCatalog.Controls.Add(Me.btnCatalogAddGenre)
+		Me.tpCatalog.Controls.Add(Me.btnCatalogAdd)
+		Me.tpCatalog.Controls.Add(Me.cbCatalogPublisher)
+		Me.tpCatalog.Controls.Add(Me.cbCatalogAuthor)
+		Me.tpCatalog.Controls.Add(Me.cbCatalogGenre)
 		Me.tpCatalog.Controls.Add(Me.lvCatalog)
-		Me.tpCatalog.Controls.Add(Me.TextBox1)
-		Me.tpCatalog.Controls.Add(Me.TextBox2)
-		Me.tpCatalog.Controls.Add(Me.TextBox3)
-		Me.tpCatalog.Controls.Add(Me.TextBox4)
+		Me.tpCatalog.Controls.Add(Me.txtCatalogBookTitle)
+		Me.tpCatalog.Controls.Add(Me.Label34)
 		Me.tpCatalog.Controls.Add(Me.Label8)
+		Me.tpCatalog.Controls.Add(Me.Label32)
 		Me.tpCatalog.Controls.Add(Me.Label22)
+		Me.tpCatalog.Controls.Add(Me.Label33)
 		Me.tpCatalog.Controls.Add(Me.Label27)
 		Me.tpCatalog.Controls.Add(Me.Label28)
 		Me.tpCatalog.Location = New System.Drawing.Point(4, 29)
 		Me.tpCatalog.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
 		Me.tpCatalog.Name = "tpCatalog"
-		Me.tpCatalog.Size = New System.Drawing.Size(1682, 775)
+		Me.tpCatalog.Size = New System.Drawing.Size(1682, 773)
 		Me.tpCatalog.TabIndex = 15
 		Me.tpCatalog.Text = "Catalog"
 		Me.tpCatalog.UseVisualStyleBackColor = True
+		'
+		'txtCatalogPublisher
+		'
+		Me.txtCatalogPublisher.Location = New System.Drawing.Point(1077, 491)
+		Me.txtCatalogPublisher.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.txtCatalogPublisher.Name = "txtCatalogPublisher"
+		Me.txtCatalogPublisher.Size = New System.Drawing.Size(391, 26)
+		Me.txtCatalogPublisher.TabIndex = 15
+		'
+		'txtCatalogAuthor
+		'
+		Me.txtCatalogAuthor.Location = New System.Drawing.Point(1077, 418)
+		Me.txtCatalogAuthor.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.txtCatalogAuthor.Name = "txtCatalogAuthor"
+		Me.txtCatalogAuthor.Size = New System.Drawing.Size(391, 26)
+		Me.txtCatalogAuthor.TabIndex = 15
+		'
+		'txtCatalogGenre
+		'
+		Me.txtCatalogGenre.Location = New System.Drawing.Point(1077, 343)
+		Me.txtCatalogGenre.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.txtCatalogGenre.Name = "txtCatalogGenre"
+		Me.txtCatalogGenre.Size = New System.Drawing.Size(391, 26)
+		Me.txtCatalogGenre.TabIndex = 15
+		'
+		'btnCatalogUpdate
+		'
+		Me.btnCatalogUpdate.Location = New System.Drawing.Point(1224, 195)
+		Me.btnCatalogUpdate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.btnCatalogUpdate.Name = "btnCatalogUpdate"
+		Me.btnCatalogUpdate.Size = New System.Drawing.Size(138, 35)
+		Me.btnCatalogUpdate.TabIndex = 14
+		Me.btnCatalogUpdate.Text = "Update"
+		Me.btnCatalogUpdate.UseVisualStyleBackColor = True
+		'
+		'btnCatalogAddAuthor
+		'
+		Me.btnCatalogAddAuthor.Location = New System.Drawing.Point(1479, 415)
+		Me.btnCatalogAddAuthor.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.btnCatalogAddAuthor.Name = "btnCatalogAddAuthor"
+		Me.btnCatalogAddAuthor.Size = New System.Drawing.Size(138, 35)
+		Me.btnCatalogAddAuthor.TabIndex = 14
+		Me.btnCatalogAddAuthor.Text = "Add"
+		Me.btnCatalogAddAuthor.UseVisualStyleBackColor = True
+		'
+		'btnCatalogAddPublisher
+		'
+		Me.btnCatalogAddPublisher.Location = New System.Drawing.Point(1479, 488)
+		Me.btnCatalogAddPublisher.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.btnCatalogAddPublisher.Name = "btnCatalogAddPublisher"
+		Me.btnCatalogAddPublisher.Size = New System.Drawing.Size(138, 35)
+		Me.btnCatalogAddPublisher.TabIndex = 14
+		Me.btnCatalogAddPublisher.Text = "Add"
+		Me.btnCatalogAddPublisher.UseVisualStyleBackColor = True
+		'
+		'btnCatalogAddGenre
+		'
+		Me.btnCatalogAddGenre.Location = New System.Drawing.Point(1479, 340)
+		Me.btnCatalogAddGenre.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.btnCatalogAddGenre.Name = "btnCatalogAddGenre"
+		Me.btnCatalogAddGenre.Size = New System.Drawing.Size(138, 35)
+		Me.btnCatalogAddGenre.TabIndex = 14
+		Me.btnCatalogAddGenre.Text = "Add"
+		Me.btnCatalogAddGenre.UseVisualStyleBackColor = True
+		'
+		'btnCatalogAdd
+		'
+		Me.btnCatalogAdd.Location = New System.Drawing.Point(1077, 195)
+		Me.btnCatalogAdd.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.btnCatalogAdd.Name = "btnCatalogAdd"
+		Me.btnCatalogAdd.Size = New System.Drawing.Size(138, 35)
+		Me.btnCatalogAdd.TabIndex = 14
+		Me.btnCatalogAdd.Text = "Add"
+		Me.btnCatalogAdd.UseVisualStyleBackColor = True
+		'
+		'cbCatalogPublisher
+		'
+		Me.cbCatalogPublisher.FormattingEnabled = True
+		Me.cbCatalogPublisher.Location = New System.Drawing.Point(1224, 137)
+		Me.cbCatalogPublisher.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.cbCatalogPublisher.Name = "cbCatalogPublisher"
+		Me.cbCatalogPublisher.Size = New System.Drawing.Size(440, 28)
+		Me.cbCatalogPublisher.TabIndex = 13
+		'
+		'cbCatalogAuthor
+		'
+		Me.cbCatalogAuthor.FormattingEnabled = True
+		Me.cbCatalogAuthor.Location = New System.Drawing.Point(1224, 95)
+		Me.cbCatalogAuthor.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.cbCatalogAuthor.Name = "cbCatalogAuthor"
+		Me.cbCatalogAuthor.Size = New System.Drawing.Size(440, 28)
+		Me.cbCatalogAuthor.TabIndex = 13
+		'
+		'cbCatalogGenre
+		'
+		Me.cbCatalogGenre.FormattingEnabled = True
+		Me.cbCatalogGenre.Location = New System.Drawing.Point(1224, 54)
+		Me.cbCatalogGenre.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.cbCatalogGenre.Name = "cbCatalogGenre"
+		Me.cbCatalogGenre.Size = New System.Drawing.Size(440, 28)
+		Me.cbCatalogGenre.TabIndex = 13
 		'
 		'lvCatalog
 		'
@@ -1451,7 +1574,7 @@ Partial Class formMain
 		Me.lvCatalog.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
 		Me.lvCatalog.MultiSelect = False
 		Me.lvCatalog.Name = "lvCatalog"
-		Me.lvCatalog.Size = New System.Drawing.Size(1056, 775)
+		Me.lvCatalog.Size = New System.Drawing.Size(1056, 773)
 		Me.lvCatalog.TabIndex = 12
 		Me.lvCatalog.TileSize = New System.Drawing.Size(505, 50)
 		Me.lvCatalog.UseCompatibleStateImageBehavior = False
@@ -1482,41 +1605,25 @@ Partial Class formMain
 		Me.Publisher.Text = "Publisher"
 		Me.Publisher.Width = 175
 		'
-		'TextBox1
+		'txtCatalogBookTitle
 		'
-		Me.TextBox1.Enabled = False
-		Me.TextBox1.Location = New System.Drawing.Point(1190, 18)
-		Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-		Me.TextBox1.Name = "TextBox1"
-		Me.TextBox1.Size = New System.Drawing.Size(475, 26)
-		Me.TextBox1.TabIndex = 11
+		Me.txtCatalogBookTitle.Location = New System.Drawing.Point(1224, 17)
+		Me.txtCatalogBookTitle.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+		Me.txtCatalogBookTitle.Name = "txtCatalogBookTitle"
+		Me.txtCatalogBookTitle.Size = New System.Drawing.Size(440, 26)
+		Me.txtCatalogBookTitle.TabIndex = 11
 		'
-		'TextBox2
+		'Label34
 		'
-		Me.TextBox2.Enabled = False
-		Me.TextBox2.Location = New System.Drawing.Point(1190, 138)
-		Me.TextBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-		Me.TextBox2.Name = "TextBox2"
-		Me.TextBox2.Size = New System.Drawing.Size(475, 26)
-		Me.TextBox2.TabIndex = 8
-		'
-		'TextBox3
-		'
-		Me.TextBox3.Enabled = False
-		Me.TextBox3.Location = New System.Drawing.Point(1190, 97)
-		Me.TextBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-		Me.TextBox3.Name = "TextBox3"
-		Me.TextBox3.Size = New System.Drawing.Size(475, 26)
-		Me.TextBox3.TabIndex = 9
-		'
-		'TextBox4
-		'
-		Me.TextBox4.Enabled = False
-		Me.TextBox4.Location = New System.Drawing.Point(1190, 55)
-		Me.TextBox4.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-		Me.TextBox4.Name = "TextBox4"
-		Me.TextBox4.Size = New System.Drawing.Size(475, 26)
-		Me.TextBox4.TabIndex = 10
+		Me.Label34.BackColor = System.Drawing.Color.White
+		Me.Label34.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label34.Location = New System.Drawing.Point(1077, 311)
+		Me.Label34.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+		Me.Label34.Name = "Label34"
+		Me.Label34.Size = New System.Drawing.Size(138, 28)
+		Me.Label34.TabIndex = 4
+		Me.Label34.Text = "Genre"
 		'
 		'Label8
 		'
@@ -1526,9 +1633,21 @@ Partial Class formMain
 		Me.Label8.Location = New System.Drawing.Point(1077, 54)
 		Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.Label8.Name = "Label8"
-		Me.Label8.Size = New System.Drawing.Size(104, 28)
+		Me.Label8.Size = New System.Drawing.Size(138, 28)
 		Me.Label8.TabIndex = 4
 		Me.Label8.Text = "Genre"
+		'
+		'Label32
+		'
+		Me.Label32.BackColor = System.Drawing.Color.White
+		Me.Label32.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label32.Location = New System.Drawing.Point(1077, 458)
+		Me.Label32.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+		Me.Label32.Name = "Label32"
+		Me.Label32.Size = New System.Drawing.Size(138, 28)
+		Me.Label32.TabIndex = 5
+		Me.Label32.Text = "Publisher"
 		'
 		'Label22
 		'
@@ -1538,9 +1657,21 @@ Partial Class formMain
 		Me.Label22.Location = New System.Drawing.Point(1077, 137)
 		Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.Label22.Name = "Label22"
-		Me.Label22.Size = New System.Drawing.Size(104, 28)
+		Me.Label22.Size = New System.Drawing.Size(138, 28)
 		Me.Label22.TabIndex = 5
 		Me.Label22.Text = "Publisher"
+		'
+		'Label33
+		'
+		Me.Label33.BackColor = System.Drawing.Color.White
+		Me.Label33.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+		Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label33.Location = New System.Drawing.Point(1077, 386)
+		Me.Label33.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+		Me.Label33.Name = "Label33"
+		Me.Label33.Size = New System.Drawing.Size(138, 28)
+		Me.Label33.TabIndex = 6
+		Me.Label33.Text = "Author"
 		'
 		'Label27
 		'
@@ -1550,7 +1681,7 @@ Partial Class formMain
 		Me.Label27.Location = New System.Drawing.Point(1077, 95)
 		Me.Label27.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.Label27.Name = "Label27"
-		Me.Label27.Size = New System.Drawing.Size(104, 28)
+		Me.Label27.Size = New System.Drawing.Size(138, 28)
 		Me.Label27.TabIndex = 6
 		Me.Label27.Text = "Author"
 		'
@@ -1562,7 +1693,7 @@ Partial Class formMain
 		Me.Label28.Location = New System.Drawing.Point(1077, 17)
 		Me.Label28.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
 		Me.Label28.Name = "Label28"
-		Me.Label28.Size = New System.Drawing.Size(104, 28)
+		Me.Label28.Size = New System.Drawing.Size(138, 28)
 		Me.Label28.TabIndex = 7
 		Me.Label28.Text = "Name"
 		'
@@ -1758,16 +1889,27 @@ Partial Class formMain
 	Friend WithEvents Genre As ColumnHeader
 	Friend WithEvents Publisher As ColumnHeader
 	Friend WithEvents ISBN As ColumnHeader
-	Friend WithEvents TextBox1 As TextBox
-	Friend WithEvents TextBox2 As TextBox
-	Friend WithEvents TextBox3 As TextBox
-	Friend WithEvents TextBox4 As TextBox
-	Friend WithEvents Label8 As Label
-	Friend WithEvents Label22 As Label
-	Friend WithEvents Label27 As Label
-	Friend WithEvents Label28 As Label
-	Friend WithEvents Label29 As Label
-	Friend WithEvents HelpLinkContact As LinkLabel
-	Friend WithEvents Label31 As Label
-	Friend WithEvents Label30 As Label
+	Friend WithEvents txtCatalogBookTitle As TextBox
+    Friend WithEvents Label8 As Label
+    Friend WithEvents Label22 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Label28 As Label
+    Friend WithEvents Label29 As Label
+    Friend WithEvents HelpLinkContact As LinkLabel
+    Friend WithEvents Label31 As Label
+    Friend WithEvents Label30 As Label
+    Friend WithEvents cbCatalogPublisher As ComboBox
+    Friend WithEvents cbCatalogAuthor As ComboBox
+    Friend WithEvents cbCatalogGenre As ComboBox
+    Friend WithEvents btnCatalogUpdate As Button
+    Friend WithEvents btnCatalogAdd As Button
+    Friend WithEvents txtCatalogPublisher As TextBox
+    Friend WithEvents txtCatalogAuthor As TextBox
+    Friend WithEvents txtCatalogGenre As TextBox
+    Friend WithEvents btnCatalogAddAuthor As Button
+    Friend WithEvents btnCatalogAddPublisher As Button
+    Friend WithEvents btnCatalogAddGenre As Button
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Label32 As Label
+    Friend WithEvents Label33 As Label
 End Class
