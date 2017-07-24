@@ -460,8 +460,8 @@ Public Class MySQLDatabaseConnector
         ' Create the command
         Dim cmd As New MySqlCommand("SELECT Book.ID AS ISBN, Book.Name AS Title, Genre.Name AS Genre, 
                                         Author.Name AS Author, Publisher.Name AS Publisher, 
-		                                (select count(*) from Hold where book = @isbn and hold_until < sysdate()) As 'Hold', 
-		                                (select count(*) from Reservations where book = @isbn and due_date < sysdate()) As 'Reservation'
+		                                (select count(*) from Hold where book = @isbn and hold_until > sysdate()) As 'Hold', 
+		                                (select count(*) from Reservations where book = @isbn and due_date > sysdate()) As 'Reservation'
                                     FROM Book 
                                         JOIN Author ON Book.Author = Author.ID
                                         JOIN Genre ON Book.Genre = Genre.ID
@@ -488,7 +488,7 @@ Public Class MySQLDatabaseConnector
 
         ' Add info regarding Hold
 
-        Dim cmdHold As New MySqlCommand("select * from Hold where book = @isbn and hold_until < sysdate()", conn)
+        Dim cmdHold As New MySqlCommand("select * from Hold where book = @isbn and hold_until > sysdate()", conn)
         cmdHold.Prepare()
         cmdHold.Parameters.AddWithValue("@isbn", isbn)
         ' Execute the command
@@ -502,7 +502,7 @@ Public Class MySQLDatabaseConnector
 
         ' Add info regarding Reservation
 
-        Dim cmdRes As New MySqlCommand("select * from Reservations where book = @isbn and due_date < sysdate()", conn)
+        Dim cmdRes As New MySqlCommand("select * from Reservations where book = @isbn and due_date > sysdate()", conn)
         cmdRes.Prepare()
         cmdRes.Parameters.AddWithValue("@isbn", isbn)
         ' Execute the command

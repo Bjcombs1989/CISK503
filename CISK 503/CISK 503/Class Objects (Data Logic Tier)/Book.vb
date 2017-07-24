@@ -98,15 +98,29 @@
             _available = value
         End Set
     End Property
-    Public ReadOnly Property IsHeld As Boolean
+    Public Property IsHeld As Boolean
         Get
             Return Not info("Hold") = "0"
         End Get
+        Set(value As Boolean)
+            If value Then
+                info("Hold") = "1"
+            Else
+                info("Hold") = "0"
+            End If
+        End Set
     End Property
-    Public ReadOnly Property IsReservered As Boolean
+    Public Property IsReservered As Boolean
         Get
             Return Not info("Reservation") = "0"
         End Get
+        Set(value As Boolean)
+            If value Then
+                info("Reservation") = "1"
+            Else
+                info("Reservation") = "0"
+            End If
+        End Set
     End Property
     Public ReadOnly Property Title As String
         Get
@@ -153,6 +167,32 @@
         End Set
     End Property
     ' Methods
+    Public Sub RefreshInfo()
+        Try
+            info = _mysql.GetBook(_isbn)
+
+            ' Check if book is available
+            _available = info("Hold") = "0" And info("Reservation") = "0"
+
+            If Not info("Hold") = "0" Then
+                Hold = New Hold(
+                        New Patron(_mysql, Integer.Parse(info("Hold_User"))),
+                        Me,
+                        DateTime.Parse(info("Hold_Until")))
+            End If
+
+            If Not info("Reservation") = "0" Then
+                Reservation = New Reservation(
+                        New Patron(_mysql, Integer.Parse(info("Res_User"))),
+                        Me,
+                        DateTime.Parse(info("Due_Date")),
+                        Decimal.Parse(info("Late_Fees"))
+                    )
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
 
     'overridable function to format and return Book information
     Public Overrides Function ToString() As String

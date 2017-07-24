@@ -294,6 +294,8 @@
 
     ' Book Page                 TAB INDEX = 3
     Public Sub LoadBook()
+        book.RefreshInfo()
+
         ' Dispaly all the book stuff in their respective textboxes
         txtBookAuthor.Text = book.Author
         txtBookGenre.Text = book.Genre
@@ -319,10 +321,17 @@
     End Sub
 
     Private Sub btnPlaceHold_Click(sender As Object, e As EventArgs) Handles btnPlaceHold.Click
+        If Not book.IsAvailable Then
+            MessageBox.Show("The book you selected is not available", "Not available")
+            LoadBook()
+            Return
+        End If
+
         Try
             Dim hld As New Hold(user, book)
             mysql.AddHold(hld)
             book.Hold = hld
+            book.IsHeld = True
             MessageBox.Show("A hold has been placed for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             btnRemoveHold.Enabled = True ' enable the remove hold button
@@ -337,10 +346,17 @@
     End Sub
 
     Private Sub btnCheckOut_Click(sender As Object, e As EventArgs) Handles btnCheckOut.Click
+        If Not book.IsAvailable Then
+            MessageBox.Show("The book you selected is not available", "Not available")
+            LoadBook()
+            Return
+        End If
+
         Try
             Dim res As New Reservation(user, book)
             mysql.AddReservation(res)
             book.Reservation = res
+            book.IsReservered = True
             MessageBox.Show("This book has been checked out", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             btnRemoveHold.Enabled = False ' enable the remove hold button
@@ -357,6 +373,8 @@
     Private Sub btnCheckIn_Click(sender As Object, e As EventArgs) Handles btnCheckIn.Click
         Try
             mysql.RemoveReservation(book.Reservation)
+            book.Reservation = Nothing
+            book.IsReservered = False
             MessageBox.Show("You have checked this book in", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             btnRemoveHold.Enabled = False ' enable the remove hold button
@@ -373,6 +391,8 @@
     Private Sub btnRemoveHold_Click(sender As Object, e As EventArgs) Handles btnRemoveHold.Click
         Try
             mysql.RemoveHold(book.Hold)
+            book.Hold = Nothing
+            book.IsHeld = False
             MessageBox.Show("You have removed the hold for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             btnRemoveHold.Enabled = False ' enable the remove hold button
@@ -390,6 +410,12 @@
         If loading Then Return
         Dim selected As KeyValuePair(Of Integer, String)
 
+        If Not book.IsAvailable Then
+            MessageBox.Show("The book you selected is not available", "Not available")
+            LoadBook()
+            Return
+        End If
+
         Try
             selected = DirectCast(cmbxCheckOutTo.SelectedItem, KeyValuePair(Of Integer, String))
         Catch ex As Exception
@@ -398,7 +424,10 @@
         End Try
 
         Try
-            mysql.AddReservation(New Reservation(New Patron(mysql, selected.Key), book))
+            Dim res As New Reservation(New Patron(mysql, selected.Key), book)
+            mysql.AddReservation(res)
+            book.Reservation = res
+            book.IsReservered = True
             MessageBox.Show("You have checked this book out to " + selected.Value, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             btnRemoveHold.Enabled = False ' enable the remove hold button
@@ -410,11 +439,19 @@
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+
+        cmbxCheckOutTo.SelectedIndex = -1
     End Sub
 
     Private Sub cmbxPlaceHoldFor_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbxPlaceHoldFor.SelectedIndexChanged
         If loading Then Return
         Dim selected As KeyValuePair(Of Integer, String)
+
+        If Not book.IsAvailable Then
+            MessageBox.Show("The book you selected is not available", "Not available")
+            LoadBook()
+            Return
+        End If
 
         Try
             selected = DirectCast(cmbxPlaceHoldFor.SelectedItem, KeyValuePair(Of Integer, String))
@@ -424,7 +461,10 @@
         End Try
 
         Try
-            mysql.AddHold(New Hold(New Patron(mysql, selected.Key), book))
+            Dim hld As New Hold(New Patron(mysql, selected.Key), book)
+            mysql.AddHold(hld)
+            book.Hold = hld
+            book.IsHeld = True
             MessageBox.Show("You have placed a hold on this book for " + selected.Value, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             btnRemoveHold.Enabled = True ' enable the remove hold button
@@ -436,6 +476,8 @@
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Hold", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+
+        cmbxPlaceHoldFor.SelectedIndex = -1
     End Sub
 
     ' Books Page         TAB INDEX = 4
@@ -478,6 +520,8 @@
     Private Sub btnReservationRemoveHold_Click(sender As Object, e As EventArgs) Handles btnReservationRemoveHold.Click
         Try
             mysql.RemoveHold(book.Hold)
+            book.IsHeld = False
+            book.Hold = Nothing
             MessageBox.Show("You have removed the hold for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
@@ -495,6 +539,7 @@
             Dim res As New Reservation(book.Hold)
             mysql.AddReservation(res)
             book.Reservation = res
+            book.IsReservered = True
             MessageBox.Show("You have checked this book out", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
@@ -509,6 +554,8 @@
     Private Sub btnReservationCheckIn_Click(sender As Object, e As EventArgs) Handles btnReservationCheckIn.Click
         Try
             mysql.RemoveReservation(book.Reservation)
+            book.IsReservered = False
+            book.Reservation = Nothing
             MessageBox.Show("You have checked this book in", "Check In", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
