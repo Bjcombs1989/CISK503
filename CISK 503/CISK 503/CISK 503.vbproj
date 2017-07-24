@@ -184,6 +184,7 @@
     <Content Include="Database Objects %28Database Tier%29\MySQL Connector NET 6.9\MySql.Data.Entity.EF6.dll" />
     <Content Include="Database Objects %28Database Tier%29\MySQL Connector NET 6.9\MySql.Fabric.Plugin.dll" />
     <Content Include="Database Objects %28Database Tier%29\MySQL Connector NET 6.9\MySql.Web.dll" />
+    <Content Include="Project Documentation\combsan1_tamuct.sql" />
     <Content Include="Project Documentation\Structure of Navigation.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
