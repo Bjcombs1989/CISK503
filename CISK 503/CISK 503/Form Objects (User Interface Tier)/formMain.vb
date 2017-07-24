@@ -230,7 +230,7 @@
     End Sub
 
     Private Sub LoadBooks() Handles _
-        txtSearchTitle.TextChanged, txtSearchISBN.TextChanged, cmbxSearchStatus.SelectedIndexChanged, cmbxSearchGenre.SelectedIndexChanged
+        txtSearchTitle.TextChanged, txtSearchISBN.TextChanged, cmbxSearchGenre.SelectedIndexChanged
 
         If loading Then
             Return
@@ -263,14 +263,6 @@
             filter += "`Genre` LIKE '" + kvp.Value + "'"
         End If
 
-        If Not cmbxSearchStatus.SelectedIndex = -1 Then
-            If (filter <> "") Then
-                filter += " AND "
-            End If
-
-            filter += "`Status` LIKE '" + cmbxSearchStatus.SelectedItem + "'"
-        End If
-
         books.DefaultView.RowFilter = filter
         dgvSearch.DataSource = books
     End Sub
@@ -279,7 +271,6 @@
         txtSearchISBN.Clear()
         txtSearchTitle.Clear()
         cmbxSearchGenre.SelectedIndex = -1
-        cmbxSearchStatus.SelectedIndex = -1
         LoadBooks()
         txtSearchISBN.Select()
     End Sub
@@ -324,11 +315,14 @@
         cmbxCheckOutTo.Enabled = book.IsAvailable And TypeOf (user) Is Librarian ' enable check out button
 
         btnCheckIn.Enabled = book.IsReservered And TypeOf (user) Is Librarian ' enable the check in buttond
+        cmbxPlaceHoldFor.Enabled = book.IsAvailable And TypeOf (user) Is Librarian ' enable check out button
     End Sub
 
     Private Sub btnPlaceHold_Click(sender As Object, e As EventArgs) Handles btnPlaceHold.Click
         Try
-            mysql.AddHold(New Hold(user, book))
+            Dim hld As New Hold(user, book)
+            mysql.AddHold(hld)
+            book.Hold = hld
             MessageBox.Show("A hold has been placed for this book", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             btnRemoveHold.Enabled = True ' enable the remove hold button
@@ -344,7 +338,9 @@
 
     Private Sub btnCheckOut_Click(sender As Object, e As EventArgs) Handles btnCheckOut.Click
         Try
-            mysql.AddReservation(New Reservation(user, book))
+            Dim res As New Reservation(user, book)
+            mysql.AddReservation(res)
+            book.Reservation = res
             MessageBox.Show("This book has been checked out", "Hold", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             btnRemoveHold.Enabled = False ' enable the remove hold button
@@ -496,7 +492,9 @@
     Private Sub btnReservationCheckOut_Click(sender As Object, e As EventArgs) Handles btnReservationCheckOut.Click
         Try
             mysql.RemoveHold(book.Hold)
-            mysql.AddReservation(New Reservation(book.Hold))
+            Dim res As New Reservation(book.Hold)
+            mysql.AddReservation(res)
+            book.Reservation = res
             MessageBox.Show("You have checked this book out", "Check Out", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             If (action = MenuAction.MyReservations) Then ReservationToolStripMenuItem_Click(Nothing, Nothing)
@@ -653,8 +651,8 @@
             Return
         End If
 
-        If Not tbAccountCurrentPassword.Text = user.Password Then
-            MessageBox.Show("New password and confirm password must match")
+        If Not user.HashPassword(tbAccountCurrentPassword.Text) = selected_user.Password Then
+            MessageBox.Show("Your old password did not validate")
             Return
         End If
 

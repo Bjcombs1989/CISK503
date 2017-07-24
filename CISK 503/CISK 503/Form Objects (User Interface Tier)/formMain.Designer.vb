@@ -111,9 +111,6 @@ Partial Class formMain
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStripLabel3 = New System.Windows.Forms.ToolStripLabel()
         Me.cmbxSearchGenre = New System.Windows.Forms.ToolStripComboBox()
-        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripLabel4 = New System.Windows.Forms.ToolStripLabel()
-        Me.cmbxSearchStatus = New System.Windows.Forms.ToolStripComboBox()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.btnSearchClear = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
@@ -152,6 +149,17 @@ Partial Class formMain
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.tpCatalog = New System.Windows.Forms.TabPage()
+        Me.txtCatalogPublisher = New System.Windows.Forms.TextBox()
+        Me.txtCatalogAuthor = New System.Windows.Forms.TextBox()
+        Me.txtCatalogGenre = New System.Windows.Forms.TextBox()
+        Me.btnCatalogUpdate = New System.Windows.Forms.Button()
+        Me.btnCatalogAddAuthor = New System.Windows.Forms.Button()
+        Me.btnCatalogAddPublisher = New System.Windows.Forms.Button()
+        Me.btnCatalogAddGenre = New System.Windows.Forms.Button()
+        Me.btnCatalogAdd = New System.Windows.Forms.Button()
+        Me.cbCatalogPublisher = New System.Windows.Forms.ComboBox()
+        Me.cbCatalogAuthor = New System.Windows.Forms.ComboBox()
+        Me.cbCatalogGenre = New System.Windows.Forms.ComboBox()
         Me.lvCatalog = New System.Windows.Forms.ListView()
         Me.ISBN = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Title = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -159,26 +167,15 @@ Partial Class formMain
         Me.Author = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Publisher = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.txtCatalogBookTitle = New System.Windows.Forms.TextBox()
+        Me.Label34 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.cbCatalogGenre = New System.Windows.Forms.ComboBox()
-        Me.cbCatalogAuthor = New System.Windows.Forms.ComboBox()
-        Me.cbCatalogPublisher = New System.Windows.Forms.ComboBox()
-        Me.btnCatalogAdd = New System.Windows.Forms.Button()
-        Me.btnCatalogUpdate = New System.Windows.Forms.Button()
-        Me.txtCatalogGenre = New System.Windows.Forms.TextBox()
-        Me.txtCatalogAuthor = New System.Windows.Forms.TextBox()
-        Me.txtCatalogPublisher = New System.Windows.Forms.TextBox()
-        Me.Label32 = New System.Windows.Forms.Label()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.Label34 = New System.Windows.Forms.Label()
-        Me.btnCatalogAddGenre = New System.Windows.Forms.Button()
-        Me.btnCatalogAddPublisher = New System.Windows.Forms.Button()
-        Me.btnCatalogAddAuthor = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.errProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tpContacts.SuspendLayout()
@@ -308,19 +305,19 @@ Partial Class formMain
         'FAQToolStripMenuItem1
         '
         Me.FAQToolStripMenuItem1.Name = "FAQToolStripMenuItem1"
-        Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.FAQToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
         Me.FAQToolStripMenuItem1.Text = "&FAQ"
         '
         'ContactsToolStripMenuItem1
         '
         Me.ContactsToolStripMenuItem1.Name = "ContactsToolStripMenuItem1"
-        Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ContactsToolStripMenuItem1.Size = New System.Drawing.Size(121, 22)
         Me.ContactsToolStripMenuItem1.Text = "&Contacts"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'LoginToolStripMenuItem
@@ -338,7 +335,7 @@ Partial Class formMain
         Me.tpContacts.BackgroundImage = CType(resources.GetObject("tpContacts.BackgroundImage"), System.Drawing.Image)
         Me.tpContacts.Controls.Add(Me.Label7)
         Me.tpContacts.Location = New System.Drawing.Point(4, 22)
-        Me.tpContacts.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpContacts.Margin = New System.Windows.Forms.Padding(2)
         Me.tpContacts.Name = "tpContacts"
         Me.tpContacts.Size = New System.Drawing.Size(1119, 498)
         Me.tpContacts.TabIndex = 11
@@ -369,9 +366,9 @@ Partial Class formMain
         Me.tpHelp.Controls.Add(Me.Label30)
         Me.tpHelp.Controls.Add(Me.Label29)
         Me.tpHelp.Location = New System.Drawing.Point(4, 22)
-        Me.tpHelp.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpHelp.Margin = New System.Windows.Forms.Padding(2)
         Me.tpHelp.Name = "tpHelp"
-        Me.tpHelp.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpHelp.Padding = New System.Windows.Forms.Padding(2)
         Me.tpHelp.Size = New System.Drawing.Size(1119, 498)
         Me.tpHelp.TabIndex = 10
         Me.tpHelp.Text = "Help"
@@ -443,7 +440,7 @@ Partial Class formMain
         Me.tpAccount.Controls.Add(Me.GroupBox1)
         Me.tpAccount.Controls.Add(Me.GroupBox2)
         Me.tpAccount.Location = New System.Drawing.Point(4, 22)
-        Me.tpAccount.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpAccount.Margin = New System.Windows.Forms.Padding(2)
         Me.tpAccount.Name = "tpAccount"
         Me.tpAccount.Size = New System.Drawing.Size(1119, 498)
         Me.tpAccount.TabIndex = 9
@@ -456,9 +453,9 @@ Partial Class formMain
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.ForeColor = System.Drawing.SystemColors.WindowText
         Me.GroupBox3.Location = New System.Drawing.Point(832, 298)
-        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBox3.Size = New System.Drawing.Size(266, 164)
         Me.GroupBox3.TabIndex = 22
         Me.GroupBox3.TabStop = False
@@ -470,7 +467,7 @@ Partial Class formMain
         Me.btnAccountsDelete.AutoSize = True
         Me.btnAccountsDelete.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAccountsDelete.Location = New System.Drawing.Point(108, 67)
-        Me.btnAccountsDelete.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAccountsDelete.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAccountsDelete.Name = "btnAccountsDelete"
         Me.btnAccountsDelete.Size = New System.Drawing.Size(84, 35)
         Me.btnAccountsDelete.TabIndex = 0
@@ -527,9 +524,9 @@ Partial Class formMain
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.ForeColor = System.Drawing.SystemColors.WindowText
         Me.GroupBox1.Location = New System.Drawing.Point(528, 13)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBox1.Size = New System.Drawing.Size(373, 265)
         Me.GroupBox1.TabIndex = 20
         Me.GroupBox1.TabStop = False
@@ -547,7 +544,7 @@ Partial Class formMain
         '
         Me.tbAccountAccountID.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbAccountAccountID.Location = New System.Drawing.Point(138, 34)
-        Me.tbAccountAccountID.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbAccountAccountID.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountAccountID.Name = "tbAccountAccountID"
         Me.tbAccountAccountID.ReadOnly = True
         Me.tbAccountAccountID.Size = New System.Drawing.Size(219, 23)
@@ -557,7 +554,7 @@ Partial Class formMain
         '
         Me.tbAccountDateCreated.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbAccountDateCreated.Location = New System.Drawing.Point(138, 93)
-        Me.tbAccountDateCreated.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbAccountDateCreated.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountDateCreated.Name = "tbAccountDateCreated"
         Me.tbAccountDateCreated.ReadOnly = True
         Me.tbAccountDateCreated.Size = New System.Drawing.Size(219, 23)
@@ -568,7 +565,7 @@ Partial Class formMain
         Me.btnAccountUpdate.AutoSize = True
         Me.btnAccountUpdate.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAccountUpdate.Location = New System.Drawing.Point(160, 202)
-        Me.btnAccountUpdate.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAccountUpdate.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAccountUpdate.Name = "btnAccountUpdate"
         Me.btnAccountUpdate.Size = New System.Drawing.Size(91, 35)
         Me.btnAccountUpdate.TabIndex = 1
@@ -617,7 +614,7 @@ Partial Class formMain
         '
         Me.tbAccountBalance.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbAccountBalance.Location = New System.Drawing.Point(138, 153)
-        Me.tbAccountBalance.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbAccountBalance.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountBalance.Name = "tbAccountBalance"
         Me.tbAccountBalance.ReadOnly = True
         Me.tbAccountBalance.Size = New System.Drawing.Size(219, 23)
@@ -639,7 +636,7 @@ Partial Class formMain
         '
         Me.tbAccountUsername.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbAccountUsername.Location = New System.Drawing.Point(138, 64)
-        Me.tbAccountUsername.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbAccountUsername.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountUsername.Name = "tbAccountUsername"
         Me.tbAccountUsername.Size = New System.Drawing.Size(219, 23)
         Me.tbAccountUsername.TabIndex = 11
@@ -668,9 +665,9 @@ Partial Class formMain
         Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.ForeColor = System.Drawing.SystemColors.WindowText
         Me.GroupBox2.Location = New System.Drawing.Point(528, 298)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Size = New System.Drawing.Size(266, 164)
         Me.GroupBox2.TabIndex = 21
         Me.GroupBox2.TabStop = False
@@ -680,7 +677,7 @@ Partial Class formMain
         '
         Me.tbAccountNewPasswordConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbAccountNewPasswordConfirm.Location = New System.Drawing.Point(127, 93)
-        Me.tbAccountNewPasswordConfirm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbAccountNewPasswordConfirm.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountNewPasswordConfirm.Name = "tbAccountNewPasswordConfirm"
         Me.tbAccountNewPasswordConfirm.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.tbAccountNewPasswordConfirm.Size = New System.Drawing.Size(120, 23)
@@ -700,7 +697,7 @@ Partial Class formMain
         '
         Me.tbAccountCurrentPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbAccountCurrentPassword.Location = New System.Drawing.Point(127, 30)
-        Me.tbAccountCurrentPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbAccountCurrentPassword.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountCurrentPassword.Name = "tbAccountCurrentPassword"
         Me.tbAccountCurrentPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.tbAccountCurrentPassword.Size = New System.Drawing.Size(120, 23)
@@ -711,7 +708,7 @@ Partial Class formMain
         Me.btnAccountChange.AutoSize = True
         Me.btnAccountChange.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAccountChange.Location = New System.Drawing.Point(103, 120)
-        Me.btnAccountChange.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnAccountChange.Margin = New System.Windows.Forms.Padding(2)
         Me.btnAccountChange.Name = "btnAccountChange"
         Me.btnAccountChange.Size = New System.Drawing.Size(98, 35)
         Me.btnAccountChange.TabIndex = 0
@@ -733,7 +730,7 @@ Partial Class formMain
         '
         Me.tbAccountNewPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbAccountNewPassword.Location = New System.Drawing.Point(127, 62)
-        Me.tbAccountNewPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbAccountNewPassword.Margin = New System.Windows.Forms.Padding(2)
         Me.tbAccountNewPassword.Name = "tbAccountNewPassword"
         Me.tbAccountNewPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.tbAccountNewPassword.Size = New System.Drawing.Size(120, 23)
@@ -767,9 +764,9 @@ Partial Class formMain
         Me.tpBooks.Controls.Add(Me.Label16)
         Me.tpBooks.Controls.Add(Me.listviewReservation)
         Me.tpBooks.Location = New System.Drawing.Point(4, 22)
-        Me.tpBooks.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpBooks.Margin = New System.Windows.Forms.Padding(2)
         Me.tpBooks.Name = "tpBooks"
-        Me.tpBooks.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpBooks.Padding = New System.Windows.Forms.Padding(2)
         Me.tpBooks.Size = New System.Drawing.Size(1119, 498)
         Me.tpBooks.TabIndex = 4
         Me.tpBooks.Text = "Books"
@@ -781,7 +778,7 @@ Partial Class formMain
         Me.btnReservationCheckIn.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnReservationCheckIn.Location = New System.Drawing.Point(855, 169)
         Me.btnReservationCheckIn.Name = "btnReservationCheckIn"
-        Me.btnReservationCheckIn.Size = New System.Drawing.Size(90, 23)
+        Me.btnReservationCheckIn.Size = New System.Drawing.Size(118, 23)
         Me.btnReservationCheckIn.TabIndex = 15
         Me.btnReservationCheckIn.Text = "Check In"
         Me.btnReservationCheckIn.UseVisualStyleBackColor = True
@@ -792,7 +789,7 @@ Partial Class formMain
         Me.btnReservationCheckOut.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnReservationCheckOut.Location = New System.Drawing.Point(855, 198)
         Me.btnReservationCheckOut.Name = "btnReservationCheckOut"
-        Me.btnReservationCheckOut.Size = New System.Drawing.Size(90, 23)
+        Me.btnReservationCheckOut.Size = New System.Drawing.Size(118, 23)
         Me.btnReservationCheckOut.TabIndex = 14
         Me.btnReservationCheckOut.Text = "Check Out"
         Me.btnReservationCheckOut.UseVisualStyleBackColor = True
@@ -839,7 +836,7 @@ Partial Class formMain
         Me.btnReservationRemoveHold.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnReservationRemoveHold.Location = New System.Drawing.Point(855, 140)
         Me.btnReservationRemoveHold.Name = "btnReservationRemoveHold"
-        Me.btnReservationRemoveHold.Size = New System.Drawing.Size(90, 23)
+        Me.btnReservationRemoveHold.Size = New System.Drawing.Size(118, 23)
         Me.btnReservationRemoveHold.TabIndex = 9
         Me.btnReservationRemoveHold.Text = "Remove Hold"
         Me.btnReservationRemoveHold.UseVisualStyleBackColor = True
@@ -942,10 +939,10 @@ Partial Class formMain
         Me.tpSearch.Controls.Add(Me.ToolStrip1)
         Me.tpSearch.Controls.Add(Me.btPatronSearchHold)
         Me.tpSearch.Location = New System.Drawing.Point(4, 22)
-        Me.tpSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tpSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.tpSearch.Name = "tpSearch"
-        Me.tpSearch.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.tpSearch.Size = New System.Drawing.Size(1119, 499)
+        Me.tpSearch.Padding = New System.Windows.Forms.Padding(2)
+        Me.tpSearch.Size = New System.Drawing.Size(1119, 498)
         Me.tpSearch.TabIndex = 3
         Me.tpSearch.Text = "Search"
         Me.tpSearch.UseVisualStyleBackColor = True
@@ -960,13 +957,13 @@ Partial Class formMain
         Me.dgvSearch.Name = "dgvSearch"
         Me.dgvSearch.ReadOnly = True
         Me.dgvSearch.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSearch.Size = New System.Drawing.Size(1115, 470)
+        Me.dgvSearch.Size = New System.Drawing.Size(1115, 469)
         Me.dgvSearch.TabIndex = 2
         '
         'ToolStrip1
         '
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.txtSearchISBN, Me.ToolStripSeparator1, Me.ToolStripLabel2, Me.txtSearchTitle, Me.ToolStripSeparator2, Me.ToolStripLabel3, Me.cmbxSearchGenre, Me.ToolStripSeparator3, Me.ToolStripLabel4, Me.cmbxSearchStatus, Me.ToolStripSeparator4, Me.btnSearchClear, Me.ToolStripSeparator5})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripLabel1, Me.txtSearchISBN, Me.ToolStripSeparator1, Me.ToolStripLabel2, Me.txtSearchTitle, Me.ToolStripSeparator2, Me.ToolStripLabel3, Me.cmbxSearchGenre, Me.ToolStripSeparator4, Me.btnSearchClear, Me.ToolStripSeparator5})
         Me.ToolStrip1.Location = New System.Drawing.Point(2, 2)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1115, 25)
@@ -1016,22 +1013,6 @@ Partial Class formMain
         Me.cmbxSearchGenre.Name = "cmbxSearchGenre"
         Me.cmbxSearchGenre.Size = New System.Drawing.Size(121, 25)
         '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
-        '
-        'ToolStripLabel4
-        '
-        Me.ToolStripLabel4.Name = "ToolStripLabel4"
-        Me.ToolStripLabel4.Size = New System.Drawing.Size(42, 22)
-        Me.ToolStripLabel4.Text = "Status:"
-        '
-        'cmbxSearchStatus
-        '
-        Me.cmbxSearchStatus.Name = "cmbxSearchStatus"
-        Me.cmbxSearchStatus.Size = New System.Drawing.Size(121, 25)
-        '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
@@ -1054,7 +1035,7 @@ Partial Class formMain
         'btPatronSearchHold
         '
         Me.btPatronSearchHold.Location = New System.Drawing.Point(639, 4)
-        Me.btPatronSearchHold.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btPatronSearchHold.Margin = New System.Windows.Forms.Padding(2)
         Me.btPatronSearchHold.Name = "btPatronSearchHold"
         Me.btPatronSearchHold.Size = New System.Drawing.Size(61, 22)
         Me.btPatronSearchHold.TabIndex = 1
@@ -1074,8 +1055,8 @@ Partial Class formMain
         Me.tpCreate.Controls.Add(Me.Label4)
         Me.tpCreate.Location = New System.Drawing.Point(4, 22)
         Me.tpCreate.Name = "tpCreate"
-        Me.tpCreate.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.tpCreate.Size = New System.Drawing.Size(1119, 499)
+        Me.tpCreate.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpCreate.Size = New System.Drawing.Size(1119, 498)
         Me.tpCreate.TabIndex = 1
         Me.tpCreate.Text = "CreateAcct"
         Me.tpCreate.UseVisualStyleBackColor = True
@@ -1157,7 +1138,7 @@ Partial Class formMain
         Me.tpLogin.Controls.Add(Me.Label1)
         Me.tpLogin.Location = New System.Drawing.Point(4, 22)
         Me.tpLogin.Name = "tpLogin"
-        Me.tpLogin.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tpLogin.Padding = New System.Windows.Forms.Padding(3)
         Me.tpLogin.Size = New System.Drawing.Size(1119, 498)
         Me.tpLogin.TabIndex = 0
         Me.tpLogin.Text = "Login"
@@ -1260,7 +1241,7 @@ Partial Class formMain
         Me.tpBook.Controls.Add(Me.Label9)
         Me.tpBook.Location = New System.Drawing.Point(4, 22)
         Me.tpBook.Name = "tpBook"
-        Me.tpBook.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tpBook.Padding = New System.Windows.Forms.Padding(3)
         Me.tpBook.Size = New System.Drawing.Size(1119, 498)
         Me.tpBook.TabIndex = 14
         Me.tpBook.Text = "Book"
@@ -1446,6 +1427,96 @@ Partial Class formMain
         Me.tpCatalog.Text = "Catalog"
         Me.tpCatalog.UseVisualStyleBackColor = True
         '
+        'txtCatalogPublisher
+        '
+        Me.txtCatalogPublisher.Location = New System.Drawing.Point(718, 319)
+        Me.txtCatalogPublisher.Name = "txtCatalogPublisher"
+        Me.txtCatalogPublisher.Size = New System.Drawing.Size(262, 20)
+        Me.txtCatalogPublisher.TabIndex = 15
+        '
+        'txtCatalogAuthor
+        '
+        Me.txtCatalogAuthor.Location = New System.Drawing.Point(718, 272)
+        Me.txtCatalogAuthor.Name = "txtCatalogAuthor"
+        Me.txtCatalogAuthor.Size = New System.Drawing.Size(262, 20)
+        Me.txtCatalogAuthor.TabIndex = 15
+        '
+        'txtCatalogGenre
+        '
+        Me.txtCatalogGenre.Location = New System.Drawing.Point(718, 223)
+        Me.txtCatalogGenre.Name = "txtCatalogGenre"
+        Me.txtCatalogGenre.Size = New System.Drawing.Size(262, 20)
+        Me.txtCatalogGenre.TabIndex = 15
+        '
+        'btnCatalogUpdate
+        '
+        Me.btnCatalogUpdate.Location = New System.Drawing.Point(816, 127)
+        Me.btnCatalogUpdate.Name = "btnCatalogUpdate"
+        Me.btnCatalogUpdate.Size = New System.Drawing.Size(92, 23)
+        Me.btnCatalogUpdate.TabIndex = 14
+        Me.btnCatalogUpdate.Text = "Update"
+        Me.btnCatalogUpdate.UseVisualStyleBackColor = True
+        '
+        'btnCatalogAddAuthor
+        '
+        Me.btnCatalogAddAuthor.Location = New System.Drawing.Point(986, 270)
+        Me.btnCatalogAddAuthor.Name = "btnCatalogAddAuthor"
+        Me.btnCatalogAddAuthor.Size = New System.Drawing.Size(92, 23)
+        Me.btnCatalogAddAuthor.TabIndex = 14
+        Me.btnCatalogAddAuthor.Text = "Add"
+        Me.btnCatalogAddAuthor.UseVisualStyleBackColor = True
+        '
+        'btnCatalogAddPublisher
+        '
+        Me.btnCatalogAddPublisher.Location = New System.Drawing.Point(986, 317)
+        Me.btnCatalogAddPublisher.Name = "btnCatalogAddPublisher"
+        Me.btnCatalogAddPublisher.Size = New System.Drawing.Size(92, 23)
+        Me.btnCatalogAddPublisher.TabIndex = 14
+        Me.btnCatalogAddPublisher.Text = "Add"
+        Me.btnCatalogAddPublisher.UseVisualStyleBackColor = True
+        '
+        'btnCatalogAddGenre
+        '
+        Me.btnCatalogAddGenre.Location = New System.Drawing.Point(986, 221)
+        Me.btnCatalogAddGenre.Name = "btnCatalogAddGenre"
+        Me.btnCatalogAddGenre.Size = New System.Drawing.Size(92, 23)
+        Me.btnCatalogAddGenre.TabIndex = 14
+        Me.btnCatalogAddGenre.Text = "Add"
+        Me.btnCatalogAddGenre.UseVisualStyleBackColor = True
+        '
+        'btnCatalogAdd
+        '
+        Me.btnCatalogAdd.Location = New System.Drawing.Point(718, 127)
+        Me.btnCatalogAdd.Name = "btnCatalogAdd"
+        Me.btnCatalogAdd.Size = New System.Drawing.Size(92, 23)
+        Me.btnCatalogAdd.TabIndex = 14
+        Me.btnCatalogAdd.Text = "Add"
+        Me.btnCatalogAdd.UseVisualStyleBackColor = True
+        '
+        'cbCatalogPublisher
+        '
+        Me.cbCatalogPublisher.FormattingEnabled = True
+        Me.cbCatalogPublisher.Location = New System.Drawing.Point(816, 89)
+        Me.cbCatalogPublisher.Name = "cbCatalogPublisher"
+        Me.cbCatalogPublisher.Size = New System.Drawing.Size(295, 21)
+        Me.cbCatalogPublisher.TabIndex = 13
+        '
+        'cbCatalogAuthor
+        '
+        Me.cbCatalogAuthor.FormattingEnabled = True
+        Me.cbCatalogAuthor.Location = New System.Drawing.Point(816, 62)
+        Me.cbCatalogAuthor.Name = "cbCatalogAuthor"
+        Me.cbCatalogAuthor.Size = New System.Drawing.Size(295, 21)
+        Me.cbCatalogAuthor.TabIndex = 13
+        '
+        'cbCatalogGenre
+        '
+        Me.cbCatalogGenre.FormattingEnabled = True
+        Me.cbCatalogGenre.Location = New System.Drawing.Point(816, 35)
+        Me.cbCatalogGenre.Name = "cbCatalogGenre"
+        Me.cbCatalogGenre.Size = New System.Drawing.Size(295, 21)
+        Me.cbCatalogGenre.TabIndex = 13
+        '
         'lvCatalog
         '
         Me.lvCatalog.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -1494,6 +1565,17 @@ Partial Class formMain
         Me.txtCatalogBookTitle.Size = New System.Drawing.Size(295, 20)
         Me.txtCatalogBookTitle.TabIndex = 11
         '
+        'Label34
+        '
+        Me.Label34.BackColor = System.Drawing.Color.White
+        Me.Label34.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label34.Location = New System.Drawing.Point(718, 202)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(92, 18)
+        Me.Label34.TabIndex = 4
+        Me.Label34.Text = "Genre"
+        '
         'Label8
         '
         Me.Label8.BackColor = System.Drawing.Color.White
@@ -1505,6 +1587,17 @@ Partial Class formMain
         Me.Label8.TabIndex = 4
         Me.Label8.Text = "Genre"
         '
+        'Label32
+        '
+        Me.Label32.BackColor = System.Drawing.Color.White
+        Me.Label32.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label32.Location = New System.Drawing.Point(718, 298)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(92, 18)
+        Me.Label32.TabIndex = 5
+        Me.Label32.Text = "Publisher"
+        '
         'Label22
         '
         Me.Label22.BackColor = System.Drawing.Color.White
@@ -1515,6 +1608,17 @@ Partial Class formMain
         Me.Label22.Size = New System.Drawing.Size(92, 18)
         Me.Label22.TabIndex = 5
         Me.Label22.Text = "Publisher"
+        '
+        'Label33
+        '
+        Me.Label33.BackColor = System.Drawing.Color.White
+        Me.Label33.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label33.Location = New System.Drawing.Point(718, 251)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(92, 18)
+        Me.Label33.TabIndex = 6
+        Me.Label33.Text = "Author"
         '
         'Label27
         '
@@ -1549,129 +1653,6 @@ Partial Class formMain
         Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
         Me.ContextMenuStrip2.Size = New System.Drawing.Size(61, 4)
-        '
-        'cbCatalogGenre
-        '
-        Me.cbCatalogGenre.FormattingEnabled = True
-        Me.cbCatalogGenre.Location = New System.Drawing.Point(816, 35)
-        Me.cbCatalogGenre.Name = "cbCatalogGenre"
-        Me.cbCatalogGenre.Size = New System.Drawing.Size(295, 21)
-        Me.cbCatalogGenre.TabIndex = 13
-        '
-        'cbCatalogAuthor
-        '
-        Me.cbCatalogAuthor.FormattingEnabled = True
-        Me.cbCatalogAuthor.Location = New System.Drawing.Point(816, 62)
-        Me.cbCatalogAuthor.Name = "cbCatalogAuthor"
-        Me.cbCatalogAuthor.Size = New System.Drawing.Size(295, 21)
-        Me.cbCatalogAuthor.TabIndex = 13
-        '
-        'cbCatalogPublisher
-        '
-        Me.cbCatalogPublisher.FormattingEnabled = True
-        Me.cbCatalogPublisher.Location = New System.Drawing.Point(816, 89)
-        Me.cbCatalogPublisher.Name = "cbCatalogPublisher"
-        Me.cbCatalogPublisher.Size = New System.Drawing.Size(295, 21)
-        Me.cbCatalogPublisher.TabIndex = 13
-        '
-        'btnCatalogAdd
-        '
-        Me.btnCatalogAdd.Location = New System.Drawing.Point(718, 127)
-        Me.btnCatalogAdd.Name = "btnCatalogAdd"
-        Me.btnCatalogAdd.Size = New System.Drawing.Size(92, 23)
-        Me.btnCatalogAdd.TabIndex = 14
-        Me.btnCatalogAdd.Text = "Add"
-        Me.btnCatalogAdd.UseVisualStyleBackColor = True
-        '
-        'btnCatalogUpdate
-        '
-        Me.btnCatalogUpdate.Location = New System.Drawing.Point(816, 127)
-        Me.btnCatalogUpdate.Name = "btnCatalogUpdate"
-        Me.btnCatalogUpdate.Size = New System.Drawing.Size(92, 23)
-        Me.btnCatalogUpdate.TabIndex = 14
-        Me.btnCatalogUpdate.Text = "Update"
-        Me.btnCatalogUpdate.UseVisualStyleBackColor = True
-        '
-        'txtCatalogGenre
-        '
-        Me.txtCatalogGenre.Location = New System.Drawing.Point(718, 223)
-        Me.txtCatalogGenre.Name = "txtCatalogGenre"
-        Me.txtCatalogGenre.Size = New System.Drawing.Size(262, 20)
-        Me.txtCatalogGenre.TabIndex = 15
-        '
-        'txtCatalogAuthor
-        '
-        Me.txtCatalogAuthor.Location = New System.Drawing.Point(718, 272)
-        Me.txtCatalogAuthor.Name = "txtCatalogAuthor"
-        Me.txtCatalogAuthor.Size = New System.Drawing.Size(262, 20)
-        Me.txtCatalogAuthor.TabIndex = 15
-        '
-        'txtCatalogPublisher
-        '
-        Me.txtCatalogPublisher.Location = New System.Drawing.Point(718, 319)
-        Me.txtCatalogPublisher.Name = "txtCatalogPublisher"
-        Me.txtCatalogPublisher.Size = New System.Drawing.Size(262, 20)
-        Me.txtCatalogPublisher.TabIndex = 15
-        '
-        'Label32
-        '
-        Me.Label32.BackColor = System.Drawing.Color.White
-        Me.Label32.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label32.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label32.Location = New System.Drawing.Point(718, 298)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(92, 18)
-        Me.Label32.TabIndex = 5
-        Me.Label32.Text = "Publisher"
-        '
-        'Label33
-        '
-        Me.Label33.BackColor = System.Drawing.Color.White
-        Me.Label33.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(718, 251)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(92, 18)
-        Me.Label33.TabIndex = 6
-        Me.Label33.Text = "Author"
-        '
-        'Label34
-        '
-        Me.Label34.BackColor = System.Drawing.Color.White
-        Me.Label34.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label34.Location = New System.Drawing.Point(718, 202)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(92, 18)
-        Me.Label34.TabIndex = 4
-        Me.Label34.Text = "Genre"
-        '
-        'btnCatalogAddGenre
-        '
-        Me.btnCatalogAddGenre.Location = New System.Drawing.Point(986, 221)
-        Me.btnCatalogAddGenre.Name = "btnCatalogAddGenre"
-        Me.btnCatalogAddGenre.Size = New System.Drawing.Size(92, 23)
-        Me.btnCatalogAddGenre.TabIndex = 14
-        Me.btnCatalogAddGenre.Text = "Add"
-        Me.btnCatalogAddGenre.UseVisualStyleBackColor = True
-        '
-        'btnCatalogAddPublisher
-        '
-        Me.btnCatalogAddPublisher.Location = New System.Drawing.Point(986, 317)
-        Me.btnCatalogAddPublisher.Name = "btnCatalogAddPublisher"
-        Me.btnCatalogAddPublisher.Size = New System.Drawing.Size(92, 23)
-        Me.btnCatalogAddPublisher.TabIndex = 14
-        Me.btnCatalogAddPublisher.Text = "Add"
-        Me.btnCatalogAddPublisher.UseVisualStyleBackColor = True
-        '
-        'btnCatalogAddAuthor
-        '
-        Me.btnCatalogAddAuthor.Location = New System.Drawing.Point(986, 270)
-        Me.btnCatalogAddAuthor.Name = "btnCatalogAddAuthor"
-        Me.btnCatalogAddAuthor.Size = New System.Drawing.Size(92, 23)
-        Me.btnCatalogAddAuthor.TabIndex = 14
-        Me.btnCatalogAddAuthor.Text = "Add"
-        Me.btnCatalogAddAuthor.UseVisualStyleBackColor = True
         '
         'formMain
         '
@@ -1771,11 +1752,8 @@ Partial Class formMain
 	Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
 	Friend WithEvents ToolStripLabel3 As ToolStripLabel
 	Friend WithEvents cmbxSearchGenre As ToolStripComboBox
-	Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
-	Friend WithEvents ToolStripLabel4 As ToolStripLabel
-	Friend WithEvents cmbxSearchStatus As ToolStripComboBox
-	Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
-	Friend WithEvents btnSearchClear As ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents btnSearchClear As ToolStripButton
 	Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
 	Friend WithEvents tpBook As TabPage
 	Friend WithEvents listviewReservation As ListView
