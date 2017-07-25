@@ -37,7 +37,7 @@ Public Class MySQLDatabaseConnector
     ''' <author>Brian Combs</author>
     ''' <date>June 25, 2017</date>
     Function AddNewUser(username As String, password As String, level As Patron.AccountLevel) As AccountInfo
-        Dim cmd As New MySqlCommand("INSERT INTO `User` (`Password`, `Username`, `Account_Level`) VALUES (@password, @username, @level); SELECT LAST_INSERT_ID();", conn)
+        Dim cmd As New MySqlCommand("INSERT INTO `User` (`Password`, `Username`, `Account_Level`) VALUES (PASSWORD(@password), @username, @level); SELECT LAST_INSERT_ID();", conn)
         cmd.Prepare()
         cmd.Parameters.AddWithValue("@password", password)
         cmd.Parameters.AddWithValue("@username", username)
@@ -90,7 +90,7 @@ Public Class MySQLDatabaseConnector
     ''' <author>Brian Combs</author>
     ''' <date>June 25, 2017</date>
     Function LoginUser(username As String, password As String) As AccountInfo
-        Dim cmd As New MySqlCommand("SELECT `ID`, `Account_Level`, `Created_Date` FROM `User` WHERE `Password` LIKE @password AND `Username` LIKE @username", conn)
+        Dim cmd As New MySqlCommand("SELECT `ID`, `Account_Level`, `Created_Date` FROM `User` WHERE `Password` LIKE PASSWORD(@password) AND `Username` LIKE @username", conn)
         cmd.Prepare()
         cmd.Parameters.AddWithValue("@password", password)
         cmd.Parameters.AddWithValue("@username", username)
@@ -129,7 +129,7 @@ Public Class MySQLDatabaseConnector
     End Sub
 
     Public Sub UpdatePassword(user As Patron, new_password As String)
-        Dim cmd As New MySqlCommand("UPDATE `User` SET `Password` = @password WHERE `ID` = @id", conn)
+        Dim cmd As New MySqlCommand("UPDATE `User` SET `Password` = PASSWORD(@password) WHERE `ID` = @id", conn)
         cmd.Prepare()
         cmd.Parameters.AddWithValue("@password", user.HashPassword(new_password))
         cmd.Parameters.AddWithValue("@id", user.ID)
